@@ -1,0 +1,79 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: layer Q-vector s.
+!
+! Paul Wolynes (PUB)
+! 
+! *** Required Parameters ***
+type			= vector
+layer			= y
+function  = s=ldf(hght)//ldfh
+function2=v=smul(quo(-4.9e11,ldf(pres)),vasv(qvec(ldfh,vlav(geo)),kcrs(grad(ldfh))))
+description             = Q-vector s component \
+                        =  *** Must use a layer ( two levels ). *** \
+			= \ *** Must use Vector Arrows (no barbs) ***
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Q-vector s component
+vcoord			=
+level1			=
+level2			=
+contour			=
+fill			=
+hilo			=
+!					Pressure coordinates
+pres			=
+pres_cint		=
+pres_cmin 		=
+pres_cmax 		=
+pres_fint 		=
+pres_fmin 		=
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					SCALE
+scale 			= 0
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+!
+! *** Vector parameters ***
+!
+!					WIND
+wind_symbol		= an
+wind_symbol_color	=
+wind_symbol_size	= 0.3
+wind_symbol_width	=
+wind_symbol_type	=
+wind_symbol_headsize	= 0.5
+!					REFVEC
+refvec_mag		= 10
+refvec_x		=
+refvec_y		=
+refvec_textsize		=
+refvec_font		=
+refvec_width		=
+refvec_hw_flag		=
+refvec_label		=
+! *** End of Parameters ***

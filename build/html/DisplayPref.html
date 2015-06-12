@@ -1,0 +1,52 @@
+<html>
+
+<TITLE>GARP Display Preferences</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Display Preferences</center></h1>
+<hr>
+<h2>Display Window Preferences</h2>
+<center><img src="gif/DisplayWindowPref.gif"></center>
+<p>
+<br>
+This dialog allows you to set several preferences for the entire display
+window.
+<p>
+<br>
+<h3>Plot fills window area</h3>
+<p>This option allows you to control the extent of the area used in the
+drawing window. By default, GARP will try to use as much space in the 
+window as it can for drawing. However, if this option is unset, GARP will 
+use the exact specified geographic area. For example, if the user zooms
+(using the zoom box) over some area, the resulting area will be exactly 
+the area in the zoom box.
+<p>
+<br>
+
+<h3>Reset when loading images</h3>
+By default, GARP performs a "reset" whenever the user loads an image. This 
+means all the georeferencing information is released and the full image is 
+displayed. The user can override this behavior by unsetting this option. 
+No reset will occur and the image being loaded will display in the current 
+geographic area (even if no part of the image covers the current area!).
+<p>
+<br>
+
+<h3>Display partial frames</h3>
+<p>
+When plotting data, GARP normally updates the window after all the 
+component data objects are finished drawing. That way, the user sees the 
+entire frame plot at once. But, with this option set, data objects are displayed
+as they are plotted.
+
+<hr>
+</body>
+</html>

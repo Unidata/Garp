@@ -1,0 +1,78 @@
+<html>
+
+<TITLE>GARP Command Line Arguments</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Command Line Arguments</center></h1>
+<hr>
+<p>
+Command line arguments are flags appearing on the command line that
+initially launches GARP.
+You can see a list of valid command line arguments for GARP either from 
+a man page or from GARP itself. If the man page is installed, type:
+<pre>
+ % man garp
+</pre>
+and you will see a synopsis of valid commands. Also, if GARP is installed
+you can type:
+<pre>
+ % garp -help
+</pre>
+to view the same list of command line arguments along with an explanation
+of how to use them. This synopsis of valid command line arguments should
+look something like:
+<pre>
+
+  [ -help | -h ]:
+               Prints out this usage message.
+  [ -clockinterval seconds ]:
+               Set the clock update interval to seconds.
+  [ -config filename ]:
+               Specifies application configuration file.
+  [ -start YYMMDD/HHMM ]:
+               Specifies start time of data set.
+  [ -current YYMMDD/HHMM ]:
+               Specifies initial time of application clock.
+  [ -end YYMMDD/HHMM ]:
+               Specifies end time of data set.
+  [ -notick ]:
+               Turns off application clock updates.
+  [ -verbose level ]:
+               Verbose logging level (ie. 0, 1, ..).
+  [ -memcheck ]:
+               Enable loose memory checking (for debug).
+  [ -output destination ]:
+               Output logging dest:     0 = Standard out
+                                        1 = Logging window
+                                        2 = File
+  [ -tabledir file ]:
+               Specifies path to application tables.
+  [ -noicons ]:
+               Start GARP without the icon bar.
+  [ -nostatus ]:
+               Start GARP without the status bar.
+  [ -width w]:
+               Set drawing area width to w.
+  [ -height h]:
+               Set drawing area height to h.
+
+</pre>
+<p>
+For example, the command line:
+<pre>
+garp -width 500 -height 500 -noicons
+</pre>
+would start up GARP with a 500x500 display window sans the icon bar.
+
+<hr>
+
+</body>
+</html>

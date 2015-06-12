@@ -1,0 +1,13 @@
+DEFAULT		1;2;3;4		26;2;7;25;20;18;22;24;6
+nids_cmref.tbl	1;2;3;4		1;2;3;4
+nids_csher.tbl	1;2;3;4		1;2;3;4
+nids_pre.tbl	1;2;3;4		1;2;3;4
+nids_ref16.tbl	1;2;3;4		1;2;3;4
+nids_ref8.tbl	1;2;3;4		1;2;3;4
+nids_rsher.tbl	1;2;3;4		1;2;3;4
+nids_swid.tbl	1;2;3;4		1;2;3;4
+nids_tops.tbl	1;2;3;4		1;2;3;4
+nids_vel16.tbl	1;2;3;4		1;2;3;4
+nids_vel8.tbl	1;2;3;4		1;2;3;4
+nids_vil.tbl	1;2;3;4		1;2;3;4
+nids_wecho.tbl	1;2;3;4		1;2;3;4

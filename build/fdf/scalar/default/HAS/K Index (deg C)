@@ -1,0 +1,110 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Best (4 layer) K Index (C).
+!
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= sub(add(add(dwpc@850,dwpc@700),sub(tmpc@850,tmpc@500)),tmpc@700)
+description		= K Index. Values over 30 increase heavy rain threat \
+                        = /with values over 36 a high threat and over 40 a \
+                        = \ very high threat.  Note that the K Index is tied \
+                        = \ to moisture at 700mb.  The NGM is a wetter model \
+                        = \ than the Eta so expect the NGM to have higher \
+                        = \ values.  This does not necessarily mean the NGM \
+                        = \ is forecasting a greater risk.  Use this parameter \
+                        = \ only in conjuction with others.
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= K Index
+vcoord			=
+level1			=
+level2			=
+contour			= y
+fill			= y
+hilo			= n
+!					Pressure coordinates
+pres			=
+pres_cint		= 5
+pres_cmin 		= -15
+pres_cmax 		= 60
+pres_fint 		= 5
+pres_fmin 		= 15
+pres_fmax 		= 40
+!					Sigma coordinates
+sigma			=
+sigma_cint 		=
+sigma_cmin 		=
+sigma_cmax 		=
+sigma_fint 		=
+sigma_fmin 		=
+sigma_fmax 		=
+!					Theta coordinates
+theta			=
+theta_cint 		=
+theta_cmin 		=
+theta_cmax 		=
+theta_fint 		=
+theta_fmin 		=
+theta_fmax 		=
+!					User defined coordinates
+anyvcoord		=
+anyvcoord_cint		=
+anyvcoord_cmin		=
+anyvcoord_cmax		=
+anyvcoord_fint		=
+anyvcoord_fmin		=
+anyvcoord_fmax		=
+!					LINE
+line_color		= 9
+line_type		= 1
+line_width		= 1
+line_label_frequency	= 1
+!					SCALE
+scale 			=
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 1
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= 
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		= y
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			= 0;22;21;20;19;18;17
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

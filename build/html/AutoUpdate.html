@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; HP-UX B.10.20 9000/715) [Netscape]">
+   <TITLE>GARP Auto-Update</TITLE>
+</HEAD>
+<BODY TEXT="#400020" BGCOLOR="#FFFFFF" LINK="#7F7FFF" VLINK="#505090" ALINK="#FF0000" BACKGROUND="gif/COMET_Wallpaper.GIF" fgcolor="#000000">
+
+<HR>
+<CENTER>
+<H1>
+GARP Auto-Update</H1></CENTER>
+
+<HR>
+<H2>
+Auto-Update</H2>
+
+<CENTER><IMG SRC="gif/AutoUpdate.gif" NOSAVE HEIGHT=231 WIDTH=195></CENTER>
+
+
+<P>When auto-update is turned on, GARP will look at what you have loaded
+and reload it if new data arrives. New data are added at the expense
+of the oldest data in the loop. That is, if two new frames are added, the
+oldest two frames are removed. Thus, the number of frames in the loop will
+be constant. Existing data will also be refreshed (redrawn) if new data
+has arrived since the last update cycle. For example, surface data will
+be replotted if new station reports have arrived since the last update.
+
+<P>The button at the top of this dialog allows you to toggle auto-update
+on or off. With the slider widget below this button you can adjust the
+update frequency (in minutes). The default setting for auto-update and
+the update interval are configurable in "Garp_defaults" using the keys
+<I>autoupdate</I> and <I>update_timer</I>.
+
+<P>Note that if you have more than one data object loaded (EG; surface
+data over a satellite image), then time matching must be ON to have all
+the objects updated.
+</BODY>
+</HTML>

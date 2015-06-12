@@ -1,0 +1,872 @@
+ID        SITE NAME                       ST     LAT         LON       ELV(ft)
+
+0Z0       Deering                         AK  66.070556  -162.758333      14
+10AK      Nuiqsut                         AK  70.213611  -150.988333      58
+5WW       Wainwright                      AK  70.638611  -160.006667      34
+9Z1       Klawock                         AK  55.576111  -133.076111      60
+A21       Portage Glacier                 AK  60.784167  -148.846111     103
+A8L       St. George Island               AK  56.576944  -169.663056     114
+EAA       Eagle                           AK  64.776389  -141.160556     902
+HNS       Haines                          AK  59.243889  -135.509444      19
+KAL       Kaltag                          AK  64.324167  -158.733056     171
+KVL       Kivalina                        AK  67.731111  -164.542500      14
+KYK       Karluk                          AK  57.566667  -154.450000       0
+SGY       Skagway                         AK  59.455278  -136.323056      24
+SOV       Seldovia                        AK  59.446667  -151.704444      34
+SWD       Seward                          AK  60.126944  -149.418611      13
+21A       Alabaster                       AL  33.178333   -86.781667     570
+39J       Evergreen                       AL  31.418889   -87.048056     256
+BFM       Mobile                          AL  30.613889   -88.063333      66
+DCU       Decatur                         AL  34.658056   -86.943333     580
+TOI       Troy                            AL  31.857500   -86.010833     388
+BPK       Mountain Home                   AR  36.370556   -92.471944     913
+F90       De Queen                        AR  34.045000   -94.401389     349
+HKA       Blytheville                     AR  35.938889   -89.832500     257
+M06       Russellville                    AR  35.257778   -93.094722     380
+M76       Monticello                      AR  33.636111   -91.755556     275
+0V7       Kayenta                         AZ  36.713889  -110.228333    5693
+OLS       Nogales                         AZ  31.420833  -110.845833    3908
+SJN       St. Johns                       AZ  34.518333  -109.379167    5726
+AVX       Avalon                          CA  33.404444  -118.413056    1584
+L32       Oceanside                       CA  33.219722  -117.348611      26
+MAE       Madera                          CA  36.986667  -120.110833     255
+O18       Hanford                         CA  36.317500  -119.629444     244
+O45       Vacaville                       CA  38.377778  -121.957500     111
+OVE       Oroville                        CA  39.494722  -121.620278     193
+WVI       Watsonville                     CA  36.939444  -121.788889     144
+2V3       Meeker                          CO  40.042222  -107.889722    6331
+5C0       Burlington                      CO  39.242222  -102.282778    4196
+CAG       Craig                           CO  40.493333  -107.523611    6190
+CEZ                                       CO  37.306389  -108.625556    5897
+DRO       Durango                         CO  37.143056  -107.759722    6675
+LAA       Lamar                           CO  38.072500  -102.733333    3703
+MTJ       Montrose                        CO  38.505000  -107.897500    5742
+RIL                                       CO  39.525000  -107.727222    5509
+IJD       Willimantic                     CT  41.741944   -72.183611     248
+MMK       Meriden                         CT  41.509722   -72.828333      95
+GED       Georgetown                      DE  38.690000   -75.362500      64
+81J       Destin                          FL  30.393333   -86.467500      19
+BKV       Brooksville                     FL  28.473611   -82.487778      77
+GIF       Winter Haven                    FL  28.060556   -81.757500     144
+LEE       Leesburg                        FL  28.820833   -81.809722      78
+MAI       Marianna                        FL  30.836667   -85.183611     107
+MTH       Marathon                        FL  24.725833   -81.047778       8
+PGD       Punta Gorda                     FL  26.917778   -81.993611      26
+X41       New Port Richey                 FL  28.189167   -82.625833      40
+DNL       Augusta                         GA  33.466944   -82.038611     427
+FFC       Atlanta                         GA  33.355278   -84.566944     815
+GVL       Gainesville                     GA  34.271944   -83.830278    1267
+VPC       Cartersville                    GA  34.128333   -84.847222     731
+KOA       Kailua/Kona                     HI  19.740833  -156.050556      91
+AMW       Ames                            IA  41.990556   -93.618889     918
+DVN       Davenport                       IA  41.613889   -90.591389     749
+EST       Estherville                     IA  43.401111   -94.747222    1317
+IOW       Iowa City                       IA  41.632778   -91.543056     651
+MIW       Marshalltown                    IA  42.110556   -92.916111     973
+SPW       Spencer                         IA  43.168333   -95.210000    1324
+MLP       Mullan Pass                     ID  47.454167  -115.669722    6028
+U11       Rexburg                         ID  43.831667  -111.806111    4855
+U73       Jerome                          ID  42.727500  -114.453056    4010
+LWV       Lawrenceville                   IL  38.760556   -87.598889     431
+MTO       Mattoon/Charleston              IL  39.474444   -88.272778     703
+3SM       Shelbyville                     IN  39.585556   -85.800000     805
+GSH       Goshen                          IN  41.526111   -85.786667     828
+I14       Indianapolis                    IN  39.825000   -86.295833     814
+3KM       Wichita                         KS  37.749722   -97.218889    1425
+CFV       Coffeyville                     KS  37.091111   -95.566389     740
+IXD       Olathe                          KS  38.824444   -94.886944    1125
+LWC       Lawrence                        KS  39.008333   -95.211667     831
+PPF       Parsons                         KS  37.327778   -95.504167     899
+WLD       Winfield/Arkansas City          KS  37.168056   -97.036944    1150
+FFT       Frankfort                       KY  38.184722   -84.903333     776
+6R0       Slidell                         LA  30.343056   -89.821944      27
+ARA       New Iberia                      LA  30.028889   -91.884444      61
+2B6       North Adams                     MA  42.697222   -73.170278     660
+CQX       Chatham                         MA  41.687500   -69.993333      63
+FIT       Fitchburg                       MA  42.551944   -71.755833     340
+ORE       Orange                          MA  42.571667   -72.277500     539
+PSF       Pittsfield                      MA  42.427222   -73.290556    1167
+PYM       Plymouth                        MA  41.908611   -70.728056     143
+TAN       Taunton                         MA  41.875556   -71.021111      25
+N80       Ocean City                      MD  38.308333   -75.123889      12
+9B9       Wiscasset                       ME  43.963611   -69.711667      68
+B20       Fryeburg                        ME  43.989167   -70.950278     445
+FVE       Frenchville                     ME  47.285000   -68.307222    1000
+MLT       Millinocket                     ME  45.647778   -68.691944     406
+ADG       Adrian                          MI  41.867778   -84.079444     793
+BEH       Benton Harbor                   MI  42.129167   -86.422222     657
+C19       Holland                         MI  42.746111   -86.096667     685
+GLR       Gaylord                         MI  45.016389   -84.688889    1345
+IMT       Iron Mountain/Kingsford         MI  45.814167   -88.108889    1147
+BDE       Baudette                        MN  48.726667   -94.612222    1082
+BRD       Brainerd                        MN  46.404722   -94.130833    1223
+HIB       Hibbing                         MN  47.380556   -92.832222    1353
+PKD       Park Rapids                     MN  46.900556   -95.067778    1451
+DMO       Sedalia                         MO  38.712222   -93.174444     900
+GVW       Richards-Gebaur Airport         MO  38.835000   -94.561389    1106
+JEF       Jefferson City                  MO  38.594444   -92.155833     553
+UNO       West Plains                     MO  36.879167   -91.905000    1223
+GWO       Greenwood                       MS  33.492500   -90.083611     147
+HBG       Hattiesburg                     MS  31.269444   -89.256111     145
+L81       Vicksburg                       MS  32.351667   -91.027500      86
+M50       Pascagoula                      MS  30.463611   -88.531944      20
+3U6       Baker                           MT  46.347778  -104.257500    2961
+DLN       Dillon                          MT  45.257500  -112.554444    5219
+OLF       Wolf Point                      MT  48.094444  -105.577222    1984
+0A6       Gastonia                        NC  35.196667   -81.155833     799
+BUY       Burlington                      NC  36.047778   -79.473889     592
+EQY       Monroe                          NC  35.016944   -80.620556     684
+LBT       Lumberton                       NC  34.607222   -79.060000     124
+MEB       Maxton                          NC  34.791389   -79.368056     220
+MRH       Beaufort                        NC  34.732500   -76.656944      11
+RZZ       Roanoke Rapids                  NC  36.439444   -77.709722     249
+W52       Chapel Hill                     NC  35.933333   -79.064167     509
+HEI       Hettinger                       ND  46.010556  -102.649722    2716
+AIA       Alliance                        NE  42.057222  -102.800000    3926
+HSI       Hastings                        NE  40.600556   -98.425833    1941
+MCK       McCook                          NE  40.203056  -100.588333    2567
+TQE       Tekamah                         NE  41.766944   -96.177778    1025
+6B1       Rochester                       NH  43.280278   -70.926111     340
+AFN       Jaffrey                         NH  42.805833   -72.000556    1029
+BML       Berlin                          NH  44.576111   -71.178611    1132
+HIE       Whitefield                      NH  44.366111   -71.552500    1045
+7MY       Mount Holly                     NJ  39.940556   -74.841111      51
+N52       Somerville                      NJ  40.624167   -74.670278     100
+N63       Sussex                          NJ  41.199167   -74.626111     438
+DKK       Dunkirk                         NY  42.493056   -79.275833     665
+DSV       Dansville                       NY  42.569444   -77.714444     651
+ELZ       Wellsville                      NY  42.107500   -77.984444    2122
+FOK       Westhampton Beach               NY  40.850833   -72.620556     110
+HWV       Shirley                         NY  40.821667   -72.868889      69
+IAG       Niagara Falls                   NY  43.100000   -78.950000     519
+MGJ       Montgomery                      NY  41.509167   -74.265000     357
+N00       Fulton                          NY  43.349722   -76.384722     455
+N22       Penn Yan                        NY  42.643056   -77.049444     841
+PLB       Plattsburgh                     NY  44.682222   -73.527778     350
+SLK       Saranac Lake                    NY  44.393056   -74.202778    1634
+22G       Lorain/Elyria                   OH  41.346111   -82.179444     791
+2I8       Newark                          OH  40.022778   -82.462500     880
+7G2       Ashtabula                       OH  41.779444   -80.696667     908
+AOH       Lima                            OH  40.708056   -84.021389     972
+BJJ       Wooster                         OH  40.873056   -81.886667    1128
+DFI       Defiance                        OH  41.336389   -84.429444     719
+HAO       Hamilton                        OH  39.361389   -84.520833     617
+I15       Lancaster                       OH  39.757222   -82.663333     853
+MGY       Dayton                          OH  39.593611   -84.226389     949
+MNN       Marion                          OH  40.616667   -83.068333     989
+PHD       New Philadelphia                OH  40.471944   -81.423611     895
+TDZ       Toledo                          OH  41.563056   -83.476389     621
+BVO       Bartlesville                    OK  36.768333   -96.009444     691
+FDR       Frederick                       OK  34.344444   -98.983056    1239
+GOK       Guthrie                         OK  35.851944   -97.407500    1063
+MKO       Muskogee                        OK  35.656944   -95.359722     608
+PNC       Ponca City                      OK  36.736667   -97.101944    1011
+SWO       Stillwater                      OK  36.162222   -97.089167     954
+1S4       Scappoose                       OR  45.769167  -122.862222      48
+3S2       Aurora                          OR  45.248889  -122.765556     194
+MMV       McMinnville                     OR  45.196111  -123.132222     158
+ONO       Ontario                         OR  44.019444  -117.009722    2190
+RBG       Roseburg                        OR  43.233889  -123.356111     507
+S22       Hermiston                       OR  45.825833  -119.261111     641
+2G6       Meadville                       PA  41.625833   -80.212222    1404
+BFD       Bradford                        PA  41.798611   -78.635833    2123
+N88       Doylestown                      PA  40.337222   -75.120000     385
+N97       Clearfield                      PA  41.046667   -78.411667    1517
+P53       Monongahela                     PA  40.200000   -79.831667       0
+PTW       Pottstown                       PA  40.238333   -75.557222     302
+SEG       Selinsgrove                     PA  40.819167   -76.866111     442
+THV       York                            PA  39.919444   -76.876944     473
+2B4       Newport                         RI  41.530000   -71.283611     168
+WST       Westerly                        RI  41.349722   -71.798889      70
+29J       Rock Hill                       SC  34.986944   -81.055000     663
+CEU       Clemson                         SC  34.672222   -82.881389     882
+CUB       Columbia                        SC  33.970833   -80.994444     184
+GRD       Greenwood                       SC  34.247222   -82.154722     610
+OGB       Orangeburg                      SC  33.463889   -80.853611     197
+6V2       Pine Ridge                      SD  43.025556  -102.523056    3292
+NED       Bob Wiley Field Airport         SD  43.390556   -99.842222       0
+CKV       Clarksville                     TN  36.616667   -87.411389     542
+3R5       New Braunfels                   TX  29.708611   -98.045278     640
+BGD       Borger                          TX  35.695000  -101.395000    3041
+CRS       Corsicana                       TX  32.031111   -96.398889     438
+CXO       Conroe                          TX  30.356667   -95.413889     247
+DTO       Denton                          TX  33.206111   -97.198889     646
+E02       Odessa                          TX  31.921389  -102.391667    2960
+F54       Arlington                       TX  32.663889   -97.095833     609
+FST       Fort Stockton                   TX  30.911944  -102.916667    3013
+HDO       Hondo                           TX  29.359444   -99.174167     927
+LBX       Angleton/Lake Jackson           TX  29.115278   -95.463056      21
+RKP       Rockport                        TX  28.083611   -97.046389      22
+T02       Houston                         TX  29.518889   -95.241667      41
+T27       Burnet                          TX  30.740556   -98.235278    1276
+T31       Port Isabel                     TX  26.159167   -97.337500      17
+T39       Huntsville                      TX  30.743889   -95.586111     343
+TKI       McKinney                        TX  33.185000   -96.587778     588
+TRL       Terrell                         TX  32.713611   -96.268333     475
+CNY       Moab                            UT  38.760000  -109.744722    4561
+LGU       Logan                           UT  41.782778  -111.853889    4445
+PUC       Price                           UT  39.609167  -110.754722    5851
+VEL       Vernal                          UT  40.444167  -109.511667    5266
+OFP       Richmond                        VA  37.708056   -77.434444     205
+5B5       Bennington                      VT  42.890000   -73.246389     801
+MVL       Morrisville                     VT  44.536111   -72.616111     733
+VSF       Springfield                     VT  43.342500   -72.521667     577
+07S       Deer Park                       WA  47.974167  -117.428333    2194
+CLM       Port Angeles                    WA  48.122222  -123.505278     282
+ELN       Ellensburg                      WA  47.033611  -120.529167    1705
+FHR       Friday Harbor                   WA  48.520278  -123.025278     108
+OMK       Omak                            WA  48.461389  -119.519167    1298
+PUW       Pullman/Moscow                  WA  46.743889  -117.113611    2538
+47C       Boscobel                        WI  43.156111   -90.677500     665
+ASX       Ashland                         WI  46.549722   -90.918333     824
+ENW       Kenosha                         WI  42.595000   -87.938056     721
+FLD       Fond Du Lac                     WI  43.770000   -88.486389     790
+HYR       Hayward                         WI  46.020556   -91.450278    1214
+ISW       Wisconsin Rapids                WI  44.359167   -89.836944    1009
+MFI       Marshfield                      WI  44.638056   -90.187500    1246
+RAC       Racine                          WI  42.758611   -87.817778     666
+RHI       Rhinelander                     WI  45.631667   -89.482222    1591
+SBM       Sheboygan                       WI  43.776389   -87.849722     763
+BPI       Big Piney                       WY  42.578889  -110.103056    6945
+BYG       Buffalo                         WY  44.381389  -106.718889    4911
+DGW       Douglas                         WY  42.794167  -105.381944    4919
+EVW       Evanston                        WY  41.273056  -111.030556    7141
+GEY       Greybull                        WY  44.515833  -108.075833    3908
+TOR       Torrington                      WY  42.064722  -104.152778    4191
+BIG       Delta Junction/Ft. Greely       AK  63.993611  -145.692500    1272
+BTT       Bettles                         AK  66.916111  -151.508889     647
+CDV       Cordova                         AK  60.488889  -145.451111      51
+ENA       Kenai                           AK  60.579722  -151.239167      85
+GKN       Gulkana                         AK  62.160278  -145.457500    1575
+ILI       Iliamna                         AK  59.749167  -154.909167     173
+JNU       Juneau                          AK  58.356111  -134.562500      27
+KTN       Ketchikan                       AK  55.353056  -131.722500      83
+LHD       Anchorage                       AK  61.178056  -149.963611      94
+MRI       Anchorage                       AK  61.216944  -149.855000     132
+ORT       Northway                        AK  62.962778  -141.936389    1715
+PAQ       Palmer                          AK  61.596111  -149.091667     229
+SCC       Deadhorse                       AK  70.191667  -148.477222      76
+SIT       Sitka                           AK  57.048056  -135.364722      15
+TAL       Tanana                          AK  65.174444  -152.106944     237
+ANB       Anniston                        AL  33.583889   -85.865556     601
+BHM       Birmingham                      AL  33.565556   -86.745000     647
+DHN       Dothan                          AL  31.318333   -85.443889     372
+MSL       Muscle Shoals                   AL  34.743889   -87.599444     541
+TCL       Tuscaloosa                      AL  33.211944   -87.615833     162
+ELD       El Dorado                       AR  33.220556   -92.813889     266
+FYV       Fayetteville                    AR  36.010278   -94.167778    1235
+HOT       Hot Springs                     AR  34.475833   -93.104167     533
+HRO       Harrison                        AR  36.266111   -93.155833    1371
+JBR       Jonesboro                       AR  35.837222   -90.643056     261
+LIT       Little Rock                     AR  34.726667   -92.236111     258
+PBF       Pine Bluff                      AR  34.180000   -91.934167     205
+TXK       Texarkana                       AR  33.456111   -93.987500     380
+DVT       Phoenix                         AZ  33.690000  -112.068611    1456
+GCN       Grand Canyon                    AZ  35.946111  -112.154722    6614
+PRC       Prescott                        AZ  34.658889  -112.412500    5001
+SDL       Scottsdale                      AZ  33.622500  -111.908333    1467
+ACV       Arcata/Eureka                   CA  40.974722  -124.101389     223
+APC       Napa                            CA  38.207500  -122.279444      44
+BLH       Blythe                          CA  33.618611  -114.714167     392
+BUR       Burbank                         CA  34.199722  -118.364722     712
+CCR       Concord                         CA  37.991667  -122.051944      38
+CNO       Chino                           CA  34.974722  -117.633611     650
+CRQ       Carlsbad                        CA  33.130000  -117.275833     317
+DAG       Daggett                         CA  34.853611  -116.785833    1926
+FUL       Fullerton                       CA  33.871944  -117.984722     118
+HHR       Hawthorne                       CA  33.923611  -118.331944      60
+HWD       Hayward                         CA  37.660556  -122.118056      70
+IPL       Imperial                        CA  32.834444  -115.575278     -59
+LVK       Livermore                       CA  37.692778  -121.814444     387
+MOD       Modesto                         CA  37.624167  -120.950556      98
+MRY       Monterey                        CA  36.590556  -121.847500     217
+MYF       San Diego                       CA  32.814444  -117.136389     447
+MYV       Marysville                      CA  39.101944  -121.567778      70
+OAK       Oakland                         CA  37.701667  -122.217222      86
+ONT       Ontario                         CA  34.053333  -117.575833     902
+OXR       Oxnard                          CA  34.200556  -119.203056      66
+PAO       Palo Alto                       CA  37.455278  -122.109722       3
+PMD       Palmdale                        CA  34.629722  -118.081389    2560
+PRB       Paso Robles                     CA  35.669722  -120.628333     804
+PSP       Palm Springs                    CA  33.822222  -116.503611     463
+RAL       Riverside                       CA  33.951389  -117.450556     827
+SAC       Sacramento                      CA  38.506944  -121.495000      39
+SBA       Santa Barbara                   CA  34.425833  -119.842500      10
+SBP       San Luis Obispo                 CA  35.236389  -120.635000     194
+SJC       San Jose                        CA  37.368333  -121.937500      65
+SMF       Sacramento                      CA  38.701389  -121.593889      20
+SMO       Santa Monica                    CA  34.013611  -118.455556     190
+SNA       Santa Ana                       CA  33.679444  -117.867500      50
+SNS       Salinas                         CA  36.663611  -121.608056     101
+STS       Santa Rosa                      CA  38.503889  -122.810278     153
+TVL       South Lake Tahoe                CA  38.899444  -119.990833    6314
+VNY       Van Nuys                        CA  34.212500  -118.490833     804
+AKO       Akron                           CO  40.174444  -103.214444    4662
+APA       Denver                          CO  39.563889  -104.848333    5825
+ASE       Aspen                           CO  39.228889  -106.869444    7723
+LHX       La Junta                        CO  38.049444  -103.512222    4191
+DXR       Danbury                         CT  41.371667   -73.484444     456
+GON       Groton/New London               CT  41.327500   -72.049444      10
+HFD       Hartford                        CT  41.735000   -72.651667      16
+HVN       New Haven                       CT  41.264722   -72.885000      12
+CEW       Crestview                       FL  30.789722   -86.531389     183
+CRG       Jacksonville                    FL  30.336111   -81.514722      45
+FLL       Fort Lauderdale                 FL  26.068056   -80.152500     100
+FMY       Fort Myers                      FL  26.583333   -81.868611      16
+FPR       Fort Pierce                     FL  27.498056   -80.376667      44
+FXE       Fort Lauderdale                 FL  26.198889   -80.178056      20
+GNV       Gainesville                     FL  29.685833   -82.270556     150
+HWO       Hollywood                       FL  25.998889   -80.241111       8
+MLB       Melbourne                       FL  28.100278   -80.635556      37
+OPF       Miami                           FL  25.910000   -80.283056      53
+ORL       Orlando                         FL  28.546389   -81.335833     118
+PFN       Panama City                     FL  30.217778   -85.683611      40
+PIE       St. Petersburg/Clearwater       FL  27.912222   -82.685556      12
+PMP       Pompano Beach                   FL  26.245556   -80.111389      30
+PNS       Pensacola                       FL  30.478056   -87.186944     125
+RSW       Fort Myers                      FL  26.527500   -81.766389      30
+SPG       St. Petersburg                  FL  27.766389   -82.628611       6
+SRQ       Sarasota/Bradenton              FL  27.401389   -82.558611      60
+TMB       Miami                           FL  25.641944   -80.434722       9
+VRB       Vero Beach                      FL  27.655000   -80.414167      36
+ABY       Albany                          GA  31.537778   -84.193889     205
+AMG       Alma                            GA  31.539722   -82.507500     194
+FTY       Atlanta                         GA  33.777500   -84.524444     857
+PDK       Atlanta                         GA  33.878611   -84.298333     992
+SSI       Brunswick                       GA  31.152222   -81.390833      21
+BRL       Burlington                      IA  40.772778   -91.125278     694
+CID       Cedar Rapids                    IA  41.882778   -91.723889     868
+MCW       Mason City                      IA  43.154444   -93.326944    1211
+OTM       Ottumwa                         IA  41.100833   -92.444444     842
+BYI       Burley                          ID  42.541667  -113.766111    4149
+IDA       Idaho Falls                     ID  43.520833  -112.066111    4766
+TWF       Twin Falls                      ID  42.478611  -114.476111    4155
+ARR       Chicago/Aurora                  IL  41.770000   -88.481389     707
+CMI       Champaign/Urbana                IL  40.032222   -88.273333     750
+CPS       Cahokia/St. Louis               IL  38.563611   -90.148056     414
+DEC       Decatur                         IL  39.830556   -88.855278     679
+DPA       Chicago/West Chicago            IL  41.896389   -88.251111     783
+MDH       Carbondale/Murphysboro          IL  37.783056   -89.245000     428
+MDW       Chicago                         IL  41.783889   -87.755556     644
+PWK       Chicago/Wheeling                IL  42.120833   -87.904722     666
+BMG       Bloomington                     IN  39.143056   -86.616667     856
+HUF       Terre Haute                     IN  39.441667   -87.325278     589
+LAF       Lafayette                       IN  40.412500   -86.947500     640
+MIE       Muncie                          IN  40.234167   -85.393611     976
+VPZ       Valparaiso                      IN  41.453056   -86.998056     758
+CNU       Chanute                         KS  37.670278   -95.484167     976
+EMP       Emporia                         KS  38.328889   -96.193889    1204
+FOE       Topeka                          KS  38.941389   -95.650556    1051
+GCK       Garden City                     KS  37.922222  -100.723889    2878
+HLC       Hill City                       KS  39.374722   -99.829722    2196
+HUT       Hutchinson                      KS  38.068056   -97.860556    1533
+MHK       Manhattan                       KS  39.135278   -96.677778    1043
+OJC       Olathe                          KS  38.850000   -94.739167    1070
+RSL       Russell                         KS  38.872778   -98.813056    1863
+SLN       Salina                          KS  38.780000   -97.644167    1264
+BWG       Bowling Green                   KY  37.964167   -86.423889     529
+LOU       Louisville                      KY  38.223611   -85.658333     540
+LOZ       London                          KY  37.089444   -84.068611    1190
+DTN       Shreveport                      LA  32.542500   -93.744722     176
+ESF       Alexandria                      LA  31.395000   -92.290278      95
+LFT       Lafayette                       LA  30.202222   -91.993056      39
+MLU       Monroe                          LA  32.511667   -92.031389      97
+NEW       New Orleans                     LA  30.049444   -90.178889      10
+ACK       Nantucket                       MA  41.253889   -70.059722      55
+BAF       Westfield                       MA  42.159722   -72.712778     264
+BED       Bedford                         MA  42.468333   -71.294444     167
+BVY       Beverly                         MA  42.583611   -70.916389      95
+EWB       New Bedford                     MA  41.675278   -70.956944      76
+HYA       Hyannis                         MA  41.669167   -70.270833      73
+LWM       Lawrence                        MA  42.713056   -71.125833     180
+MVY       Vineyard Haven                  MA  41.392222   -70.616667      54
+OWD       Norwood                         MA  42.190833   -71.173889      65
+HGR       Hagerstown                      MD  39.705833   -77.730000     735
+SBY       Salisbury                       MD  38.339167   -75.504167      65
+AUG       Augusta                         ME  44.315556   -69.797222     360
+BGR       Bangor                          ME  44.797222   -68.818611     243
+HUL       Houlton                         ME  46.118889   -67.793889     494
+ARB       Ann Arbor                       MI  42.223889   -83.740000     825
+AZO       Kalamazoo                       MI  42.229167   -85.546389     893
+BTL       Battle Creek                    MI  42.312500   -85.240833     953
+CMX       Hancock                         MI  47.166944   -88.488333    1071
+DET       Detroit                         MI  42.407222   -83.009167     626
+MBS       Saginaw                         MI  43.536667   -84.080556     664
+PLN       Pellston                        MI  45.564444   -84.792778     713
+PTK       Pontiac                         MI  42.663056   -83.410000     984
+TVC       Traverse City                   MI  44.736667   -85.570000     657
+YIP       Detroit                         MI  42.236667   -83.526111     707
+AXN       Alexandria                      MN  45.868611   -95.394167    1422
+FCM       Minneapolis                     MN  44.826389   -93.467778     920
+MIC       Minneapolis                     MN  45.062500   -93.350833     870
+RWF       Redwood Falls                   MN  44.544722   -95.080556    1021
+STP       St. Paul                        MN  44.930278   -93.048056     719
+3SZ       St. Charles                     MO  38.930556   -90.432500     435
+CGI       Cape Girardeau                  MO  37.225556   -89.578333     337
+JLN       Joplin                          MO  37.156389   -94.501944     983
+MKC       Kansas City                     MO  39.120833   -94.596944     747
+STJ       St. Joseph                      MO  39.768056   -94.909167     811
+SUS       St. Louis                       MO  38.662500   -90.649722     463
+VIH       Rolla/Vichy                     MO  38.127778   -91.769444    1095
+GLH       Greenville                      MS  33.490833   -90.981111     148
+GPT       Gulfport                        MS  30.411944   -89.080833      41
+HKS       Jackson                         MS  32.337222   -90.221667     355
+MCB       McComb                          MS  31.181944   -90.472222     408
+BTM       Butte                           MT  45.964722  -112.500556    5537
+BZN       Bozeman                         MT  45.788056  -111.160833    4466
+LVM       Livingston                      MT  45.698333  -110.440833    4653
+MLS       Miles City                      MT  46.426667  -105.882500    2628
+ECG       Elizabeth City                  NC  36.263056   -76.182778      39
+EWN       New Bern                        NC  35.067500   -77.047222      13
+FAY       Fayetteville                    NC  34.989444   -78.880000     182
+HKY       Hickory                         NC  35.742222   -81.382222    1162
+INT       Winston Salem                   NC  36.133333   -80.224722     957
+RWI       Rocky Mount                     NC  35.849444   -77.896667     157
+DIK       Dickinson                       ND  46.799444  -102.797222    2586
+GFK       Grand Forks                     ND  47.942778   -97.183889     852
+JMS       Jamestown                       ND  46.925833   -98.669167    1494
+MOT       Minot                           ND  48.255278  -101.273333    1713
+CDR       Chadron                         NE  42.837222  -103.097778    3315
+OMA       Omaha                           NE  41.310278   -95.899167    1026
+SNY       Sidney                          NE  41.099444  -102.985556    4288
+LEB       Lebanon                         NH  43.627222   -72.305833     561
+MHT       Manchester                      NH  42.927500   -71.435000     267
+CDW       Caldwell                        NJ  40.876389   -74.283056     189
+MIV       Millville                       NJ  39.366111   -75.078333      76
+MMU       Morristown                      NJ  40.796944   -74.418889     200
+TTN       Trenton                         NJ  40.276389   -74.816389     195
+CNM       Carlsbad                        NM  32.334444  -104.257500    3232
+DMN       Deming                          NM  32.259722  -107.720000    4302
+GUP       Gallup                          NM  35.508333  -108.792500    6468
+LVS       Las Vegas                       NM  35.655833  -105.138056    6860
+SAF       Santa Fe                        NM  35.610556  -106.095000    6333
+TCC       Tucumcari                       NM  35.180556  -103.600833    4054
+LOL       Lovelock                        NV  40.068056  -118.569167    3901
+TPH       Tonopah                         NV  38.051111  -117.090278    5419
+ART       Watertown                       NY  43.988889   -76.026389     330
+ELM       Elmira                          NY  42.156389   -76.902778     993
+FRG       Farmingdale                     NY  40.734167   -73.416944      72
+GFL       Glens Falls                     NY  43.338056   -73.610556     338
+HPN       White Plains                    NY  41.068333   -73.711667     397
+ISP       Islip                           NY  40.793889   -73.101667     122
+MSS       Massena                         NY  44.933056   -74.849167     217
+MSV       Monticello                      NY  41.705556   -74.800556    1407
+POU       Poughkeepsie                    NY  41.625556   -73.881944     153
+UCA       Utica                           NY  43.143611   -75.384444     749
+AKR       Akron                           OH  41.037500   -81.464167    1193
+BKL       Cleveland                       OH  41.525556   -81.668889     604
+LUK       Cincinnati                      OH  39.105833   -84.415833     510
+OSU       Columbus                        OH  40.078056   -83.078056     921
+ZZV       Zanesville                      OH  39.946111   -81.893056     882
+CSM       Clinton                         OK  35.356667   -99.203611    1930
+GAG       Gage                            OK  36.296667   -99.768889    2193
+HBR       Hobart                          OK  34.989444   -99.052500    1553
+LAW       Lawton                          OK  34.557500   -98.416667    1108
+MLC       McAlester                       OK  34.882222   -95.783056     762
+PWA       Oklahoma City                   OK  35.541111   -97.646667    1305
+RVS       Tulsa                           OK  36.042500   -95.989444     657
+BKE       Baker                           OR  44.842778  -117.808611    3361
+HIO       Portland                        OR  45.548056  -122.954444     224
+LMT       Klamath Falls                   OR  42.146944  -121.724167    4087
+TTD       Portland                        OR  45.551111  -122.408889      49
+AGC       Pittsburgh                      PA  40.356389   -79.935278    1279
+AOO       Altoona                         PA  40.300000   -78.316944    1493
+CXY       Harrisburg                      PA  40.218333   -76.855556     348
+JST       Johnstown                       PA  40.314722   -78.830833    2278
+LNS       Lancaster                       PA  40.120278   -76.294444     413
+MDT       Harrisburg                      PA  40.200556   -76.778056     312
+RDG       Reading                         PA  40.379167   -75.965000     360
+AND       Anderson                        SC  34.497778   -82.709722     785
+CRE       North Myrtle Beach              SC  33.816111   -78.720556      25
+FLO       Florence                        SC  34.187778   -79.730833     147
+GMU       Greenville                      SC  34.846111   -82.346111    1035
+ATY       Watertown                       SD  44.904722   -97.149444    1746
+PIR       Pierre                          SD  44.381389  -100.285556    1728
+CSV       Crossville                      TN  35.950000   -85.081111    1870
+MEM       Memphis                         TN  35.061111   -89.985000     284
+MKL       Jackson                         TN  35.593056   -88.916667     421
+AFW       Fort Worth                      TX  32.973333   -97.318056     685
+ALI       Alice                           TX  27.741111   -98.024722     177
+CDS       Childress                       TX  34.427500  -100.283333    1951
+CLL       College Station                 TX  30.582222   -96.361667     316
+COT       Cotulla                         TX  28.453333   -99.216944     461
+DAL       Dallas                          TX  32.851944   -96.855556     546
+DHT       Dalhart                         TX  36.021111  -102.547778    3992
+DWH       Houston                         TX  30.067500   -95.556111     153
+FTW       Fort Worth                      TX  32.825278   -97.364167     709
+GGG       Longview                        TX  32.390556   -94.713889     353
+GLS       Galveston                       TX  29.270278   -94.864167      22
+HOU       Houston                         TX  29.638056   -95.281944      74
+HRL       Harlingen                       TX  26.229722   -97.655278      35
+INK       Wink                            TX  31.780278  -103.200833    2807
+LFK       Lufkin                          TX  31.233611   -94.750000     289
+MFE       Mcallen                         TX  26.179722   -98.244444     126
+MWL       Mineral Wells                   TX  32.782222   -98.061389     934
+RBD       Dallas                          TX  32.675833   -96.863889     668
+SSF       San Antonio                     TX  29.338889   -98.471667     580
+TYR       Tyler                           TX  32.358611   -95.403889     515
+BCE       Bryce Canyon                    UT  37.702222  -112.153889    7586
+CDC       Cedar City                      UT  37.708611  -113.094444    5603
+OGD       Ogden                           UT  41.193611  -112.016389    4490
+CHO       Charlottesville                 VA  38.138611   -78.455556     630
+DAN       Danville                        VA  36.572778   -79.335278     575
+PHF       Newport News                    VA  37.132222   -76.494444      57
+STT       Charlotte Amalie                VI  18.338333   -64.978889      52
+STX       Christiansted                   VI  17.700833   -64.806667      32
+MPV       Barre/Montpelier                VT  44.204722   -72.566111    1126
+ALW       Walla Walla                     WA  46.095000  -118.284167    1192
+BFI       Seattle                         WA  47.545833  -122.313611      16
+BLI       Bellingham                      WA  48.799444  -122.539167     153
+DLS       The Dalles                      WA  45.617222  -121.168333     234
+EPH       Ephrata                         WA  47.308056  -119.514722    1257
+HQM       Hoquiam                         WA  46.972778  -123.930278      23
+MWH       Moses Lake                      WA  47.193056  -119.313333    1189
+PAE       Everett                         WA  47.923056  -122.282500     593
+PSC       Pasco                           WA  46.269722  -119.116667     399
+RNT       Renton                          WA  47.494444  -122.212778      19
+SFF       Spokane                         WA  47.685556  -117.320278    1998
+TIW       Tacoma                          WA  47.266667  -122.574722     291
+AUW       Wausau                          WI  44.927222   -89.624167    1200
+LNR       Lone Rock                       WI  43.211111   -90.187500     714
+LSE       La Crosse                       WI  43.886389   -91.261667     666
+OSH       Oshkosh                         WI  43.966667   -88.558056     814
+BLF       Bluefield                       WV  37.297778   -81.203611    2864
+CKB       Clarksburg                      WV  39.300000   -80.224722    1183
+HLG       Wheeling                        WV  40.170278   -80.644444    1223
+MGW       Morgantown                      WV  39.649444   -79.921111    1243
+MRB       Martinsburg                     WV  39.403889   -77.975000     540
+LAR       Laramie                         WY  41.316389  -105.672222    7269
+WRL       Worland                         WY  43.972500  -107.955833    4172
+NZCM      Antartica                       AA  77.833333  -167.000000       0
+PADK      Adak                            AK  51.883333  -176.616667       0
+KOLB      Foley                           AL 200.000000  -200.000000       0
+KNYL      Yuma                            AZ  32.650000  -114.600000       0
+MNCZ      Andros Island                   BA  24.700000   -77.766667       0
+KNBR      Monterey                        CA  36.583333  -121.866667       0
+KNFG      Oceanside                       CA  33.300000  -117.350000       0
+KNID      China Lake                      CA  35.683333  -117.683333       0
+KNJK      El Centro                       CA  32.816667  -115.666667       0
+KNKX      San Diego                       CA  32.866667  -117.150000       0
+KNLC      Lemoore                         CA  36.333333  -119.950000       0
+KNRS      Imperial Beach                  CA  32.566667  -117.116667       0
+KNSI      San Nicholas Island             CA  33.250000  -120.300000       0
+KNTD      Point Mugu                      CA  34.116667  -119.116667       0
+KNUC      San Clemente                    CA  33.016667  -118.583333       0
+KNUQ      Mountain View                   CA  37.433333  -122.050000       0
+KNXP      Twenty Nine Palms               CA  34.283333  -116.150000       0
+KNZY      San Diego                       CA  32.700000  -117.200000       0
+KQNC      Souda Bay                       CR 200.000000  -200.000000       0
+MUGM      Guantanamo Bay                  CU  19.900000   -75.216667       0
+FJDG      Diego Garcia                    DG 200.000000  -200.000000       0
+KNAE      Pinecastle                      FL  29.633333   -81.633333       0
+KNDZ      Milton                          FL  30.700000   -87.016667       0
+KNFJ      Milton                          FL  30.500000   -86.950000       0
+KNIP      Jacksonville                    FL  30.233333   -81.666667       0
+KNPA      Pensacola                       FL  30.333333   -87.300000       0
+KNQX      Key West                        FL  24.583333   -81.683333       0
+KNRB      Mayport                         FL  30.383333   -81.416667       0
+KNSE      Milton                          FL  30.716667   -87.016667       0
+KNZC      Cecil                           FL  30.216667   -81.883333       0
+KNBQ      Kings Bay                       GA  30.916667   -81.450000       0
+PGUM      Agana, Guam                     GU  13.350000  -144.800000       0
+PHBK      Kekaha                          HI  22.033333  -159.783333       0
+PHNA      Oahu                            HI  21.316667  -158.066667       0
+PHNG      Kaneohe                         HI  21.450000  -157.766667       0
+BIKF      Keflavik                        IC  63.966667   -22.633333       0
+KQNN      Naples                          IT  40.883333   -14.283333     313
+KQNS      Sigonella                       IT  37.404444   -14.922778      73
+KQTA      Atsugi                          JA  35.446389  -139.434722     175
+RJOI      Iwakuni                         JA 200.000000  -200.000000       0
+RJTX      Yokosuka                        JA 200.000000  -200.000000       0
+KNBG      New Orleans                     LA  29.817778   -90.036667       0
+KNZW      South Weymouth                  MA  42.150000   -70.933333       0
+KNAK      Annapolis                       MD  38.983333   -76.483333       0
+KNHK      Patuxent River                  MD  38.283333   -76.416667       0
+KNUI      St. Inigoes                     MD  38.150000   -76.433333       0
+KNHZ      Brunswick                       ME  43.900000   -69.933333       0
+BIX1      Biloxi                          MS  30.411667   -88.923333      34
+BIX2      Biloxi                          MS  30.411667   -88.923333      34
+BIX3      Biloxi                          MS  30.411667   -88.923333       0
+KNJW      Meridian Range                  MS  32.800000   -88.833333       0
+KNMM      Meridian                        MS  32.800000   -88.833333       0
+KNBT      Piney Island                    NC  35.016667   -76.466667       0
+KNCA      Jacksonville                    NC  34.716667   -77.450000       0
+KNIS      Cherry Point                    NC  34.883333   -76.866667       0
+KNJM      Swansboro                       NC  34.700000   -77.033333       0
+KNKT      Cherry Point                    NC  34.900000   -76.883333       0
+KNEL      Lakehurst                       NJ  40.033333   -74.350000       0
+KNFL      Fallon                          NV  39.416667  -118.716667       0
+KNJC      Boardman                        OR  45.633333  -119.800000       0
+ROTM      Futemma                         OW  26.271944  -127.754444     234
+KNXX      Willow Grove                    PA  40.200000   -75.133333       0
+TJNR      Roosevelt Roads                 PR  18.983333   -65.633333       0
+KNBC      Beaufort                        SC  33.483333   -80.716667       0
+NEXC      Charleston                      SC  32.750000   -80.033333       0
+NEXC2     Charleston                      SC 200.000000  -200.000000       0
+LERT      Rota                            SP  36.650000    -6.350000       0
+KNFW      Fort Worth                      TX  32.766667   -97.441667     650
+KNGP      Corpus Christi                  TX  27.683333   -97.283333       0
+KNGW      Corpus Christi                  TX  27.716667   -97.450000       0
+KNOG      Orange Grove                    TX  27.883333   -98.050000       0
+KNQI      Kingsville                      TX  27.500000   -97.816667       0
+KNVT      Corpus Christi                  TX  27.633333   -97.316667       0
+KNFE      Fentress                        VA  36.700000   -76.133333       0
+KNGU      Norfolk                         VA  36.833333   -76.300000       0
+KNTU      Virginia Beach                  VA  36.816667   -76.033333       0
+KNYG      Quantico                        VA  38.500000   -77.300000       0
+KNRA      Coupeville                      WA  48.183333  -122.633333       0
+KNUW      Whidbey Island                  WA  48.350000  -122.650000       0
+ADQ       Kodiak                          AK  57.751111  -152.485556     109
+AKN       King Salmon                     AK  58.683611  -156.653889      34
+ANC       Anchorage                       AK  61.169722  -150.026111     160
+ANN       Annette                         AK  55.030278  -131.576111     112
+BET       Bethel                          AK  60.785833  -161.826389     128
+BRW       Barrow                          AK  71.284167  -156.778056      36
+CDB       Cold Bay                        AK  55.220833  -162.727778      96
+ENN       Nenana                          AK  64.547778  -149.083889     358
+FAI       Fairbanks                       AK  64.803889  -147.876111     462
+HOM       Homer                           AK  59.642500  -151.487222      76
+MCG       McGrath                         AK  62.956111  -155.605833     337
+OME       Nome                            AK  64.511944  -165.435556      16
+OTZ       Kotzebue                        AK  66.885833  -162.604167      17
+SNP       St. Paul Island                 AK  57.155833  -170.220833      25
+TKA       Talkeetna                       AK  62.320000  -150.095000     351
+YAK       Yakutat                         AK  59.510278  -139.662778      36
+HSV       Huntsville                      AL  34.643611   -86.785556     629
+MGM       Montgomery                      AL  32.300278   -86.406111     207
+MOB       Mobile                          AL  30.688333   -88.245556     223
+FSM       Fort Smith                      AR  35.333611   -94.365000     462
+FLG       Flagstaff                       AZ  35.140278  -111.672222    7001
+IGM       Kingman                         AZ  35.257778  -113.933056    3385
+INW       Winslow                         AZ  35.028056  -110.720833    4890
+PGA       Page                            AZ  36.920556  -111.448056    4290
+PHX       Phoenix                         AZ  33.443056  -111.990278    1104
+TUS       Tucson                          AZ  32.131389  -110.955278    2579
+BFL       Bakersfield                     CA  35.434444  -119.054167     497
+BIH       Bishop                          CA  37.371111  -118.358056    4110
+BLU       Emigrant Gap                    CA  39.276111  -120.708056    5280
+FAT       Fresno                          CA  36.780000  -119.719444     343
+LAX       Los Angeles                     CA  33.938056  -118.388889     219
+LGB       Long Beach                      CA  33.811667  -118.146389      35
+MHS       Mt. Shasta                      CA  41.315833  -122.316111    3538
+RBL       Red Bluff                       CA  40.151944  -122.253611     342
+RDD       Redding                         CA  40.515000  -122.296667     511
+SAN       San Diego                       CA  32.735278  -117.187500      42
+SCK       Stockton                        CA  37.889722  -121.223611      34
+SDB       Sandberg                        CA  34.743611  -118.724444    4517
+SDM       San Diego                       CA  32.575278  -116.993056     541
+SFO       San Francisco                   CA  37.619722  -122.364722      87
+SMX       Santa Maria                     CA  34.899444  -120.448611     253
+ALS       Alamosa                         CO  37.438889  -105.861389    7543
+COS       Colorado Springs                CO  38.815833  -104.710833    6090
+DEN       Denver                          CO  39.782222  -104.871667    5283
+GJT       Grand Junction                  CO  39.133889  -108.538611    4765
+LIC       Limon                           CO  39.273333  -103.666667    5348
+PUB       Pueblo                          CO  38.290000  -104.498333    4658
+BDL       Windsor Locks                   CT  41.938056   -72.682500     198
+BDR       Bridgeport                      CT  41.158333   -73.128889      26
+ILG       Wilmington                      DE  39.672778   -75.600833      93
+DAB       Daytona Beach                   FL  29.177222   -81.060000      32
+EYW       Key West                        FL  24.553611   -81.753611      19
+JAX       Jacksonville                    FL  30.494444   -81.693333      26
+MCO       Orlando                         FL  28.417222   -81.325000      96
+MIA       Miami                           FL  25.790556   -80.316389       9
+PBI       West Palm Beach                 FL  26.684722   -80.099444      22
+TLH       Tallahassee                     FL  30.393056   -84.353333      55
+TPA       Tampa                           FL  27.961389   -82.540278      38
+AGS       Augusta                         GA  33.364444   -81.963333     145
+AHN       Athens                          GA  33.950833   -83.328056     801
+ATL       Atlanta                         GA  33.629722   -84.442222     972
+CSG       Columbus                        GA  32.516111   -84.942222     446
+MCN       Macon                           GA  32.687778   -83.654444     358
+SAV       Savannah                        GA  32.118889   -81.202222      49
+HNL       Honolulu                        HI  21.327500  -157.943056      16
+ITO       Hilo                            HI  19.722222  -155.055833      41
+LIH       Lihue                           HI  21.983889  -159.341111     102
+OGG       Kahului                         HI  20.892500  -156.436944      42
+ALO       Waterloo                        IA  42.554444   -92.401111     869
+DBQ       Dubuque                         IA  42.397778   -90.703611    1070
+DSM       Des Moines                      IA  41.537778   -93.666111     964
+SUX       Sioux City                      IA  42.391389   -96.379167    1110
+BOI       Boise                           ID  43.566667  -116.240556    2859
+LWS       Lewiston                        ID  46.374722  -117.014444    1439
+PIH       Pocatello                       ID  42.920278  -112.571111    4460
+MLI       Moline                          IL  41.451389   -90.514722     605
+ORD       Chicago                         IL  41.986111   -87.914167     650
+PIA       Peoria                          IL  40.667500   -89.683889     673
+RFD       Rockford                        IL  42.192778   -89.093333     729
+SPI       Springfield                     IL  39.845278   -89.683889     595
+EVV       Evansville                      IN  38.043056   -87.520278     385
+FWA       Fort Wayne                      IN  40.972778   -85.205556     816
+IND       Indianapolis                    IN  39.726667   -86.288889     834
+SBN       South Bend                      IN  41.707222   -86.316389     778
+CNK       Concordia                       KS  39.551389   -97.650556    1469
+DDC       Dodge City                      KS  37.772778   -99.969722    2588
+GLD       Goodland                        KS  39.367500  -101.693056    3655
+ICT       Wichita                         KS  37.647222   -97.429444    1339
+TOP       Topeka                          KS  39.072500   -95.625833     881
+CVG       Covington/Cincinnati            KY  39.043056   -84.671667     885
+JKL       Jackson                         KY  37.591389   -83.314444    1354
+LEX       Lexington                       KY  38.040833   -84.605833     987
+PAH       Paducah                         KY  37.056389   -88.773889     390
+SDF       Louisville                      KY  38.177222   -85.729722     482
+BTR       Baton Rouge                     LA  30.537222   -91.146944      70
+LCH       Lake Charles                    LA  30.124722   -93.228333      11
+MSY       New Orleans                     LA  29.992778   -90.250833      17
+SHV       Shreveport                      LA  32.446944   -93.824167     265
+BOS       Boston                          MA  42.360556   -71.010556     229
+ORH       Worcester                       MA  42.270556   -71.873056     998
+BWI       Baltimore                       MD  39.172222   -76.683889     194
+CAR       Caribou                         ME  46.866944   -68.016111     628
+PWM       Portland                        ME  43.642222   -70.304444      50
+APN       Alpena                          MI  45.071667   -83.564444     689
+DTW       Detroit                         MI  42.231389   -83.330833     641
+FNT       Flint                           MI  42.966667   -83.749444     767
+GRR       Grand Rapids                    MI  42.882222   -85.523056     786
+HTL       Houghton Lake                   MI  44.351111   -84.674167    1154
+LAN       Lansing                         MI  42.780278   -84.578889     869
+MKG       Muskegon                        MI  43.171111   -86.236667     627
+DLH       Duluth                          MN  46.843611   -92.186389    1427
+INL       International Falls             MN  48.563333   -93.402778    1183
+MSP       Minneapolis                     MN  44.883056   -93.228889     872
+RST       Rochester                       MN  43.904167   -92.491667    1324
+STC       St. Cloud                       MN  45.544722   -94.051944    1030
+COU       Columbia                        MO  38.816944   -92.218333     891
+MCI       Kansas City                     MO  39.297222   -94.730556    1050
+SGF       Springfield                     MO  37.239722   -93.389722    1269
+STL       St. Louis                       MO  38.752500   -90.373611     562
+JAN       Jackson                         MS  32.319722   -90.077500     294
+MEI       Meridian                        MS  32.338056   -88.747778     293
+TUP       Tupelo                          MS  34.260833   -88.771111     347
+BIL       Billings                        MT  45.806944  -108.542222    3580
+FCA       Kalispell                       MT  48.304167  -114.263611    2979
+GGW       Glasgow                         MT  48.213889  -106.621389    2276
+GTF       Great Falls                     MT  47.473333  -111.382222    3671
+HLN       Helena                          MT  46.605556  -111.963611    3895
+HVR       Havre                           MT  48.542778  -109.763333    2582
+MSO       Missoula                        MT  46.920833  -114.092500    3200
+8W5       Hatteras                        NC  35.232222   -75.622500      11
+AVL       Asheville                       NC  35.431944   -82.537500    2160
+CLT       Charlotte                       NC  35.213333   -80.948611     722
+GSO       Greensboro                      NC  36.097500   -79.943611     905
+ILM       Wilmington                      NC  34.268333   -77.906111      33
+RDU       Raleigh/Durham                  NC  35.870556   -78.786389     428
+BIS       Bismarck                        ND  46.782500  -100.757222    1652
+FAR       Fargo                           ND  46.925278   -96.811111     909
+ISN       Williston                       ND  48.173889  -103.636667    1900
+BFF       Scottsbluff                     NE  41.866944  -103.585833    3947
+GRI       Grand Island                    NE  40.958333   -98.312500    1842
+LBF       North Platte                    NE  41.121944  -100.668333    2779
+LNK       Lincoln                         NE  40.831111   -96.764444    1194
+OFK       Norfolk                         NE  41.980556   -97.436944    1544
+VTN       Valentine                       NE  42.858611  -100.551389    2587
+CON       Concord                         NH  43.195278   -71.501111     341
+ACY       Atlantic City                   NJ  39.464722   -74.586667     115
+EWR       Newark                          NJ  40.682500   -74.169444      26
+TEB       Teterboro                       NJ  40.858889   -74.056667      44
+ABQ       Albuquerque                     NM  35.041667  -106.614722    5310
+CAO       Clayton                         NM  36.448333  -103.153056    4969
+ROW       Roswell                         NM  33.308056  -104.507778    3650
+TCS       Truth Or Consequences           NM  33.236667  -107.268056    4821
+DRA       Mercury                         NV  36.620556  -116.027778    3300
+ELY       Ely                             NV  39.295000  -114.845278    6253
+LAS       Las Vegas                       NV  36.078889  -115.155278    2089
+RNO       Reno                            NV  39.483889  -119.771111    4405
+WMC       Winnemucca                      NV  40.901944  -117.807222    4298
+ALB       Albany                          NY  42.746667   -73.798889     302
+BGM       Binghamton                      NY  42.207778   -75.981389    1615
+BUF       Cheektowaga                     NY  42.940833   -78.735833     715
+JFK       New York                        NY  40.638611   -73.762222      30
+LGA       New York                        NY  40.779167   -73.880000      37
+NYC       New York City                   NY  40.766667   -73.983333       0
+ROC       Rochester                       NY  43.116667   -77.676667     587
+SYR       Syracuse                        NY  43.109167   -76.103333     417
+CAK       Akron                           OH  40.918056   -81.442500    1239
+CLE       Cleveland                       OH  41.405000   -81.852778     776
+CMH       Columbus                        OH  39.995000   -82.876389     813
+DAY       Dayton                          OH  39.906111   -84.218611    1002
+MFD       Mansfield                       OH  40.820278   -82.517778    1298
+TOL       Toledo                          OH  41.588611   -83.801389     691
+YNG       Youngstown                      OH  41.254444   -80.673889    1183
+OKC       Oklahoma City                   OK  35.388611   -97.600278    1281
+TUL       Tulsa                           OK  36.197500   -95.886389     679
+AST       Astoria                         OR  46.156944  -123.882500      10
+BNO       Burns                           OR  43.595000  -118.956389    4146
+EUG       Eugene                          OR  44.133333  -123.214444     375
+MFR       Medford                         OR  42.381111  -122.872222    1301
+PDT       Pendleton                       OR  45.698333  -118.834167    1504
+PDX       Portland                        OR  45.590833  -122.600278      24
+SLE       Salem                           OR  44.907778  -122.995000     196
+SXT       Sexton Summit                   OR  42.600278  -123.364167    3838
+ABE       Allentown                       PA  40.650833   -75.449167     376
+AVP       Wilkesbarre-Scranton            PA  41.338889   -75.726667     956
+ERI       Erie                            PA  42.080000   -80.182500     730
+IPT       Williamsport                    PA  41.243333   -76.921667     541
+PHL       Philadelphia                    PA  39.868333   -75.231111      60
+PIT       Pittsburgh                      PA  40.484722   -80.214167    1173
+PNE       Philadelphia                    PA  40.078889   -75.013611      94
+SJU       San Juan                        PR  18.434722   -66.011111      69
+PVD       Providence                      RI  41.721944   -71.432500      55
+CAE       Columbia                        SC  33.941944   -81.118056     241
+CHS       Charleston                      SC  32.898889   -80.040556      44
+GSP       Greer                           SC  34.886111   -82.220833     948
+ABR       Aberdeen                        SD  45.443333   -98.413056    1312
+FSD       Sioux Falls                     SD  43.576944   -96.753611    1426
+HON       Huron                           SD  44.388056   -98.228333    1282
+RAP       Rapid City                      SD  44.045556  -103.053889    3166
+BNA       Nashville                       TN  36.118889   -86.689167     572
+CHA       Chattanooga                     TN  35.033333   -85.200000     689
+TRI       Bristol/Johnson/Kingsport       TN  36.479722   -82.398889    1556
+TYS       Knoxville                       TN  35.818056   -83.985833     992
+ABI       Abilene                         TX  32.410278   -99.681667    1798
+ACT       Waco                            TX  31.617222   -97.227778     497
+AMA       Amarillo                        TX  35.220000  -101.717222    3587
+AUS       Austin                          TX  30.290556   -97.695833     587
+BPT       Beaumont/Port Arthur            TX  29.951667   -94.026111      17
+BRO       Brownsville                     TX  25.914167   -97.423056      19
+CRP       Corpus Christi                  TX  27.773056   -97.512778      53
+DFW       Dallas/Fort Worth               TX  32.896944   -97.021944     572
+DRT       Del Rio                         TX  29.374722  -100.923611    1027
+ELP       El Paso                         TX  31.811111  -106.375833    3929
+IAH       Houston                         TX  29.992500   -95.363889     119
+LBB       Lubbock                         TX  33.667500  -101.821389    3255
+MAF       Midland                         TX  31.947778  -102.208611    2862
+SAT       San Antonio                     TX  29.532778   -98.463611     800
+SJT       San Angelo                      TX  31.351389  -100.493889    1906
+SPS       Wichita Falls                   TX  33.978611   -98.492778    1011
+VCT       Victoria                        TX  28.862500   -96.929722     104
+MLF       Milford                         UT  38.422500  -113.009722    5033
+SLC       Salt Lake City                  UT  40.778056  -111.969444    4221
+DCA       Washington, DC                  VA  38.848333   -77.034167      60
+IAD       Washington, DC                  VA  38.934722   -77.447500     307
+LYH       Lynchburg                       VA  37.320833   -79.206667     969
+ORF       Norfolk                         VA  36.903611   -76.191944      21
+RIC       Richmond                        VA  37.511111   -77.323333     165
+ROA       Roanoke                         VA  37.316944   -79.974167    1190
+WAL       Wallops Island                  VA  37.940556   -75.463056      59
+BTV       Burlington                      VT  44.468056   -73.150278     346
+GEG       Spokane                         WA  47.621389  -117.527778    2354
+OLM       Olympia                         WA  46.973333  -122.903333     193
+SEA       Seattle                         WA  47.444722  -122.313611     448
+SMP       Stampede Pass                   WA  47.276667  -121.337222    3964
+UIL       Quillayute                      WA  47.937500  -124.555000     179
+YKM       Yakima                          WA  46.564167  -120.533611    1065
+GRB       Ashwaubenon                     WI  44.479444   -88.136667     673
+MKE       Milwaukee                       WI  42.955000   -87.904444     678
+MSN       Madison                         WI  43.140556   -89.345278     857
+BKW       Beckley                         WV  37.795000   -81.124722    2509
+CRW       Charleston                      WV  38.379444   -81.591389    1016
+EKN       Elkins                          WV  38.885278   -79.852778    1980
+HTS       Huntington                      WV  38.365000   -82.555000     835
+CPR       Casper                          WY  42.897500  -106.473056    5320
+CYS       Cheyenne                        WY  41.157778  -104.806944    6120
+RIW       Riverton                        WY  43.061944  -108.446389    5460
+SHR       Sheridan                        WY  44.769444  -106.968889    3943
+PASY      Eareckson AFS                   AK  52.711667  -174.113333      97
+79J       Andalusia                       AL  31.306111   -86.390000     310
+SXS       Enterprise                      AL  31.361667   -85.848611     397
+VAFB1     Lompoc                          CA  34.636111  -120.616111     306
+VAFB2     Lompoc                          CA  34.845556  -120.748056     301
+VAFB3     Lompoc                          CA  34.727500  -120.578333     326
+IKR       Albuquerque                     NM  34.945000  -106.567778    5290
+DLF       Del Rio                         TX  29.118611  -100.473611     965

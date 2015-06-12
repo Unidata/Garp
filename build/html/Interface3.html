@@ -1,0 +1,170 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; HP-UX B.10.20 9000/715) [Netscape]">
+   <TITLE>GARP Data Types</TITLE>
+</HEAD>
+<BODY TEXT="#400020" BGCOLOR="#FFFFFF" LINK="#7F7FFF" VLINK="#505090" ALINK="#FF0000" BACKGROUND="gif/COMET_Wallpaper.GIF" NOSAVE fgcolor="#000000">
+
+<HR>
+<CENTER>
+<H1>
+GARP Data Types</H1></CENTER>
+
+<HR>
+<H2>
+Data Types</H2>
+<IMG SRC="gif/datatypes.gif" NOSAVE HEIGHT=49 WIDTH=468>
+
+<P>&nbsp;There are 10 icons beneath the Menubar. Each icon represents a
+different data type or graphic type, except the last two which allow clearing
+and reset. GARP allows you to freely combine data of different types (i.e.,
+satellite and model data, or radar and obs data, etc.) within the constraints
+of GEMPAK. Notice that as you pass the mouse over the icons, a window appears
+telling you what the data or graphic type is. When loading multiple frames
+into a loop, you may interrupt the loading by clicking the Clear or Reset
+icons.
+<H3>
+<A HREF="RadSatData.html"><IMG SRC="gif/icon03.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="RadSatData.html">
+Radar and Satellite Data</A></H3>
+The default number of satellite images to load is hard coded into GARP.
+You can change the images to select by clicking the file name with your
+mouse. To select a single image, click once. To select multiple images
+in sequence, click and hold the mouse button as you slide up or down the
+list. To select multiple images out of sequence, press the CTRL key and
+click each image to load. If you have already loaded some other data and
+time matching is turned on, the list will be highlighted and desensitized
+to indicate these are the images which time match the previously loaded
+data.
+<H3>
+<A HREF="SurfaceData.html"><IMG SRC="gif/icon07.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="SurfaceData.html">
+Surface Observational Data</A></H3>
+This icon refers to surface data plotted in a standard surface chart. Surface
+METARs, mesonet, and ship/buoy data are now supported along with any other
+data written in GEMPAK format files. The standard METARs are available
+from "synoptic", mesonet from "mesonet", and ship and buoy from "ship/buoy".
+You can select/deselect which data is plotted by clicking the Station Layout
+button. The default uses one color for all data; the multi-color button
+activates multiple colors. All the available dates/times from the data
+files are listed in the scroll window. Select the date/times with the mouse.
+<H3>
+<A HREF="ProfilerData.html"><IMG SRC="gif/icon09.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="ProfilerData.html">
+Profiler Data</A></H3>
+Profiler data from individual sites can be plotted as a time series over
+some time interval, usually 24 hours.
+<H3>
+<A HREF="SoundingData.html"><IMG SRC="gif/icon08.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="SoundingData.html">
+Upper-Air Data</A></H3>
+This icon will give you upper-air observational data plotted in a standard
+plan view upper-air chart or a thermodynamic diagram. The Type option button
+at the top of this dialog allows you to discriminate between plan view and
+vertical projections. In plan
+view, you can select/deselect what data is plotted by clicking
+the Station Layout button. You can change the level by clicking the Pressure
+Level button. All the available dates/times from the data files are listed
+in the scroll window. Select the date/times with the mouse.
+The vertical projection allows you to display either a Stuve or Skew-T Log-P
+thermodynamic diagram.
+<H3>
+<A HREF="MPVData.html"><IMG SRC="gif/icon12.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="MPVData.html">
+Plan View Gridded Data</A></H3>
+Clicking this icon will give you plan view gridded data plotted with contours,
+vectors (barbs or arrows), streamlines, or grid point values. GARP can
+display gridded data from a number of models; this is defined in the $GARPHOME/config/Garp_defaults
+file. Data can be displayed in any coordinate system that is defined in
+a grid file.
+
+<P>The level can be chosen by either pressing the Level button or by typing
+in the level (or levels in the case of a layer quantity).
+
+<P>The date/times/forecast hours listed in the scroll window are extracted
+from each data file. As a result, you may notice an extra second or three
+processing time.
+
+<P>To get specific information about the available times, levels, and fields
+in a given grid file, press the Info button. This window will allow you
+to open a grid file and get a GDINFO summary of the available grids in
+the file.
+
+<P>The "Scalar:" and "Vector:" buttons allow grouping of FDFs from which
+to choose. The scrolling windows contain some pre-defined functions for
+plotting gridded data. You may select any of these functions and the GEMPAK
+GFUNC or GVECT specification will appear in the input window below the
+scroll windows. These functions are defined in FDFs (Field Description
+Files), which are text files stored in the $GARPHOME/fdf/ directory tree.
+Please see the section <A HREF="FDF.html">FDF Description</A> for more
+information about creating your own FDFs and <A HREF="Macros.html">Macros
+Description</A> for information about macros.
+
+<P>In addition to the pre-defined functions, you may type in ANY valid
+GEMPAK GFUNC or GVECT in the input window. Inline parameters (^ @ %) are
+accepted. From within any GEMPAK program you can type "phelp gfunc" 
+on the command line for more information. Note that if you
+are manually inputting a GFUNC or GVECT specification, you must select
+Scalar or Vector, as appropriate.
+
+<P>For more user control over the way your contour/vector plot looks, click
+the More button. This will allow you to specify contour lines or color
+fill, what type of line or list of colors to use, how often to label the
+contour lines, the contour interval, minimum, and maximum, whether High/Low
+symbols are plotted, and, for vectors, whether wind barbs or arrows are
+used. Please note that the Field Description box may give valuable information
+on how a specific pre-defined function is used.
+
+<P>Finally, in order to plot a gridded data graphic, you must be sure to
+select the date/time(s), the level, and a scalar or vector function. If
+you forget any of these, your graphic will not plot. Some FDFs include
+the definition for the level. In these cases, any value in the Level box
+is overwritten. Press the Display or the Display and Close button to draw
+the graphics. The Clear icon will interrupt the drawing.
+<H3>
+<A HREF="MXSData.html"><IMG SRC="gif/icon14.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="MXSData.html">
+Cross-Sectional Gridded Data</A></H3>
+Much of the cross-section dialog is the same as the plan view model grid
+display. The main difference is that you must specify cross section
+end points in the form STN1>STN2 or LAT;LON1>LAT;LON2. Also, you can choose
+to display a graphic between two levels by setting level1 (lower level)
+and/or level2 (upper level). Data is then displayed between these two levels.
+<H3>
+<A HREF="MTHData.html"><IMG SRC="gif/icon19.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="MTHData.html">
+Time Height Gridded Data</A></H3>
+The model time height window looks much like the Cross Section dialog box.
+You can only choose one model run per loop.
+<H3>
+<A HREF="MVPData.html"><IMG SRC="gif/icon21.gif" NOSAVE HEIGHT=32 WIDTH=32></A><A HREF="MVPData.html">
+Vertical Profile Gridded Data</A></H3>
+The model vertical profile looks similar to the upper-air vertical profile
+dialog box. Please note, when drawing a skew-T diagram (the default), you
+may not change the functions plotted. The temperature and dewpoint data
+will automatically be drawn.
+<H3>
+<IMG SRC="gif/iconclr.gif" NOSAVE HEIGHT=32 WIDTH=32> Clear</H3>
+This icon will clear the drawing window of all frames. You may also use
+the Clear icon to interrupt the loading of any loop. Note, the Clear button
+will NOT reset the graphics area (GAREA), so if you have zoomed or changed
+the default area, your graphic will stay that way. After all the data frames
+are cleared, the background maps are redrawn. This provides a geographic
+context for subsequent data plotting.
+<H3>
+<IMG SRC="gif/icon26.gif" NOSAVE HEIGHT=32 WIDTH=32> Reset</H3>
+This icon will clear the drawing window of all frames and will also reset
+the GAREA to the DEFAULT value. You may also use the Reset icon to interrupt
+the loading of any loop.
+<BR>&nbsp;
+<BR>&nbsp;
+<H2>
+Refreshing Data Lists and the Grid Cache</H2>
+GARP goes out to disk and reads the available data whenever a data display
+dialog is accessed. The one exception is gridded data, where a cache is
+used to speed up access to the data. The grid cache is updated only if
+the list of files for each model type changes. In other words, the cache
+is updated only if a new grid file is created or one is removed. It does
+not update if new grids are added to an existing grid file.&nbsp; Because
+of this, each data display dialog contains a Refresh button that forces
+GARP to go out and read the data off of disk to refresh the list. In the
+case of gridded data, the cache is emptied for the current model, and the
+available data is re-read from disk. So the Refresh button provided a mechanism
+to ensure that the list of data is current.
+<BR>&nbsp;
+</BODY>
+</HTML>

@@ -1,0 +1,314 @@
+<html>
+
+<TITLE>GARP Garp_defaults File</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>Garp_defaults File</center></h1>
+<hr>
+<p>
+<h2>Synopsis</h2>
+"Garp_defaults" comprises a list of key value pairs that are used to 
+configure and initialize GARP. You must edit this file to reflect the
+organization of your data files. This file is located in the garp/config
+directory in the distribution. It must reside in a directory pointed to 
+by the environment varible GARP_PATH.
+<p>
+ Since "Garp_defaults" is called recursively,
+you can imbed the value of one key in another key value. The syntax for
+doing this is: <b>$(<i>key</i>)</b>, where <b><i>key</i></b> is the name 
+of a key
+defined somewhere else within "Garp_defaults", or, it could also be a Unix 
+environment variable.
+Note that if you have defined both an environment variable and a key
+in "Garp_defaults" with the same name the value of the environment variable
+takes precedence. This allows you to define that key in "Garp_defaults" as
+a fallback value when the environment variable is undefined.
+<p>
+An example of using an environment variable in "Garp_defaults" is the value
+of <b>$(<i>METDAT</i>)</b>. You will notice in the distribution copy it is 
+not defined as a key
+and so must be an environment variable. Another example is the value of 
+<b>$(<i>GARP_HOME</i>)</b> which is defined as a key in "Garp_defaults"
+but for some people is also defined as an environment variable.
+<p>
+<h2>Key Interdependence</h2>
+One of the more confusing aspects of the "Garp_defaults" file is that some 
+keys are interdependent. We will first cover this aspect of the "Garp_defaults"
+file in this document and then explain
+simple one-to-one correspondence of the remaining keys.
+<p>
+The interdependence of some key value pairs is driven by a need to derive
+interrelationships in configuration data. For example, surface observation
+data has several interrelated keys. The key "sfc_keys" comprises a list of
+substrings that appear in file names of surface data. The key "sfc_labels"
+refers to 
+the labels that appear in the interface for the data listed in "sfc_keys".
+The key "sfc_tables" defines a list of table files containing valid
+parameters for each data type defined in "sfc_keys".
+<p>
+To enable any generalized surface observation data type to be plotted, the
+arguments in "sfc_keys" dynamically link to a directory name and default
+list of station parameters which will be plotted.
+In the following example, hourly METAR data files
+have the substring "sao" in the file name (from "sfc_keys"), the GUI 
+label is "Hourly / METAR" (from "sfc_labels"), a complete list of all
+valid parameters are in listed in the table file "sfcparms.lst" (from
+"sfc_tables"), the data is located in directory "$(METDAT)/gempak/surface"
+(the "sao" in "sao_dir" maps to "sfc_keys"), and the parameters plotted
+by default are "SKYC:1.0:1;TMPF" (again, the "sao" in "sao_parms"
+maps to "sfc_keys").
+<pre>
+sfc_keys	: "sao,meso,shb"
+sfc_labels	: "Hourly / METAR,Mesonet,Ship / Buoy"
+sfc_tables	: "sfcparms.lst,mesoparms.lst,shbparms.lst"
+
+sao_dir		: $(METDAT)/gempak/surface
+meso_dir	: $(METDAT)/gempak/surface
+shb_dir		: $(METDAT)/gempak/surface
+
+sao_parms	: "SKYC:1.0:1;TMPF"
+meso_parms	: "SKYC:1.0:1"
+shb_parms	: "SKYC:1.0:1"
+</pre>
+<p>
+Several examples of key/value recursion can be seen in the definition of 
+satellite directories in the example below. The key "SATDIR" is embedded 
+within the key "G9" which is in turn embedded in the key "sat". The degree
+of recursion required to define your data directory tree will depend on
+the amount of data you have and how it is organized. If your data files
+are organized in a structure that you cannot define with these keys,
+you can create symbolic links in the file system to complete your 
+configuration. Note that white space
+is used to delimit multiple key values. This is true only for these
+satellite related keys.
+
+<pre>
+G7    : "$(SATDIR)/GOES-7"
+G8    : "$(SATDIR)/GOES-8_RAM  $(SATDIR)/GOES-8_UNI $(SATDIR)/GOES-8"
+G9    : "$(SATDIR)/GOES-9_RAM  $(SATDIR)/GOES-9_UNI $(SATDIR)/GOES-9"
+GINI  : "$(SATDIR)/GOES-8_GINI $(SATDIR)/GOES-9_GINI"
+GMS   : "$(SATDIR)/GMS_RAM"
+
+sat             : "$(G7) $(G8) $(G9) $(GINI) $(GMS)"
+<hr>
+
+</pre>
+<p>
+<h2>Key Definitions</h2>
+Following is a complete list of keys with short explanations of their meaning.
+This list is intended to be used as a reference while you are editing
+"Garp_defaults" as the purpose of most of the keys should be intuitively
+obvious.
+Interdependent keys and related keys are grouped. For interdependent key pairs,
+one key typically corresponds to some GEMPAK
+value and the other key is a label which will appear in the GUI.
+The number of parameters in each key pair should match. 
+Otherwise, you'll get a (most likely fatal) error message as 
+GARP starts up.
+<pre>
+grids           - gridded data directory
+upperair        - upper-air data directory
+profiler        - wind profiler data directory
+sat             - satellite data directory
+nids            - NIDS data directory
+nowrad          - radar mosaic directory
+sao_dir		- "sao" directory (METAR data)
+meso_dir        - "meso" directory (mesonet data)
+shb_dir         - "shb" directory (ship/buoy data)
+
+upperairK       - substring to discriminate upper-air file name
+profilerK	- substring to discriminate wind profiler file name
+
+modelkeys	- substrings to discriminate model file names
+modellabels	- model labels in GUI
+
+vcoordkeys	- vertical coordinates valid in model data
+vcoordlabels	- vertical coordinate labels in GUI
+
+vpvcoordkeys	- vertical coordinate keys for vertical profiles
+vpvcoordlabels	- vertical coordinate labels in GUI
+
+colorlist	- list colors to be used for contour lines, symbols, etc.
+
+colorfillkeys   - color fill tables
+colorfilllabels - color fill table labels in GUI
+
+text_size       - text size
+text_font       - text font number
+text_width      - text width
+text_hw_flag    - hardware font flag
+
+stn_tables      - station table index in $(tabledir)/master_garp.tbl
+stn_labels	- station table labels
+
+sfc_keys	- substrings to discriminate surface observation files
+sfc_labels	- surface observation labels in GUI
+sfc_tables	- surface observation table files
+*_parms		- surface observation default station plot 
+		  (* = surface observation type in "sfc_keys")
+
+sfc_markers	- list of GEMPAK indices of symbol types
+sfc_marker_labels - symbol type labels in GUI
+
+sfc_filter	- proximity filter for surface obs
+
+colormapdir	- background image directory
+colormapkeys	- background image file names
+colormaplabels	- background image labels in GUI
+
+MapLabels	- labels for regions available in "Area" pulldown menu
+MapProjection	- map projections for regions available in "Area" pulldown menu
+MapGarea	- map areas for regions available in "Area" pulldown menu
+
+*_proj		- model default projection (* = model in "modelkeys")
+*_garea		- model default area (* = model in "modelkeys")
+default_proj	- default projection
+default_garea	- default area
+
+ScalarChapter	- plan view scalar gridded data FDF subdirectory
+SCLabels	- plan view scalar gridded data FDF labels in GUI
+VectorChapter	- plan view vector gridded data FDF subdirectory
+VCLabels	- plan view vector gridded data FDF labels in GUI
+XSScalarChapter	- cross-section scalar gridded data FDF subdirectory
+XSSCLabels	- cross-section scalar gridded data FDF labels in GUI
+XSVectorChapter	- cross-section vector gridded data FDF subdirectory
+XSVCLabels	- cross-section vector gridded data FDF labels in GUI
+THScalarChapter	- time height scalar gridded data FDF subdirectory
+THSCLabels	- time height scalar gridded data FDF labels in GUI
+THVectorChapter	- time height vector gridded data FDF subdirectory
+THVCLabels	- time height vector gridded data FDF labels in GUI
+VPScalarChapter	- vertical profile scalar gridded data FDF subdirectory
+VPSCLabels	- vertical profile gridded data FDF labels in GUI
+VPVectorChapter	- vertical profile vector gridded data FDF subdirectory
+VPVCLabels	- vertical profile vector gridded data FDF labels in GUI
+
+linetypekeys	- GEMPAK line type indices
+linetype	- line type labels in GUI
+
+labelfreqkeys	- line label frequencies
+labelfreq	- line label frequency labels
+
+vectorkeys	- GEMPAK plan view model dialog vector symbols
+vectorsymbols	- plan view model dialog vector symbol labels
+
+VertVectorkeys  - vertical projection model dialog vector symbols
+VertVectorsymbols - vertical projection model dialog vector symbol labels
+
+yaxiskeys	- GEMPAK cross-section vertical axis scale
+yaxislabels	- cross-section vertical axis scale labels
+
+vpyaxiskeys	- GEMPAK vertical profile vertical axis scale
+vpyaxislabels	- vertical profile vertical axis scale labels
+
+thtaxiskeys	- GEMPAK time/height time axis scale
+thtaxislabels	- time/height time axis scale labels
+
+wpbottom        - bottom level for wind profiler display
+wptop           - top level for wind profiler display
+wpincrement     - tick and label increment
+wpduration      - time axis length in hours
+wptimeint       - time interval between data values
+wpendtime       - end time in YYMMDD/HHMM, will use current time if blank
+
+stndex		- GEMPAK stability indices and thermodynamic parameters
+SkewtXAxis	- Skew T-log P chart xaxis specification (GEMPAK)
+StuveXAxis	- Stuve diagram xaxis specification (GEMPAK)
+
+#
+# Widget defaults
+#
+# Choose default values for the model, vertical coordinate, levels,
+# function, default FDF chapters, cross-section line, time-height
+# station, vertical profile axis types, and radar ring station.
+#
+model           - default model (from "modelkeys")
+vcoord          - default vertical coordinate (from "vcoordkeys")
+level1          - default lower level in model plan view dialog
+level2          - default upper level in model plan view dialog
+fdf             - default model plan view FDF
+fdf_directory	- default model plan view FDF chapter
+xsfdf		- default model cross-section FDF
+xsfdf_directory	- default model cross-section FDF chapter
+thfdf		- default model time height section FDF
+thfdf_directory	- default model time height section FDF chapter
+vpfdf		- default model vertical profile FDF
+vpfdf_directory	- default model vertical profile FDF chapter
+cross-section   - default model cross section begin and end points
+time-height_stn - default model time height section location
+yaxistype	- default vertical axis type for model vertical projections
+vpyaxistype	- vertical profile vertical axis type
+rring_stid	- radar range ring station id
+upalevels	- levels for upper-air dialog
+upa_filter	- proximity filter for upper-air obs
+
+autoupdate	- toggle for auto update
+update_timer	- auto update frequency in minutes
+TimeMatch	- time match type 
+TimesInList	- date/time stamps to put in model related scrolled lists
+
+ICONDIR         - GARP icon directory
+
+GarpHTML        - GARP html directory
+Browser		- command to initiate browser to look at help files
+UserGuide	- file or URL for GARP User's Guide homepage
+CaseStudies	- URL for COMET case studies homepage
+
+fdfdir          - root directory for FDFs
+valid_fdf_keys  - valid FDF keys file
+scalarfdf       - plan view scalar FDF root directory
+vectorfdf       - plan view vector FDF root directory
+xsscalarfdf     - cross-section scalar FDF root directory
+xsvectorfdf     - cross-section vector FDF root directory
+thscalarfdf	- time/height scalar FDF root directory
+thvectorfdf	- time/height vector FDF root directory
+vpscalarfdf	- vertical profile scalar FDF root directory
+vpvectorfdf	- vertical profile vector FDF root directory
+
+tabledir        - tables directory 
+
+mastertbl       - master table of station tables
+satenhancetbl   - satellite data color enhancement table
+radenhancetbl   - radar data color enhancement table
+
+minzoomboxsize  - minimum size of box (in pixels) before zooming occurs
+zoomboxcolor	- zoom box color index (GEMPAK color number)
+
+defaultdwell	- default dwell settings
+presetdwell1	- dwell settings for animation speed button 1
+presetdwell2	- dwell settings for animation speed button 2
+presetdwell3	- dwell settings for animation speed button 3
+presetdwell4	- dwell settings for animation speed button 4
+presetdwell5	- dwell settings for animation speed button 5
+dwellmin	- minimum dwell
+dwellmax	- maximum dwell
+
+statusbaritems	- list of items that will be displayed on the status bar
+
+tempunits	- temperature units for display window image brightness
+distunits	- distance units for display window distance calculations
+
+satT		- satellite data file name template
+nidsT		- radar data file name template
+nowradT		- radar mosaic data file name template
+gridsT		- gridded data file name template
+surfaceT	- surface observation data file name template
+upperairT	- upper-air data file name template
+profilerT	- wind profiler data file name template
+
+SfcObsTimeInterval	- surface observation data strict time match interval 
+UpaObsTimeInterval	- upper-air data strict time match interval
+RadarTimeInterval:	- radar data strict time match interval
+SatelliteTimeInterval	- satellite data strict time match interval
+</pre>
+
+<hr>
+</body>
+</html>

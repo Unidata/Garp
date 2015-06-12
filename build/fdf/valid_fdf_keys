@@ -1,0 +1,267 @@
+! GARP Field Description File (FDF) Template
+!
+! Field:
+!
+! *** Required Parameters ***
+type			=
+layer			=
+function		=
+function2		=
+function3		=
+function4		=
+function5		=
+function6		=
+function7		=
+function8		=
+function9		=
+function10		=
+description		=
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+operation		=
+label			=
+vcoord			=
+level1			=
+level2			=
+contour			=
+value			=
+fill			=
+hilo			=
+cint_parse		=
+fint_parse		=
+!					Pressure coordinates
+pres			=
+pres_cint		=
+pres_cmin 		=
+pres_cmax 		=
+pres_fint 		=
+pres_fmin 		=
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					Height coordinates
+hght			=
+hght_cint 		=
+hght_cmin 		=
+hght_cmax 		=
+hght_fint 		=
+hght_fmin 		=
+hght_fmax 		=
+!                                       No coordinates (surface)
+none			=
+none_cint		=
+none_cmin		=
+none_cmax		=
+none_fint		=
+none_fmin		=
+none_fmax		=
+!					Freezing Level
+frzl			=
+frzl_cint		=
+frzl_cmin		=
+frzl_cmax		=
+frzl_fint		=
+frzl_fmin		=
+frzl_fmax		=
+!					Tropopause Level
+trop			=
+trop_cint		=
+trop_cmin		=
+trop_cmax		=
+trop_fint		=
+trop_fmin		=
+trop_fmax		=
+!					Maxmum Wind Speed Level
+mwsl			=
+mwsl_cint		=
+mwsl_cmin		=
+mwsl_cmax		=
+mwsl_fint		=
+mwsl_fmin		=
+mwsl_fmax		=
+!					Height above ground Level
+hagl			=
+hagl_cint		=
+hagl_cmin		=
+hagl_cmax		=
+hagl_fint		=
+hagl_fmin		=
+hagl_fmax		=
+!					Hybrid Level
+hybl			=
+hybl_cint		=
+hybl_cmin		=
+hybl_cmax		=
+hybl_fint		=
+hybl_fmin		=
+hybl_fmax		=
+!		                          Pressure above ground level
+pagl			=
+pagl_cint		=
+pagl_cmin		=
+pagl_cmax		=
+pagl_fint		=
+pagl_fmin		=
+pagl_fmax		=
+!					Eta levels
+eta			=
+eta_cint		=
+eta_cmin		=
+eta_cmax		=
+eta_fint		=
+eta_fmin		=
+eta_fmax		=
+!					Entire Atmosphere as a layer
+eatm			=
+eatm_cint		=
+eatm_cmin		=
+eatm_cmax		=
+eatm_fint		=
+eatm_fmin		=
+eatm_fmax		=
+!					Depth below sea level
+dpth			=
+dpth_cint		=
+dpth_cmin		=
+dpth_cmax		=
+dpth_fint		=
+dpth_fmin		=
+dpth_fmax		=
+!					Low Cloud Layer
+lcly			=
+lcly_cint		=
+lcly_cmin		=
+lcly_cmax		=
+lcly_fint		=
+lcly_fmin		=
+lcly_fmax		=
+!					Middle Cloud Layer
+mcly			=
+mcly_cint		=
+mcly_cmin		=
+mcly_cmax		=
+mcly_fint		=
+mcly_fmin		=
+mcly_fmax		=
+!					High Cloud Layer
+hcly			=
+hcly_cint		=
+hcly_cmin		=
+hcly_cmax		=
+hcly_fint		=
+hcly_fmin		=
+hcly_fmax		=
+!					LINE
+line_color		=
+line_type		=
+line_width		=
+line_label_frequency	=
+!					SCALE
+scale 			=
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= 
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		=
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			=
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+!					PTYPE
+ptype_axis		=
+ptype_left		=
+ptype_bottom		=
+ptype_right		=
+ptype_top		=
+!					XAXIS
+xaxis_lower		=
+xaxis_upper		=
+xaxis_increment		=
+xaxis_lbfq		=
+xaxis_gdfq		=
+xaxis_tkfq		=
+!					YAXIS
+yaxis_lower		=
+yaxis_upper		=
+yaxis_increment		=
+yaxis_lbfq		=
+yaxis_gdfq		=
+yaxis_tkfq		=
+!					TAXIS
+taxis_dir		=
+taxis_start		=
+taxis_stop		=
+taxis_inc		=
+taxis_lb		=
+taxis_gl		=
+taxis_tm		=
+!
+! *** Vector parameters ***
+!
+!					WIND
+wind_symbol		=
+wind_symbol_color	=
+wind_symbol_size	=
+wind_symbol_width	=
+wind_symbol_type	=
+wind_symbol_headsize	=
+!					REFVEC
+refvec_mag		=
+refvec_x		=
+refvec_y		=
+refvec_textsize		=
+refvec_font		=
+refvec_width		=
+refvec_hw_flag		=
+refvec_label		=
+! *** End of Parameters ***

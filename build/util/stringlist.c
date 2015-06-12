@@ -1,0 +1,297 @@
+/***********************************************************************
+ *
+ *	Copyright 1996, University Corporation for Atmospheric Research.
+ *
+ *	stringlist.c
+ *
+ *	String utilities
+ *
+ *	History:
+ *
+ *	11/96	COMET	Original copy
+ *	 7/97	COMET	Wrote "StringListsAppend" to append two string
+ *			lists.
+ *	11/97	COMET	Fix leak in "StringListsAppend". Set all entries
+ *			mallocd by StringListAllocate to NULL. Malloc N
+ *			instead of N+1 items.
+ *	12/97	COMET	Changed StringListFree to NOT return for count<0
+ *			(fixed leak). Added verbose statements. Changed
+ *			to use Free macro instead of free()
+ *
+ ***********************************************************************/ 
+ 
+  
+#include <assert.h>
+#include <string.h>
+
+#include "genglobs.h"
+#include "_proto.h"
+/*#include "stringlist.h"*/
+
+
+void StringListPrint( int, char ** );
+char ** SplitByDelimeter(char *, char *, int *);
+void PrintArgv( int, char ** );
+int  StringListsAppend( char **inlist1, char **inlist2, int list1cnt, 
+                        int list2cnt, char ***outlist );
+
+
+/*
+ *	Picky storage allocator.  Will "assert" on malloc failure.
+ */
+char **StringListAllocate( int cnt )
+{
+	char		**mallocMemory;
+	int		i;
+
+	if( cnt < 1 )
+		return( NULL );
+
+	mallocMemory = ( char ** ) malloc( ( cnt )  * sizeof( char ** ));
+
+	assert( mallocMemory != NULL );
+
+	for ( i = 0; i < cnt; i++ )
+		mallocMemory[i] = NULL;
+
+	return( mallocMemory );
+
+}
+	
+char **StringListDup( int cnt, char **src )
+{
+	char		**dest;
+	int		i;
+
+	if( cnt < 1 || ! src )
+		return( NULL );
+
+	dest = StringListAllocate( cnt );
+	for( i = 0; i < cnt; i++ )
+		if( src[i] )
+			dest[i] = strdup( src[i] );
+		else
+			dest[i] = NULL;
+		
+	return( dest );
+
+}
+
+
+static int
+AlphaSortUp( char **a, char **b)
+{
+/*
+ * Sort a string list from small values to large lexigraphically.
+ */
+        return (  strcmp ( *a, *b ) );
+}
+
+
+
+int  StringListsAppend( char **inlist1, char **inlist2, int list1cnt, 
+                        int list2cnt, char ***outlist )
+{
+/*
+ * Append two input lists into one output list. Sort and filter the
+ * output list before returning.
+ */
+
+	int	(*AlphaSortFunc)();
+	int	i, num, list_size;
+	char	**list;
+
+/*
+ *	Define sorting algorithm.
+ */
+	AlphaSortFunc = AlphaSortUp;
+
+/*
+ *	Determine number of elements in output list.
+ */
+	if ( list1cnt < 1 ) list1cnt = 0;
+	if ( list2cnt < 1 ) list2cnt = 0;
+	num = list1cnt + list2cnt;
+	if ( num < 1 ) return -1;
+
+/*
+ *	Allocate memory for output list.
+ */
+	list = StringListAllocate( num );
+
+/*
+ *	Copy the first list.
+ */
+	for ( i=0; i<list1cnt; i++ )
+	    if ( inlist1[i] )
+		list[i] = strdup ( inlist1[i] );
+	    else
+		list[i] = NULL;
+
+/*
+ *	Copy the second list.
+ */
+	for ( i=list1cnt; i<num; i++ ) 
+	    if ( inlist2[i-list1cnt] )
+		list[i] = strdup ( inlist2[i-list1cnt] );
+	    else
+		list[i] = NULL;
+	
+/*
+ *	Sort list.
+ */
+	qsort( list, num, sizeof(char *), AlphaSortFunc );
+
+/*
+ *	Filter duplicate entrees.
+ */
+	list_size = FilterDuplicatesList ( num, list, outlist );
+
+	StringListFree ( num, list);
+
+	return list_size;
+}
+
+	
+void StringListFree( int cnt, char **m )
+{
+        int i;
+	int verbose;
+
+	verbose = GetVerboseLevel();
+
+	if( verbose > VERBOSE_0 )
+	    printf ( "StringListFree" );
+
+	if( verbose > VERBOSE_1  ) {
+	    printf ( "  cnt = %d,",cnt );
+	    printf ( " *string = %x",m );
+	}
+
+	if( verbose > VERBOSE_0 )
+	    printf ( "\n" );
+
+	if( ! m )
+		return;
+
+/*
+ *	Free each non-null character string in the "m".
+ */
+        for( i = 0; i < cnt; i++ )
+		if( m[i] )
+                	Free( m[i] );
+
+/*
+ *	Free the "m".
+ */
+	Free ( m );
+}
+
+
+/*
+ *	Obsolete function. Renamed to StringListFree() to be more 
+ *	consistant in naming conventions.  
+ */
+void FreeList( int cnt, char **m )
+{
+
+	StringListFree( cnt, m );
+	return;
+
+}
+
+
+/*
+ *	Utility function to print out non-null members of the 
+ *	argv arrary.
+ */
+void
+PrintArgv( int argc, char **argv )
+{
+	int i;
+		
+	printf("Argc is %d\n", argc);
+	for(i = 0; i < argc; i++, argv++ ) {
+		if( *argv )
+			printf("%s\n", *argv );
+		else
+			printf("Null arg at %d\n", i);
+	}
+
+}
+
+
+void
+StringListPrint ( int size, char **list )
+{
+	int	i;
+	
+	for ( i=0; i<size; i++ )
+	    if ( list[i] != NULL )
+		printf( "%s\n", list[i] );
+	    else
+		printf( "NULL element at %d\n", i );
+
+	printf("\n");
+}
+
+char **
+SplitByDelimeter(char *input, char *delimeter, int *numTokens)
+/*
+ * Split an input string by a given delimiter and return an array
+ * of parsed strings.
+ */
+{
+	char		*buf, *token;
+	char 		**tList;
+	int		i, count=1;
+	int		verbose;
+
+	verbose = GetVerboseLevel();
+
+	if( verbose > VERBOSE_0 )
+	    printf ( "SplitByDelimeter\n" );
+
+/*
+ *	Test for NULL input.
+ */
+	if ( input == NULL ) return NULL;
+
+/*
+ *	Number of entries is one more than number of delimeters.
+ */
+	for ( i=0; i<strlen( input ); i++ )
+	    if ( input[i] == *delimeter ) count++;
+
+	tList = (char **) StringListAllocate ( count );
+
+/*
+ *	Save the input string in a separate buffer. Check for special
+ *	case when the first token is null. Replace NULL substrings with
+ *	a space.
+ */
+	buf = malloc (strlen(input) + 2);
+	if ( strncmp ( input, delimeter, 1 ) == 0 ) {
+	    strcpy ( buf, " " );
+	    strcat ( buf, input );
+	}
+	else
+	    strcpy ( buf, input );
+
+	token = strtok ( buf, delimeter );
+
+	for ( i=0; i<count; i++ ) {
+	    if ( token != NULL ) 
+	       tList[i] = strdup ( token );
+	    else
+	       tList[i] = strdup ( " " );
+	    token = strtok ( NULL, delimeter );
+	}
+        free(buf);
+
+/*
+ *	Return values.
+ */
+	*numTokens = count;
+	return ( tList );
+}

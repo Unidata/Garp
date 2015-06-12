@@ -1,0 +1,484 @@
+	SUBROUTINE DCSHCD ( curtim, gemfil, prmfil, stntbl, iadstn,
+     +			    maxtim, nhours, iret )
+C**********************************************************************
+C* DCSHCD							      *
+C*								      *
+C* This routine will decode SHEF A,B,& E bulletins and write	      *
+C* the data to a GEMPAK surface file.				      *
+C*								      *
+C* DCFFCD ( CURTIM, GEMFIL, PRMFIL, STNTBL, IADSTN, MAXTIM,	      *
+C*	    NHOURS, IRET )					      *
+C*								      *
+C* Input parameters:						      *
+C*	CURTIM		CHAR*		Current time for input data   *
+C*	GEMFIL		CHAR*		Output file name template     *
+C*	PRMFIL		CHAR*		Parameter packing table	      *
+C*	STNTBL		CHAR*		Station table		      *
+C*	IADSTN		INTEGER		Number of additional stations *
+C*	MAXTIM		INTEGER		Number of times allowed	      *
+C*	NHOURS		INTEGER		Number of hours prior to      *
+C*					  CURTIM to decode	      *
+C*							       	      *
+C* Output parameters:						      *
+C*	IRET		INTEGER		Return code		      *
+C*				        -2  Invalid bulletin          *
+C*                                      -3  Bad Parameter packing file*
+C*								      *
+C**								      *
+C* Log:								      *
+C* P.Bruehl/NWS		3/98					      *
+C* P.Bruehl/NWS		9/98	Add data to existing reps in data file*
+C**********************************************************************
+	INCLUDE		'GEMPRM.PRM'
+	INCLUDE		'BRIDGE.PRM'
+C*
+	CHARACTER*(*)	curtim, gemfil, stntbl, prmfil
+C*
+	CHARACTER	parms(MMPARM)*4
+	CHARACTER	string*8
+C*
+	CHARACTER	bultin*(DCMXBF*2), report*(DCMXBF*2),
+     +                  dattim*15, bbb*8,
+     +			seqnum*4,  oristn*8, btime*12, sysdt*12,
+     +			dattmp*12, filnam*132, errstr*80,
+     +			pilhdr*12, wmorpt*8
+C
+C*      Maximum number of reports per bulletin
+        PARAMETER       ( NUMSTID = 600 )
+C*      Maximum number of parameters in bulletin
+        PARAMETER       ( MAXPARM = 100 )
+        CHARACTER       dparms(MAXPARM)*4
+        INTEGER         iparms(MAXPARM)
+        REAL            repdata(MAXPARM,NUMSTID), rscale(MAXPARM)
+        CHARACTER*8     repstid(NUMSTID)
+        CHARACTER*12    reptims(NUMSTID)
+        CHARACTER*7     repparms(MAXPARM,NUMSTID,2)
+        INTEGER         nparms(NUMSTID)
+
+	REAL		rdata (MMPARM), sdata(MMPARM)
+	INTEGER		istarr (5), irtarr (5)
+
+	LOGICAL		more, good, open, addstn, cirflg, datflg, 
+     +			corflg
+        INCLUDE         'ERMISS.FNC'
+C*
+C----------------------------------------------------------------------
+C	CALL IN_BDTA ( iret )
+C
+C*	Initialize open file lists. Set the max number of open files.
+C*	Set the type of output file to 1 for surface.
+C
+	maxfil = 3
+	iftype = 1
+	CALL DC_FINT ( maxfil, iftype, prmfil, iperr )
+	addstn = .true.
+	cirflg = .false.
+C
+C*	Loop over bulletins until a timeout occurs.
+C
+	DO WHILE  ( iperr .eq. 0 )
+C
+C*	    Get the bulletin.
+C
+	    CALL DC_GBUL ( bultin, lenbul, ifdtyp, iperr )
+            CALL SH_COMM ( bultin(1:lenbul), lenbul, iret )
+	    IF  ( iperr .eq. 0 )  THEN
+C
+C*          Parse the header info from the bulletin.
+C
+                good = .true.
+                more = .true.
+                open = .true.
+                IF  ( ifdtyp .eq. 0 )  THEN
+                    CALL DC_GHDR  ( bultin, lenbul, seqnum, wmorpt,
+     +                              oristn, btime, bbb, nchar, ierr )
+                  ELSE
+                    CALL DC_GPIL  ( bultin, lenbul, pilhdr, wmorpt,
+     +                              oristn, btime, nchar, ierr )
+                errstr = pilhdr // wmorpt // oristn // btime
+                CALL DC_WLOG (5, 'DC', 0, errstr, ier)
+                END IF
+                ibpnt = 1
+		IF  ( ierr .ne. 0 )  THEN
+                    errstr = 'Can not read header '
+		    CALL DC_WLOG ( 1, 'DC', ierr, ' ', ier )
+		    CALL ST_UNPR ( bultin(:72), 72, errstr, len1, ier )
+		    CALL DC_WLOG ( 1, ' ', 0, errstr, ier )
+		    good = .false.
+		END IF
+
+ 	        IF  ( good )  THEN
+C
+C*		Get the system time, and make a standard GEMPAK time
+C*		from the "current" time.
+C
+		  itype = 1
+		  CALL CSS_GTIM  ( itype, sysdt, ier )
+
+	    	  IF  ( curtim .eq. 'SYSTEM' )  THEN
+		    dattmp = sysdt
+		  ELSE
+		    CALL TI_STAN ( curtim, sysdt, dattmp, ier )
+		  END IF
+ 		  CALL TI_CTOI ( dattmp, istarr, ier )
+		  irpntr = 1
+C
+C*		  Get the time to assign to this bulletin.
+C
+ 		  CALL SH_RTIM  ( istarr, btime, irtarr, dattim,ier1 )
+		  IF  ( ier1 .ne. 0 )  THEN
+                    errstr = 'Can not get time from header '
+		    CALL DC_WLOG ( 1, 'SH', ier1, errstr, ier )
+                    good = .false.
+		  END IF
+C
+C*		  Compute difference between bulletin and system times.
+C
+  		  CALL TI_MDIF  ( irtarr, istarr, imdif, ier2 )
+C
+C*		  Check that the time is within NHOURS before
+C*		  the system time.
+C
+		  IF  ( ( ier1 .ne. 0 ) .or. ( ier2 .ne. 0 ) .or.
+     +		      ( imdif .gt. 60 ) .or. 
+     +                ( imdif .lt. -60*nhours) ) THEN
+		    good = .false.
+C
+C*		  Write an error message if the time is invalid.
+C
+		    errstr = 'Invalid date/time: ' //
+     +				     wmorpt // oristn // btime
+		    CALL DC_WLOG ( 2, ' ', 0, errstr, ier )
+                    write (errstr, '(A,A,A,I6)') 'Times do not match: ', 
+     +                 dattim, dattmp, imdif
+	  	    CALL DC_WLOG ( 1, ' ', 0, errstr, ier )
+		  END IF
+                END IF
+
+                IF ( good ) THEN
+C
+C*                Loop over reports in the bulletin.
+C
+                  more = .true.
+                  DO WHILE  ( more )
+C
+C*                  Get next report.
+C
+C*                  Both FOS & AFOS SHEF reports have the same
+C*                  control character sequence
+C
+                    CALL SH_GRPT (bultin, lenbul, ibpnt,  
+     +                          ireptyp, report,lenr, iret)
+
+
+                    IF  ( iret .eq. 0 )  THEN
+C
+C*	              Initialize variables
+C
+                      nstid = 0
+                      DO j = 1,NUMSTID
+                       repstid (j) = " "
+                       reptims (j) = " "
+                       nparms (j) = 0
+                       DO k = 1,MAXPARM
+                          repdata (k,j) = RMISSD
+                          repparms (k,j,1) = "       "
+                          repparms (k,j,2) = " "
+                       END DO
+                      END DO
+                      DO k = 1, MAXPARM
+                       dparms (k) = " "
+                       iparms (k) = 0
+                       rscale (k) = 1.0
+                      END DO
+                      DO l = 1, MMPARM
+                       rdata (l) = RMISSD
+                       sdata (l) = RMISSD
+                      END DO
+
+C
+C* 		      Write first 80 characters to the log file.
+C*                    Helps with debugging...
+C
+                      IF ( lenr .lt. 80 ) THEN
+                         errstr = report(1:lenr)
+C                         write (errstr,*) report(1:lenr)
+                      ELSE
+                         errstr = report(1:80)
+C                         write (errstr,*) report(1:80)
+                      endif
+                      CALL DC_WLOG ( 3, ' ', 0, errstr, iret )
+
+C
+C*                    Call the decoding subroutine for the 
+C*                    appropriate report type
+C
+                      IF ( ireptyp .eq. 1 ) THEN
+                         CALL SH_DECA (report, lenr, irtarr(1), MAXPARM,
+     +                      NUMSTID, corflg, repstid, reptims, 
+     +                      repparms, repdata, nstid, nparms, iret )
+                      ELSE IF ( ireptyp .eq. 2 ) THEN
+                         CALL SH_DECB (report, lenr, irtarr(1), MAXPARM, 
+     +                      NUMSTID, corflg, repstid, reptims,
+     +                      repparms, repdata, nstid, nparms, iret )
+                      ELSE IF ( ireptyp .eq. 3 ) THEN
+                         CALL SH_DECE (report, lenr, irtarr(1), MAXPARM, 
+     +                      NUMSTID, corflg, repstid, reptims,
+     +                      repparms, repdata, nstid, nparms, iret )
+                      ELSE 
+                         iret = -1
+                         errstr = "Unknown report type "
+	  	         CALL DC_WLOG ( 1, "DC", ireptyp, errstr, iret )
+                      ENDIF
+
+                      IF ( iret .eq. 0 ) THEN
+C
+C*                    Loop over stations/times in report
+C
+                       DO istid = 1,nstid
+                       open = .true.
+
+                        DO i = 1,nparms(istid)
+C
+C*			Truncate/pad data parm names to 4 characters
+C
+                         CALL ST_LSTR (repparms(i,istid,1), lens, iret)
+                         IF ( lens .eq. 2 ) THEN
+                           dparms(i) = repparms(i,istid,1)(1:2) // 'IR'
+                         ELSE IF ( lens .eq. 3 ) THEN
+                           dparms(i) = repparms(i,istid,1)(1:3) // 'R'
+                         ELSE IF ( lens .gt. 4 ) THEN
+                           dparms(i) = repparms(i,istid,1)(1:4)
+                         ENDIF
+C
+C*                      Check Units.  
+C*                      IF S.I., store scale factor in rscale
+C*                      to convert to English 
+C
+                         rscale(i) = 1.0
+                         IF ( repparms(i,istid,2) .eq. 'S' ) THEN
+                          CALL SH_UNIT ( repparms(i,istid,1),
+     +                                         rscale(i),iret )
+                         END IF
+                        END DO
+
+C
+C*                        Assign stid & round report time up
+C*                        .A & .B to nearest hour, if minutes are .ge. 45
+C*                        .E to nearest 15 minutes
+C
+
+                          CALL SH_RNDT ( ireptyp, reptims(istid),
+     +                           dattim, ihhmm, iret)
+
+                          IF ( iret .ne. 0 ) THEN
+                            errstr = "Invalid time" // reptims(istid)
+                            CALL DC_WLOG ( 5, "SH", 0, errstr, iret )
+                            open = .false.
+                          END IF
+C
+C*	 	          Open the output file.
+C
+		          IF  ( open )  THEN
+C
+C*			   Make a file name from the template and the time.
+C*		  	   Open the file as part of the open file list.
+C
+			   itep = MFUNKN
+			   CALL FL_MNAM  ( dattim, gemfil, filnam, ier )
+			   CALL DC_FCYL  ( filnam, itep, stntbl, iadstn,
+     +					maxtim, lunf, nfparms, parms,
+     +					ierr )
+C
+C*			   Check that the file was opened properly.
+C
+			   IF  ( ierr .ne. 0 )  THEN
+			    CALL DC_WLOG  ( 0, 'SF-OPEN', ierr, filnam, iret )
+                            open = .false.
+		           ELSE
+C
+C*			    Check for a compatible parameter list in file.
+C
+C*                          Pad parameter names from file to 4 characters
+C
+                            DO I = 1, nfparms
+                              string = parms(i)
+                              CALL ST_LSTR  ( string, lens, iret )
+                              IF ( lens .eq. 2 ) THEN
+                                parms(i) = string(1:2) // 'IR'
+                              ELSE IF ( lens .eq. 3 ) THEN
+                                parms(i) = string(1:3) // 'R'
+                              ENDIF
+                            END DO
+                            isum = 0
+		            DO  k = 1, nparms(istid)
+				CALL ST_FIND  ( dparms(k), parms, nfparms,
+     +						iparms(k), ier )
+				IF  ( iparms (k) .eq. 0 )  THEN
+				 iparms (k) = nfparms + 1
+                                 errstr ='Prm not in file ' // dparms(k)
+				 CALL DC_WLOG  ( 5, 'DCSHEF',
+     +						    -3, errstr, ier )
+				END IF
+                                isum = isum + iparms(k)
+			    END DO
+
+                            IF ( isum .eq. 0 ) THEN
+C
+C*                          No valid parameters in this list
+C
+                             errstr = "No valid parms in this report"
+                             CALL DC_WLOG (5, 'DC', 0, errstr, iret)
+                             open = .false.
+                            END IF
+
+			   END IF
+
+                          IF ( open ) THEN
+                            DO l = 1, MMPARM
+                              rdata (l) = RMISSD
+                            END DO
+C
+C*			    Set time & station in datafile
+C
+			    CALL RA_TMST  ( lunf, dattim, repstid(istid), 
+     +			       addstn, cirflg, datflg, iret )
+C
+C*			    Check for an error
+C
+			   IF  ( iret .ne. 0 )  THEN
+			        open = .false.
+			        IF ( iret .eq. -4 ) errstr = 
+     +                            dattim
+			        IF ( iret .eq. -5 ) errstr = 
+     +                            repstid(istid)
+			        CALL DC_WLOG  ( 1, 'RA', iret,
+     +						errstr, ier )
+C
+C*			        If the data has already been decoded 
+C*			        do not decode again, unless correction
+C*                              flag is set.
+C
+			   ELSE IF  ( datflg ) THEN
+C
+C*                           Read existing data for time & station
+C*                           and copy into output array.
+C
+                             CALL SF_RDAT (lunf, sdata, ihhmm, iret)
+                             IF ( iret .eq. 0 ) THEN
+                               DO i = 1, MMPARM
+                                  rdata (i) = sdata (i)
+                               END DO
+                             ENDIF 
+
+			   END IF
+                          END IF
+                         END IF
+        
+
+                         IF ( open ) THEN
+C
+C*                       Move data into output array.
+C
+                           IF ( corflg) THEN
+C
+C*                       If correction, replace existing data with
+C*                          corrected data.
+C
+                            DO i = 1,nparms(istid)
+
+                             IF (.not. ERMISS(repdata(i,istid))) THEN
+
+                              IF ( rscale(i) .eq. 9999. ) THEN
+                                  rdata( iparms(i) ) =
+     +                              repdata(i,istid) * 1.8 + 32.
+                              ELSE IF ( iparms(i) .le. nfparms) THEN
+                                  rdata( iparms(i) ) =
+     +                              repdata(i,istid) * rscale(i)
+                              END IF
+
+                             END IF 
+
+                            END DO
+
+                           ELSE IF ( .not. corflg ) THEN
+C
+C*                       If additional data, replace missing data
+C*                          in existing report with new data. 
+C
+
+                            DO i = 1,nparms(istid)
+
+
+                             IF ( (.not. ERMISS(repdata(i,istid))) .and.
+     +                           (ERMISS (rdata(iparms(i)))) ) THEN
+                            
+                              IF ( rscale(i) .eq. 9999. ) THEN
+                                  rdata( iparms(i) ) =
+     +                              repdata(i,istid) * 1.8 + 32.
+                              ELSE IF ( iparms(i) .le. nfparms) THEN
+                                  rdata( iparms(i) ) =
+     +                              repdata(i,istid) * rscale(i)
+                              END IF
+
+                             END IF
+
+                            END DO
+
+                           END IF
+
+
+C
+C*                          Write the data to the output file.
+C
+                              CALL SF_WDAT (lunf, ihhmm, rdata, iret)
+                              IF ( iret .ne. 0 ) THEN
+                               errstr = 'Can not write data to file '
+         		       CALL DC_WLOG ( 2, 'DC', iret, errstr, iret )
+                               open = .false.
+                              END IF
+    
+                         END IF 
+
+C
+C*                       End loop over station/times per report
+C
+                         END DO
+
+                      END IF 
+                    ELSE
+C
+C*                  Can't get report
+C
+C                      errstr = 'No more reports '
+C		      CALL DC_WLOG ( 10, 'DC', iperr, errstr, iret )
+                      more = .false.
+
+                    END IF
+
+C
+C*                End loop over reports in bulletin
+C
+                  END DO
+
+	        END IF
+
+	    ELSE
+C
+C*		  Write an error to the decoder log file.
+C
+                  errstr = 'Can not read bulletin '
+		  CALL DC_WLOG ( 0, 'DC', iperr, errstr, iret )
+
+             END IF
+C
+C*       End loop over incoming bulletins        
+C
+         END DO
+C
+C*       Close the files
+C
+	 CALL DC_FCLS ( ier )
+C*
+	 RETURN
+	 END

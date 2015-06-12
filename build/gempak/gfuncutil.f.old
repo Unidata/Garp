@@ -1,0 +1,54 @@
+C***********************************************************************
+C*
+C*	Copyright 1996, University Corporation for Atmospheric Research.
+C*
+C*	gridtime.f
+C*
+C*	GEMPAK grid function (gfunc) utility
+C*
+C*	History:
+C*
+C*	 2/98	COMET	Original copy
+C*	 3/98	COMET	look through table better
+C*
+C************************************************************************
+
+C
+C*	This routine parses a gfunc string and if it contains embedded
+C*	modifiers (% for vcoord, @ for level, ), returns
+C*	the modifier values
+C*
+	SUBROUTINE  parse_gfunc ( gfunc, level, vcoord )
+C
+	INCLUDE         'DGCMN.CMN'
+C
+	CHARACTER*(*)	gfunc, level, vcoord
+	INTEGER		iret
+C
+C*------------------------------------------------------------------------
+C
+	CALL DG_PFUN ( gfunc, ier )
+C
+C*	Yank the parsed values out of the common block
+C
+	do i = ltabl, 1, -1
+	    if (ctabl (i)(1:1) .ne. '*' .and. clevel (i) .ne. ' ') then
+		level = clevel ( i )
+		call st_lstr ( level, len, ier )
+		level (len+1:) = CHAR (0)
+	    end if
+	end do
+C	
+	do i = ltabl, 1, -1
+	    if (ctabl (i)(1:1) .ne. '*' .and. cvcord (i) .ne. ' ') then
+		vcoord = cvcord ( i )
+		call st_lstr ( vcoord, len, ier )
+		vcoord (len+1:) = CHAR (0)
+	    end if
+	end do
+
+	return
+
+	end
+
+

@@ -1,0 +1,13 @@
+! This table contains local site information.
+!
+! The format for the file is given below, with the number of
+! characters in parentheses.
+!
+!STID    STNM   NAME                             ST CO   LAT    LON  ELEV  PRI
+!(8)     (6)    (32)                            (2)(2)   (5)    (6)   (5)  (4)
+!
+COM       99999 COMET                            CO US  4005 -10533  1625
+JIM       99999 Jim Cowie                        CO US  4018 -10515  1524
+WILL      99999 Will Piper                       CO US  4013 -10485  1500
+DOUG      99999 Doug Wesley                      CO US  4029 -10517  1500
+WENDY     99999 Wendy Abshire                    CO US  3983 -10510  1500

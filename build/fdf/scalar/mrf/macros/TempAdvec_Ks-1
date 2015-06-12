@@ -1,0 +1,26 @@
+! GARP Macro Template
+!
+! Field: Divergence of observed wind (s^-1)
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Temperature advection by observed wind (K/s)
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= hidden
+fdf			= TempAdvec_Ks-1
+hilo			= n
+pres_cint		= 5
+pres_cmin 		= 1
+pres_cmax 		=
+line_type		= -2
+line_width		=
+scale 			= 5
+operation		= run
+pres_cmin 		= -100
+pres_cmax 		= -1
+operation		= run
+
+! *** End of Parameters ***

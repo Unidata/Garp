@@ -1,0 +1,25 @@
+! GARP Macro Template
+!
+! Field: Divergence of observed wind (s^-1)
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Helicity between surface & 3000m above ground level
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= hidden
+fdf			= Helicity_m2s-2
+hilo			= n
+pres_cint		= 100
+pres_cmin 		= 100
+pres_cmax 		= 
+line_type		= -2
+line_width		=
+operation		= run
+pres_cmin 		= 
+pres_cmax 		= -100
+operation		= run
+
+! *** End of Parameters ***

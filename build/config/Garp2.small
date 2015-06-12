@@ -1,0 +1,212 @@
+!
+!  Garp2.small
+!
+!  This version of Garp2 is intended to be used for low resolution displays.
+!  Additional Garp Application resources file.
+!-----------------------------------------------------------
+!
+!  Position of the main Garp window.  
+Garp*geometry: +108+14
+
+!  Default font
+Garp*fontList: -adobe-helvetica-medium-r-normal--8-80-75-75-p-44-hp-roman8
+
+!  Loop count font
+Garp*loop_count.fontList: -adobe-courier-medium-r-normal--14-100-100-100-m-90-iso8859-1
+
+!  Status bar font
+Garp*statusbar_label.fontList: -adobe-courier-bold-r-normal--14-100-100-100-m-90-iso8859-1
+
+!!!!!!!!!!!
+!  Resources for dropdown labels. 
+!!!!!!
+Garp*dropdownlabel*background: LemonChiffon
+Garp*dropdownlabel.fontList: -adobe-helvetica-medium-r-normal--12-120-75-75-p-67-iso8859-1
+Garp*satellite_icon.labelString: Radar and Satellite Data
+Garp*sfc_icon.labelString: Surface Observational Data
+Garp*profiler_icon.labelString: Profiler Data
+Garp*upperair_icon.labelString: Upper-Air Data
+Garp*gridh_icon.labelString: Model Plan Projection
+Garp*gridc_icon.labelString: Model Cross-Section
+Garp*gridt_icon.labelString: Model Time Height
+Garp*gridz_icon.labelString: Model Vertical Profile
+Garp*main_clear_icon.labelString: Clear Screen
+Garp*main_reset_icon.labelString: Clear Screen and Reset
+!!!!!!!!!!!
+!  End Resources for dropdown labels. 
+!!!!!!
+!
+!  Translations for dealing with user input in the drawing area and
+!  status bar widgets
+!
+!  It is important to use the #replace directive with the canvas
+!  (drawing area) widget translations. Otherwise, existing translations
+!  in the drawing area widget interfere with these specifications.
+!
+Garp*main_canvas.translations:	#replace\n\
+	Ctrl<Btn1Up>:		HandleCtrlBtn1Click() \n\
+	<Btn1Down>:		HandleBtn1Clicks(down) \n\
+	<Btn1Motion>:		HandleBtn1DownMotion() \n\
+	<Btn1Up>:		HandleBtn1Clicks(up) \n\
+	<Btn3Up>:		HandleBtn3Clicks(canvas) \n\
+	<Motion>:		HandlePointerMotion() \n\
+	<Key>L:			AnimPlayToggle() \n\
+	<Key>plus:		AnimFwd() \n\
+	<Key>minus:		AnimBack() \n\
+	<Key>KP_Right:		AnimFwd() \n\
+	<Key>KP_Left:		AnimBack() \n\
+	<Key>KP_Add:		AnimFwd() \n\
+	<Key>KP_Subtract:	AnimBack() \n\
+	<Key>R:			AnimRockToggle()
+
+Garp*statusbar_label.translations:	#replace\n\
+	<Btn3Up>:		HandleBtn3Clicks(statusbar)
+
+
+!
+! GIF saving dialog resources
+!
+*gifdialog*title:  Save Frame(s) to GIF File
+*gifdialog*baseHeight: 136
+*gifdialog*baseWidth: 401
+*gifdialog*description*labelString:  Filename for the GIF file(s). When saving multiple frames,\nthe frame number and .gif will be appended to the filename
+
+!
+! Grid lister dialog resources
+!
+*GDInfoDialog*WorkAreaRC*.ScrolledText*rows: 20
+*GDInfoDialog*WorkAreaRC*.ScrolledText*columns: 80
+
+!
+! Give the iconified Garp a nice name (otherwise the full path appears)
+!
+Garp*iconName:	G A R P
+
+!
+! Since the physical dimensions a widget uses in screen real estate depends
+! on your screen resolution, you may need to edit the dimensions of the
+! following widgets to use GARP. Note also that widgets are connected to
+! each other within a dialog and these attchments may alter the intended
+! allignment of adjacent widgets when widget sizes are changed.
+!
+! Main window drawing area
+Garp*main_canvas.width: 620
+Garp*main_canvas.height: 422
+
+! Main window status bar label width
+Garp*statusbar_label.width: 204
+
+! Logging window
+Garp*log_textSW.width: 476
+Garp*log_textSW.height: 136
+
+! Image dialog source window
+Garp*image_source_sw.width: 408
+Garp*image_source_sw.height: 68
+Garp*frame3.width: 408
+Garp*frame3.height: 102
+
+
+! Image dialog scale window
+Garp*image_scale_sw.width: 408
+Garp*image_scale_sw.height: 68
+
+! Image dialog data type window
+Garp*image_type_sw.width: 408
+Garp*image_type_sw.height: 68
+
+! Image dialog dattim scrolled list
+Garp*image_listSW.width: 136
+Garp*image_listSW.height: 204
+Garp*image_listSW.image_list.visibleItemCount: 10
+
+! Surface observation dattim list
+Garp*sfc_time_listSW.width: 136
+Garp*sfc_time_listSW.height: 204
+
+! Wind profiler station list
+Garp*wpf_station_listSW.width: 204
+Garp*wpf_station_listSW.height: 204
+
+! Upper air vertical projection scrolled list
+Garp*upf_listSW.width: 136
+Garp*upf_listSW.height: 204
+
+! Upper air vertical projection station list
+Garp*upf_station_listSW.upf_station_list.width: 272
+Garp*upf_station_listSW.upf_station_list.height: 136
+
+! Upper air plan view dattim list
+Garp*upa_time_listSW.width: 136
+Garp*upa_time_listSW.height: 204
+
+! Model plan view FDF description text window
+Garp*grd_descriptionSW.grd_description.width: 340
+Garp*grd_descriptionSW.grd_description.height: 68
+
+! Model plan view dattim scrolled list
+Garp*grd_time_listSW.width: 136
+Garp*grd_time_listSW.height: 204
+
+! Model plan view scalar FDF scrolled list
+Garp*grd_scalar_listSW.width: 136
+Garp*grd_scalar_listSW.height: 204
+
+! Model plan view vector FDF scrolled list
+Garp*grd_vector_listSW.width: 136
+Garp*grd_vector_listSW.height: 204
+
+! Model cross section FDF description text window
+Garp*vcs_descriptionSW.vcs_description.width: 340
+Garp*vcs_descriptionSW.vcs_description.height: 68
+
+! Model cross section dattim list
+Garp*vcs_time_listSW.width: 136
+Garp*vcs_time_listSW.height: 204
+
+! Model cross section scalar FDF list
+Garp*vcs_scalar_listSW.width: 136
+Garp*vcs_scalar_listSW.height: 204
+
+! Model cross section vector FDF list
+Garp*vcs_vector_listSW.width: 136
+Garp*vcs_vector_listSW.height: 204
+
+! Model time/height projection FDF description text window
+Garp*tht_descriptionSW.tht_description.width: 340
+Garp*tht_descriptionSW.tht_description.height: 68
+
+! Model time/height projection dattim list
+Garp*tht_time_listSW.width: 136
+Garp*tht_time_listSW.height: 204
+
+! Model time/height projection scalar FDF list
+Garp*tht_scalar_listSW.width: 136
+Garp*tht_scalar_listSW.height: 204
+
+! Model time/height projection vector FDF list
+Garp*tht_vector_listSW.width: 136
+Garp*tht_vector_listSW.height: 204
+
+! Model vertical projection FDF description text window
+Garp*vpt_descriptionSW.vpt_description.width: 340
+Garp*vpt_descriptionSW.vpt_description.height: 68
+
+! Model vertical projection dattim list
+Garp*vpt_time_listSW.width: 136
+Garp*vpt_time_listSW.height: 204
+
+! Model vertical projection scalar FDF list
+Garp*vpt_scalar_listSW.width: 136
+Garp*vpt_scalar_listSW.height: 204
+
+! Model vertical projection vector FDF list
+Garp*vpt_vector_listSW.width: 136
+Garp*vpt_vector_listSW.height: 204
+
+! Satellite color enhancement list
+Garp*sat_enhance_listSW.width: 180
+Garp*sat_enhance_listSW.height: 225
+
+! Map and Lat/lon grid scrolled list height
+Garp*scrolledWin1.height: 200

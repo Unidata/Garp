@@ -1,0 +1,153 @@
+! GARP Field Description File (FDF) Template
+!
+! Field:  Rain Max Temp 
+!
+! S.Reynolds/NWSFO OKX
+! *** Required Parameters ***
+type			= scalar
+layer			= y
+function		= s=sub(add(quo(sub(ldf(hght),1194),2.8),17),4.8)//fs
+function2               = s=sub(fs,(mul(0.85,sub(fs,tmpf@2%hagl))))
+function3		= 
+function4               = 
+function5		= 
+function6		=
+function7		= 
+function8		= 
+function9		=
+function10		=
+description		= Rain Max Temp from 1000-850 mb Thickness
+                        =
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Rain Max Temp for Jan
+vcoord			= pres
+level1			= 850
+level2			= 1000
+contour			= y
+fill			= n
+hilo			= n
+!					Pressure coordinates
+pres			=
+pres_cint		= 1
+pres_cmin 		=
+pres_cmax 		=
+pres_fint 		=
+pres_fmin 		=
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					User defined coordinates
+anyvcoord		=
+anyvcoord_cint		= 
+anyvcoord_cmin		= 
+anyvcoord_cmax		= 
+anyvcoord_fint		= 
+anyvcoord_fmin		= 
+anyvcoord_fmax		= 
+!					LINE
+line_color		=
+line_type		= -2
+line_width		=
+line_label_frequency	= 1
+!					SCALE
+scale 			= 0
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= 
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		=
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			=
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+!					PTYPE
+ptype_axis		=
+ptype_left		=
+ptype_bottom		=
+ptype_right		=
+ptype_top		=
+!					XAXIS
+xaxis_lower		=
+xaxis_upper		=
+xaxis_increment		=
+xaxis_lbfq		=
+xaxis_gdfq		=
+xaxis_tkfq		=
+!					YAXIS
+yaxis_lower		=
+yaxis_upper		=
+yaxis_increment		=
+yaxis_lbfq		=
+yaxis_gdfq		=
+yaxis_tkfq		=
+!
+! *** Vector parameters ***
+!
+!					WIND
+wind_symbol		=
+wind_symbol_color	=
+wind_symbol_size	=
+wind_symbol_width	=
+wind_symbol_type	=
+wind_symbol_headsize	=
+!					REFVEC
+refvec_mag		=
+refvec_x		=
+refvec_y		=
+refvec_textsize		=
+refvec_font		=
+refvec_width		=
+refvec_hw_flag		=
+refvec_label		=
+! *** End of Parameters ***

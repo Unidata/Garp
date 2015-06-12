@@ -1,0 +1,5 @@
+# needed by g77
+INCPARM = -I$(GARPHOME)/gempak/$(NA_OS)
+#
+XPMDEFINES   = -DZPIPE
+

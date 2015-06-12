@@ -1,0 +1,21 @@
+! GARP Macro Template
+!
+! Field: Wind Direction ( degrees )
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Wind Direction
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= general
+fdf			= Drct
+hilo			= n
+value			= y
+operation		= run
+directory		= vectorfdf
+fdf			= Wind_kts
+operation		= run
+
+! *** End of Parameters ***

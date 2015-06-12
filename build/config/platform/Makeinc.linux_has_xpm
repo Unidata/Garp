@@ -1,0 +1,39 @@
+###################################################################
+###################################################################
+#
+#       Makefile for Nawips 5.2.1
+#               Top level
+#               COMET 7/95 D.Himes
+#               Original: Unidata 7/94 P.Bruehl
+#
+####################################################################
+####################################################################
+####################################################################
+#
+# NOTE:  This file is included by the
+#             $(NAWIPS)/config/Makeinc.common
+#
+#################################################################
+#
+# This file is included by the $(NAWIPS)/config/Makeinc.common
+# file (which is directly included by all the Nprogram makefiles
+# and indirectly by the Gempak makefiles.
+#
+# It defines the paths and filenames needed to compile and install
+# Nawips.
+#
+# Please configure the settings below to match the configuration
+# of your system.
+#
+#################################################################
+#
+##-------------------------------------------------------------
+#
+#
+XPMINCLUDE  = -I/usr/X11R6/include/X11
+XPMLIB      = -L/usr/X11R6/lib -lXpm
+XPMLIBARCH  =
+XPMSOURCE   = 
+
+# needed by g77
+INCPARM = -I$(GARPHOME)/gempak/$(NA_OS)

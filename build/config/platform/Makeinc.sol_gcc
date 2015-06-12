@@ -1,0 +1,6 @@
+# Solaris specific includes
+X11INC = $(XWINCDIR)
+
+# needed by g77
+INCPARM = -I$(GARPHOME)/gempak/$(NA_OS)
+

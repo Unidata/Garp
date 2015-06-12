@@ -1,0 +1,72 @@
+Maximum Temperature FDF's
+
+Scott Reynolds / NWSFO OKX (Long Island/Brookhaven NY)
+
+I have added 7 FDF's to the /contrib directory that can be used for forecasting
+maximum temperatures.  The formulas are based on a series of equations found in
+the Stability Applications Program from AFOS (ERCP No. 11, 1983).
+
+The FDF's are for Full Sun (_FS), AC/AS Ovc (_AC), Low Clouds (_Low) and Rain
+(_Rain).  The (_FS) files can be used by the Early Eta, NGM, AVN or RUC models.
+The files denoted by (_NGM) are for the NGM only...the others work with the Eta,
+AVN or RUC.  I have not tried to devise any FDFs for the Meso-Eta or MRF yet.
+
+The base equation for the forecasts are...
+
+        sub(add(quo(sub(LDF(HGHT),1194),2.8),17),x)          ...for Full Sun
+
+        s=sub(add(quo(sub(LDF(HGHT),1194),2.8),17),x)//fs
+        s=sub(fs,(mul(y,sub(fs,tmpf@2%hagl))))               ...for the others.
+
+
+        Full Sun MaxT = ((((1000-850 mb Thickness)-1194)/2.8)+17)-x)
+                where x is the term representing time of year
+                x = cos(Julian Day/57.2958) ...ranges from 0 to 5
+
+For the AC/AS Ovc, Low Clouds and Rain, another term must be included.
+
+        MaxT = Full Sun MaxT - (y * (Full Sun MaxT - Sfc Temp))
+                where y = 0.4 for AC/AS Ovc, 0.65 for Low Clouds,
+                        and 0.85 for Rain (a reduction factor...not sure how
+                        they were developed).
+
+A couple of important notes...
+
+        1)  Since surface temperature is not readily available from the OSO
+                Model files, I have used the 2 meter temperatures available
+                from the Early Eta, AVN and RUC Models for the AC/AS Ovc,
+                Low Clouds and Rain MaxT's.  This substitution seems to work
+                reasonably well, at least here at OKX.
+
+                I have used the 9823 SGMA TMPF for the NGM.
+
+        2)  The Julian Day cosine terms used (x from above) are as follows...
+
+                Dec             4.9             Apr-Sep         ZERO
+                Jan             4.8             Oct 1-16        1.0
+                Feb 1-14        3.9             Oct 17-31       2.3
+                Feb 15-28       3.0             Nov 1-16        3.3
+                Mar 1-16        1.9             Nov 16-30       4.2
+                Mar 17-31       0.6
+
+                Dec and Jan show little change throughout the month, thus only
+                one set of FDF's per month.  Apr-Sep the term is zero (or
+                actually negative, and ignored).  The remaining months were
+                only split into halves...the differences from week to week
+                weren't significant enough to warrant further splitting of
+                the months.
+
+I didn't want to add all of the FDF's, so that's why only 7 were included with
+the extra terms defined above.  The equations (especially the Full Sun) work
+fairly well off 12Z valid time data, until you get into an advection scheme.
+Some of us use 18Z valid time data in those cases, although nothing has been
+documented showing any positive or negative results.  It might at least show
+some advection trends.
+
+Any questions...feel free to drop me a line.
+
+Scott Reynolds
+NAWIPS Program Leader/Lead Forecaster
+NWS Forecast Office, Brookhaven NY (OKX)
+
+e-mail:  scott.reynolds@noaa.gov

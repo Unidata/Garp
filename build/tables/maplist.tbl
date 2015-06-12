@@ -1,0 +1,93 @@
+! maplist.tbl
+!
+! This file contains a list of map names, file locations, and options. It is
+! used for default map info in GARP, and is also used to make the list of
+! maps presented to the user when he enters the maps preferences dialog.
+!
+! The maps listed here are the standard GEMPAK (5.4) maps. You may add more
+! if you wish. (Up to 50 total.) The order listed here determines the order
+! in which the maps are drawn. (top to bottom)
+!
+! Fields:
+!
+!	Map Name  =  descriptive name
+!	Filename  =  file that contains map
+!	On Flag   =  flag indicating map is on (yes) or off (no) by default
+!	Min, Max Scale =  the scale at which a map (which is "on") is drawn.
+!		     Scale is the full latitude range over the display. Thus
+!		     the map will be drawn only if the latitude range over the
+!		     display falls within max and min. Useful for changing
+!		     which maps get drawn at which scales.
+!	LC	  =  Line Color. Use the GEMPAK colors. (1-32)
+!	LT	  =  Line Type. (1-10)
+!	LW	  =  Line Width. (1-4)
+!
+!
+! Only a small amount of thought went into defining the default scales 
+! and line attributes, so help yourself in setting new ones. :-)
+!
+! Jim Cowie/NWS/COMET   10/97 Original
+!-----------------------------------------------------------------------
+!						 On     Scale
+!Map Name                  Filename            Flag   Max   Min  LC LT LW
+!
+! Political maps
+!
+Global Hi-Res Polit (cia)  hipowo.cia           yes  35.0   0.0  10  1  1 
+Global Hi-Res Polit (gsf)  hipowo.gsf           no   35.0   0.0  10  1  1 
+Global Med-Res Political   mepowo.gsf           yes 180.0  35.1  10  1  1 
+AWIPS state high res       states.uni           no   50.0   0.0  10  1  1
+!
+! (Note: The regional hipo[nw,sw,ne,se].cia maps are ommitted here because
+! they are not needed. If you use hipowo.cia, then gempak automatically
+! changes the internal map file to one of these smaller, regional map files.
+! Thus you cannot "force" a specific hipo*.cia file, so there's no point
+! in listing them.)
+!
+!Coastal
+!  
+Global Hi-Res Coast        hicowo.cia           no   45.0   0.0  19  1  1 
+Global Lo-Res Coast        locowo.gsf           no  180.0  45.0  19  1  1 
+NH Lo-Res Coast            loconh.gsf           no   90.0   0.0  19  1  1  
+SH Lo-Res Coast            locosh.gsf           no   90.0   0.0  19  1  1 
+!
+! Counties
+!|
+US Hi-Res Counties         hicnus.nws           no   10.0   0.0  18  1  1 
+US AWIPS Counties          hicnus.uni           yes  10.0   0.0  18  1  1
+! 
+! Byways
+! 
+!Interstate Hwys            hiisus.usg           no   90.0  20.0   2  1  1 
+!State Hwys                 hishus.usg           no   45.0   5.0  15  1  1 
+!US Hwys                    hiuhus.usg           no   90.0  20.0  16  1  1 
+!US Roads                   hirdus.usg           no   90.0   5.0  13  1  1 
+!
+Interstate Hwys            rdis.uni             yes   3.0   0.0   2  1  2
+State Hwys                 rdsh.uni             yes   3.0   0.0  23  1  1
+US Hwys                    rdus.uni             yes   3.0   0.0  22  1  2
+Major Arterials            rdar.uni             yes   3.0   0.0  23  1  1
+!
+NWS Interstates            loisus.nws           no   90.0   3.1   2  1  2
+NWS US Hwys                louhus.nws           no   20.0   3.1  22  1  2
+NWS State Hwys             loshus.nws           no   20.0   3.1  23  1  1
+NWS Roads                  lordus.nws           no    5.0   3.1  23  1  1
+!
+! Water ways, water/land masses
+!
+US Hi-Res Rivers           hirvus.usg           no   90.0  10.0   4  1  1 
+US Med-Res Rivers          mervus.usg           no   90.0  20.0  25  1  1 
+US Lo-Res Rivers           lorvus.usg           no   90.0  10.0  26  1  1 
+Global Lo-Res Rivers       lorvwo.cia           no  180.0  10.0  26  1  1 
+Islands                    islands.cia          no   90.0  20.0   8  1  1 
+Lakes                      lakes.cia            no   90.0  10.0   6  1  1 
+Tectonic Plates            tectonic.cia         no  180.0  40.0  14  1  1 
+!
+! Countries 
+!
+Glob Hi-Res Country        hicywo.cia           no  180.0  45.0  20  1  1 
+!
+! NWS FO maps 
+!
+US RFCs                    rfc.nws              no   50.0   0.0  30  1  1 
+US CWAs                    cwa.nws              no   50.0   0.0  29  1  1 

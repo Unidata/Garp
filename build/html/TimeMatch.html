@@ -1,0 +1,46 @@
+<html>
+
+<TITLE>GARP Time Matching</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Time Matching</center></h1>
+<hr>
+<h2>Time Matching</h2>
+<center><img src="gif/TimeMatch.gif"></center>
+<p>
+If "time matching" is enabled, GARP will automatically match times
+between data sets.  Thus, if you are constructing an overlay
+from two different data types, GARP will preselect the list of
+times for the second data type that match the times selected for
+the first data type.  Once time matching has been enabled, the
+user may not easily override the preselected times.  To do so,
+the user must turn off time matching.
+<p>
+ One can configure in "Garp_defaults whether time matching is on by
+default or off . To adjust time matching at runtime, click Time
+and then Time Matching from the main menubar. Strict time matching
+means data must reside within a predefined time interval for a time match
+to be found. This interval is defined for each data type in "Garp_defaults".
+To remove this requirement of a time interval and just use
+the closest time match, choose Closest. To turn off time matching
+altogether, choose None. For model data, you have the alternative of
+using either a forecast run or analysis times to time match against.
+<p>
+ You can click the Refresh button at the bottom of any data dialog to
+reload the contents of the date/time scrolled list. This is convenient
+when a model is just arriving or if you turn off time matching and want to
+see all the available data.
+
+<p>
+<hr>
+
+</body>
+</html>

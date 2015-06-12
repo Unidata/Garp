@@ -1,0 +1,160 @@
+ID      SITE NAME                    ST           LAT         LON      ELV(ft)
+
+EOX     Echo                         AL        31.460556   -85.459444     434
+MXX     Carrville                    AL        32.536667   -85.789722     400
+PLA     Lajes                        AO       200.000000  -200.000000       0
+BBX     Oroville                     CA        39.496111  -121.631667     167
+EYX     Boron                        CA        35.097778  -117.560833    2757
+RIX     French Valley                CA        33.598333  -117.120278    1365
+VBX     Lompoc                       CA        34.838056  -120.396944    1223
+DOX     Ellendale                    DE        38.825556   -75.439722      50
+EVX     Redbay                       FL        30.564444   -85.921389     140
+JGX     Jeffersonville               GA        32.675278   -83.351111     521
+VAX     Stockton                     GA        30.558333   -83.005556     178
+GUA     Barrigata, Guam              GU        13.452500  -144.811389     264
+ODN     Kadena                       JA       200.000000  -200.000000       0
+KJK     Kunsan                       KO       200.000000  -200.000000       0
+KSG     Camp Humphreys, Republic of  KO       200.000000  -200.000000       0
+HPX     Trenton                      KY        36.736667   -87.285000     576
+POE     Leesville                    LA        31.155556   -92.975833     408
+GWX     Greenwood Springs            MS        33.896667   -88.328889     476
+MBX     Deering                      ND        48.392500  -100.865000    1493
+FDX     Field Village                NM        34.635278  -103.630000    4650
+HDX     White Sands                  NM        33.076389  -106.122778    4222
+RMX     West Leyden                  NY        43.467778   -75.457778    1516
+FDR     Frederick                    OK        34.362222   -98.976389    1267
+VNX     Cherokee                     OK        36.740833   -98.127778    1210
+DFX     Bracketville                 TX        29.272778  -100.280556    1131
+DYX     Moran                        TX        32.538333   -99.254444    1517
+GRK     Killeen                      TX        30.721944   -97.383056     538
+ABC     Bethel                       AK        60.791944  -161.876389     162
+ACG     Sitka                        AK        56.852500  -135.528889     209
+AEC     Nome                         AK        64.496111  -165.318333     115
+AHG     Nikiski                      AK        60.725833  -151.351389     242
+AIH     Middleton Island             AK       200.000000  -200.000000     135
+AKC     King Salmon                  AK        58.679444  -156.629444      63
+APD     Fairbanks                    AK        65.035000  -147.501667    2593
+APD.I   Fairbanks                    AK        65.035000  -147.501667    2593
+GGT     Georgetown, Bahamas          BH       200.000000  -200.000000       0
+GDT     Grand Turk, Br. W.I.         BW        21.460833   -71.131389      82
+HKI     South Kauai                  HI        21.894167  -159.552222     179
+HKM     Kohala                       HI        20.094444  -155.746944    4720
+HMO     Molokai                      HI        21.132778  -157.180000    1363
+HWA     South Hawaii                 HI        19.095000  -155.568889    1370
+JAE     San Juan                     PR        18.115556   -66.078056    2794
+BMX     Alabaster                    AL        33.172222   -86.769722     645
+MOB     Mobile                       AL        30.679444   -88.239722     208
+LZK     North Little Rock            AR        34.836667   -92.262222     568
+FSX     Coconino                     AZ        34.574444  -111.197778    7417
+IWA     Mesa                         AZ        33.289167  -111.670000    1353
+SRX     Sahuarita                    AZ        31.893611  -110.630278    5202
+YUX     Yuma                         AZ        32.495278  -114.656667     171
+BHX     Humboldt County              CA        40.498333  -124.291944    2402
+DAX     Sacramento                   CA        38.501111  -121.677778      30
+HNX     Hanford                      CA        36.314167  -119.632222     246
+MUX     Santa Clara County           CA        37.155278  -121.898333    3469
+NKX     San Diego                    CA        32.918889  -117.041944     955
+VTX     Ventura County               CA        34.411667  -119.179722    2726
+FTG     Denver                       CO        39.786667  -104.545833    5497
+GJX     Mesa                         CO        39.062222  -108.213889    9992
+PUX     Pueblo County                CO        38.459444  -104.181389    5249
+AMX     Miami                        FL        25.611111   -80.412778      14
+EYW     Key West                     FL        24.597500   -81.703056      11
+JAX     Jacksonville                 FL        30.484722   -81.701944      33
+MLB     Melbourne                    FL        28.113333   -80.654167      35
+TBW     Ruskin                       FL        27.705556   -82.401667      41
+TLH     Tallahassee                  FL        30.397500   -84.328889      63
+FFC     Atlanta                      GA        33.363611   -84.565833     858
+DMX     Johnston                     IA        41.731389   -93.722778     981
+DVN     Davenport                    IA        41.611667   -90.580833     754
+CBX     Ada County                   ID        43.490833  -116.235556    3061
+SFX     Springfield                  ID        43.105833  -112.686111    4474
+ILX     Lincoln                      IL        40.150556   -89.336944     581
+LOT     Romeoville                   IL        41.604722   -88.084722     663
+IND     Indianapolis                 IN        39.707500   -86.280278     790
+DDC     Dodge City                   KS        37.760833   -99.968611    2590
+GLD     Goodland                     KS        39.366389  -101.700556    3651
+ICT     Wichita                      KS        37.654722   -97.442778    1335
+TWX     Alma                         KS        38.996944   -96.232500    1367
+JKL     Jackson                      KY        37.590833   -83.313056    1361
+LVX     Fort Knox                    KY        37.975278   -85.943889     720
+PAH     Paducah                      KY        37.068333   -88.771944     392
+LCH     Lake Charles                 LA        30.125278   -93.215833      13
+LIX     Slidell                      LA        30.336667   -89.825556      24
+SHV     Shreveport                   LA        32.450833   -93.841389     273
+BOX     Taunton                      MA        41.955833   -71.136944     118
+CBW     Houlton                      ME        46.039444   -67.806667     746
+GYX     Gray                         ME        43.891389   -70.256667     409
+APX     Gaylord                      MI        44.907222   -84.719722    1464
+DTX     White Lake                   MI        42.699722   -83.471667    1072
+GRR     Grand Rapids                 MI        42.893889   -85.544722     776
+MQT     Marquette                    MI        46.531111   -87.548333    1411
+DLH     Duluth                       MN        46.836944   -92.209722    1428
+MPX     Chanhassen                   MN        44.848889   -93.565556     946
+EAX     Pleasant Hill                MO        38.810278   -94.264444     995
+LSX     St Charles                   MO        38.698889   -90.682778     608
+SGF     Springfield                  MO        37.235278   -93.400556    1278
+JAN     Jackson                      MS        32.317778   -90.080000     297
+BLX     Yellowstone County           MT        45.853889  -108.606667    3598
+GGW     Glasgow                      MT        48.206389  -106.625000    2276
+MSX     Missoula County              MT        47.041111  -113.986111    7855
+TFX     Great Falls                  MT        47.459722  -111.385278    3714
+LTX     Shallotte                    NC        33.989444   -78.428889      64
+MHX     Newport                      NC        34.776111   -76.876111      31
+RAX     Clayton                      NC        35.665556   -78.489722     348
+BIS     Bismarck                     ND        46.770833  -100.760556    1658
+MVX     Mayville                     ND        47.527778   -97.325556     983
+LNX     Thedford                     NE        41.957778  -100.576389    2970
+OAX     Valley                       NE        41.320278   -96.366667    1148
+UEX     Webster County               NE        40.320833   -98.441944    1976
+DIX     Wrightstown                  NJ        39.946944   -74.410833     149
+ABX     Albuquerque                  NM        35.149722  -106.823889    5870
+EPZ     Santa Teresa                 NM        31.873056  -106.698056    4104
+ESX     Nelson                       NV        35.701111  -114.891389    4867
+LRX     Lander County                NV        40.739722  -116.802778    6744
+RGX     Washoe County                NV        39.754167  -119.462222    8299
+BGM     Binghamton                   NY        42.199722   -75.984722    1606
+BUF     Cheektowaga                  NY        42.948889   -78.736667     693
+ENX     East Berne                   NY        42.586389   -74.063889    1826
+OKX     Upton                        NY        40.865556   -72.863889      85
+CLE     Cleveland                    OH        41.413056   -81.859722     763
+ILN     Wilmington                   OH        39.420278   -83.821667    1056
+INX     Rogers County                OK        36.175000   -95.564722     668
+TLX     Norman                       OK        35.333056   -97.277778    1213
+MAX     Jackson County               OR        42.081111  -122.717222    7513
+PDT     Pendleton                    OR        45.690556  -118.852778    1515
+RTX     Scappoose                    OR        45.714722  -122.965278    1572
+CCX     Rush                         PA        40.923056   -78.003611    2405
+PBZ     Coraopolis                   PA        40.531667   -80.218056    1185
+CAE     Columbia                     SC        33.948611   -81.118333     231
+CLX     Grays                        SC        32.655556   -81.041944      94
+GSP     Greer                        SC        34.883333   -82.220000     940
+ABR     Aberdeen                     SD        45.455833   -98.413056    1302
+FSD     Sioux Falls                  SD        43.587778   -96.729444    1430
+UDX     New Underwood                SD        44.125000  -102.829722    3016
+MRX     Morristown                   TN        36.168611   -83.401667    1337
+NQA     Millington                   TN        35.344722   -89.873333     282
+OHX     Old Hickory                  TN        36.247222   -86.562500     579
+AMA     Amarillo                     TX        35.233333  -101.709167    3587
+BRO     Brownsville                  TX        25.916111   -97.418889      23
+CRP     Corpus Christi               TX        27.784167   -97.511111      42
+EWX     New Braunfels                TX        29.703889   -98.028333     633
+FWS     Ft Worth                     TX        32.573056   -97.303056     683
+HGX     Dickinson                    TX        29.471944   -95.079167      18
+LBB     Lubbock                      TX        33.654167  -101.814167    3259
+MAF     Midland                      TX        31.943333  -102.189167    2868
+SJT     San Angelo                   TX        31.371389  -100.492500    1890
+ICX     Cedar City                   UT        37.590833  -112.862222   10600
+MTX     Elder County                 UT        41.262778  -112.447778    6460
+AKQ     Wakefield                    VA        36.983889   -77.007222     112
+FCX     Floyd County                 VA        37.024444   -80.273889    2868
+LWX     Sterling                     VA        38.975278   -77.477778     272
+BTV     Colchester                   VT        44.511111   -73.166944     300
+ATX     Camano Island                WA        48.194444  -122.495833     494
+OTX     Spokane                      WA        47.680278  -117.626667    2384
+ARX     La Crosse                    WI        43.822778   -91.191111    1276
+GRB     Ashwaubenon                  WI        44.498333   -88.111389     682
+MKX     Dousman                      WI        42.967778   -88.550556     958
+RLX     Ruthdale                     WV        38.311111   -81.723056    1080
+CYS     Cheyenne                     WY        41.151944  -104.806111    6128
+RIW     Riverton                     WY        43.066111  -108.477222    5568

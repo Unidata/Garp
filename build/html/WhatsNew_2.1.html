@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; HP-UX B.10.20 9000/715) [Netscape]">
+   <TITLE>What's New in GARP 2.1</TITLE>
+</HEAD>
+<BODY TEXT="#400020" BGCOLOR="#FFFFFF" LINK="#7F7FFF" VLINK="#505090" ALINK="#FF0000" BACKGROUND="gif/COMET_Wallpaper.GIF" fgcolor="#000000">
+
+<HR>
+<CENTER>
+<H1>
+What's New in Version 2.1</H1></CENTER>
+
+<HR>
+<BR>&nbsp;
+
+<P>GARP Version 2.1 is a Y2K compatible release. Previous version are not 
+Y2K compliant. Compliance was verified by testing GARP with simulated data
+for all data types and projections except wind profiler data and radar
+data. Other new capablilites are listed below.
+<BR>&nbsp;
+<H2>
+Bug Fixes</H2>
+
+<UL>
+<LI>
+ Time templates using a 4 digit year (in Garp_defaults) are fully functional.
+ Caveat: if the time stamp in a file name template defines the year in 4
+digits, then on January 1st, dattims will be listed in correct order on
+the data type scrolled lists. If not, then dattims in 1999 will appear
+below times in 2000. This is because the files beginning with "00" are
+listed before files beginning with "99" when a directory list is compiled.
+This problem can be fixed by changing the file template to define the year
+in YYYY format and renaming the files to reflect this change.
+</LI>
+
+<LI>
+ There was a directory dependency for FDFs that was removed.
+Previously, the model specific directory was built from the default
+FDF directory using "../.." . The problem with this method is that the
+default directory would have to exist in order to step using a relative
+path (../..). This dependency was removed so the default directory path
+and the model specific directory path are fully defined as absolute
+paths. This change also affected FDF directory definitions in
+Garp_defaults. The "default" directory is no longer defined as part of
+the FDF directory keys (such as scalarfdf, vectorfdf, etc).
+</LI>
+
+<LI>
+  Fixed a bug that occurred when the user changed models and ran the same
+macro for plan view model data. Previously, the macro path was incorrect
+so the macro would fail to display anything.
+</LI>
+
+<LI>
+A few memory leaks plugged.</LI>
+</UL>
+&nbsp;
+<BR>&nbsp;
+
+<P>
+<HR>
+</BODY>
+</HTML>

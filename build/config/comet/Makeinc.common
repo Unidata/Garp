@@ -1,0 +1,238 @@
+###################################################################
+###################################################################
+#
+#       Makefile for Nawips 5.2.1
+#               Top level
+#               Original: Unidata 7/94 P.Bruehl
+#               COMET 7/95 D.Himes
+#		COMET 9/95 J. Cowie - added NOWRAD variables
+#		COMET 1/96 J. Cowie - removed them
+#
+####################################################################
+####################################################################
+####################################################################
+#
+#  Gempak.include - UNIDATA Program Center  (7/94 PB)
+#  Nawips.include - COMET D.Himes (7/19/95) Copied and modified
+#                   from original Gempak.include
+#  
+#######################################################################
+#
+#  This file is included in most of the Makefiles for GEMPAK 5.2.
+#  (In GEMPAK version 5.1, this file was called Gemmake.incl.) 
+#  It defines the paths and filenames for the various libraries and
+#  executables.  This file replaces the need to specify the location
+#  of the libraries as environment variables.
+#
+#  You must edit most of this file to match the configuration of your 
+#  operating system.  There will be directions at each section below.
+#
+#   The following shell environment variables *MUST* be defined before
+#   invoking this Makefile:
+#
+#   $NAWIPS  - points to the toplevel of the NAWIPS directory tree.
+#   $GEMPAK and $GEMPAKHOME  - points to the toplevel of the gempak part
+#              of the NAWIPS tree.  Usually directly under $NAWIPS.
+#
+#   $OS      - Used in NAWIPS for #ifdef OS statements in code.  Also
+#              used by the Makefiles to bring in OS specific sections
+#              of the Makefile (ie. like include Makeinclude.$(OS).
+#
+#   $NA_OS   - Used in $(NAWIPS)/config/Makeinc.common to decide which
+#              OS specific Makeinc.* to include.  It also cooresponds
+#              to the directories in the NAWIPS tree where the executables
+#              and libraries are installed.
+#
+####################################################################
+#
+######################################################################
+#
+# Define the environment variables needed for installation:
+#
+#  You must configure TOP, LIBDIR and OS_BIN.
+#
+#  Be sure that LIBDIR and OS_BIN exist on your system!
+#
+#  You may choose to install the GEMPAK libraries and binaries 
+#  in alternate places by defining them here.
+#
+
+#
+#  Location of the root of the NAWIPS distribution tree.
+#
+TOP 		= $(NAWIPS)
+
+#
+#  Location of libraries and .o files that are used to link
+#  more than one GEMPAK or NAWIPS program.
+#
+LIBDIR 		= $(TOP)/lib/$(NA_OS)
+
+#
+#  Location of UNIDATA Local Data Manager include files and
+#  libraries used for building BRIDGE decoder software
+#
+LDMINC		=
+LDMLIB		=
+BRIDGE		= $(LIBDIR)/bridge.a
+
+#
+#  UNIDATA's bridge decoder location
+#
+BRDGDIR		= $(NAWIPS)/ldmbridge
+
+
+#
+#  Location of executables for "make install" action.
+#
+OS_BIN 		= $(TOP)/exe/$(NA_OS)
+SCRIPTS_EXE     = $(TOP)/exe/scripts
+
+#
+#  Location of the Gempak include files.
+#
+INCDIR 		= $(GEMPAK)/include
+
+#
+#  Location of libraries that are only needed for specific
+#  applications and not required to link multiple GEMPAK 
+#  programs.
+#
+OS_LIB 		= $(LIBDIR)
+
+#
+#  Traditional names of the various gempak and Nawips libraries.
+#  
+GEMLIB 		= $(LIBDIR)/gemlib.a
+CGEMLIB 	= $(LIBDIR)/cgemlib.a
+NXMLIB 		= $(LIBDIR)/Nxmlib.a
+GPLT_NC		= $(LIBDIR)/ginitp_alt.o $(LIBDIR)/gendp_alt.o 
+GPLT   		= $(LIBDIR)/gplt.a
+APPL   		= $(LIBDIR)/appl.a
+DEVICE 		= $(LIBDIR)/device.a
+GPLTDEV 	= $(LIBDIR)/gpltdev.a
+SYSLIB  	= $(LIBDIR)/syslib.a
+GN      	= $(LIBDIR)/gn.a
+GF      	= $(LIBDIR)/gf.a
+GPS      	= $(LIBDIR)/gps.a
+PSP     	= $(LIBDIR)/psp.a
+PS      	= $(LIBDIR)/ps.a
+PS1     	= $(LIBDIR)/ps1.a
+PSC		= $(LIBDIR)/psc.a
+XW      	= $(LIBDIR)/xw.a
+HP		= $(LIBDIR)/hp.a
+NC		= $(LIBDIR)/nc.a
+VC		= $(LIBDIR)/vc.a
+VT		= $(LIBDIR)/vt.a
+
+
+#
+#  Choose the devices you wish to install.
+#
+#  The device drivers are XW (XWindow driver),  PS,PS1,PSP,PSC 
+#  (greyscale, B&W, portrait mode, and color postscript drivers), 
+#  NC (Ntrans CGM driver), HP (HP plotter), VC (vanilla CGM), 
+#  and VT (VT100). Also available are GPS (Generic Postscript) and
+#  GF (GIF) drivers. 
+#
+
+DEVLIST =  xw ps nc vc vt gf
+
+#
+#  General macro's for NAWIPS "N" programs.
+#
+GEMINCDIR 	=  -I$(INCDIR)
+NAWIPS_INC      =  -I$(NAWIPS)/include
+NLIB_INC        =  -I$(NAWIPS)/nprogs/nlib
+BIN             =  $(OS_BIN)
+
+#
+#######  Package level macros for ntrans
+#
+NTRANS_TOP      =  $(TOP)/nprogs/ntrans
+NTRANS_INC      =  -I$(NTRANS_TOP)/include
+NTRANS_BIN      =  $(OS_BIN)
+
+
+#
+#######  Package level macros for nsat
+#
+NSAT_TOP        =  $(TOP)/nprogs/nsat
+NSAT_INC        =  -I$(NSAT_TOP)/include
+
+
+
+###############################################################
+###############################################################
+#
+# Generic Compilation and link flags for F77 and CC.
+#  (leave these settings as is, make specific definitions in the
+#   next section)
+#
+###############################################################
+###############################################################
+#
+
+SHELL            = /bin/sh
+FC               = f77
+CC               = cc
+CFLAGS           = -D$(OS)
+ANSI_CFLAGS      = -D$(OS)
+LD               = ld
+AR               = ar
+ARFLAGS          = rv
+RANLIB           = ranlib
+RM               = rm -f
+INSTALL          = install -s
+LN               = ln -s
+STRIP            = strip
+FFLAGS           = 
+LDFLAGS          = 
+XWLIBDIR         = 
+XWINCDIR         = 
+XWLIBS           = 
+NAGRIBLIB        =
+NPROGDEFINES     = -DNPROG
+CP               = cp
+MKDIR            = mkdir
+RMDIR            = rmdir
+
+#           Do Not Modify Anything Below This Line
+#
+# Specific compilation and link flags are stored in separate files
+# cooresponding to the operating system that NAWIPS is being built 
+# on.  
+#
+# Modify the file $(NAWIPS)/config/Makeinc.{youros} to make changes 
+# specific to the target environment.
+#
+#        hpux 9.x
+#        sunos4 (solaris 1.x)
+#        sunos5 (solaris 2.x)
+#
+
+###############################################################
+###############################################################
+#
+#  Garp specific definitions.
+#
+GARPINCLUDE = -I$(GARPHOME)/include
+
+#
+# The Xpm package is bundled with GARP for those systems that
+# do not already have it. If your system has Xpm, modify the
+# Makeinc.? file for your OS and point these variables to your local
+# copy. (The OS-specific values will override these here so change
+# them there, not here.)
+#
+XPMINCLUDE  = -I$(GARPHOME)/xpm
+XPMLIB      = $(GARPHOME)/xpm/$(NA_OS)/xpm.a
+XPMSOURCE   = xpm/$(NA_OS)
+
+# Set this in the OS-specific file - look there for more info
+XPMDEFINES  =
+
+#
+# Always include the OS-specific copy of Makeinc
+#
+include $(GARPHOME)/config/Makeinc.$(NA_OS)

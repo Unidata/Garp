@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; HP-UX B.10.20 9000/715) [Netscape]">
+   <TITLE>What's New in GARP 2.02</TITLE>
+</HEAD>
+<BODY TEXT="#400020" BGCOLOR="#FFFFFF" LINK="#7F7FFF" VLINK="#505090" ALINK="#FF0000" BACKGROUND="gif/COMET_Wallpaper.GIF" fgcolor="#000000">
+
+<HR>
+<CENTER>
+<H1>
+What's New in Version 2.02</H1></CENTER>
+
+<HR>
+<BR>&nbsp;
+
+<P>GARP Version 2.02 is a minor bug release with limited added functionality. Bug
+fixes are listed below.
+<BR>&nbsp;
+<H2>
+Bug Fixes</H2>
+
+<UL>
+<LI>
+Some model levels and layers did not display in the level popup dialog.
+Now they do.</LI>
+
+<LI>
+Some widget attachments were not properly alligned when using the CDE window manager.
+Now, they are.</LI>
+
+<LI>
+Fixed a bug that caused GARP to crash if you loaded a topographic image
+and then immediatly cleared the screen without loading any other
+depictables.</LI>
+
+<LI>
+Fixed a bug that caused GARP to crash if you load a plan view depictable
+and then immediately load (without clearing) a cross-section vector
+depictable.</LI>
+
+<LI>
+Fixed a bug that caused the titles of all the model vertical projections
+to be the wrong color when a title was toggled off.</LI>
+
+<LI>
+Redefined how default directories are built in dialogs.c to define a
+default chapter for each projection. These previously existed but were
+broken at some point. Did not add any keys  to Garp_defaults but this
+change affects the keys: fdf_directory, xsfdf_directory, thfdf_directory,
+and vpfdf_directory. Previously, the corresponding root directory was
+explicitly part of the these directory definitions in Garp_defaults. Now,
+they are implicit, meaning, they are used to define the root directory
+even though they are not included in the default key definitions.</LI>
+
+<LI>
+A few memory leaks plugged.</LI>
+</UL>
+&nbsp;
+<BR>&nbsp;
+
+<P>
+<HR>
+</BODY>
+</HTML>

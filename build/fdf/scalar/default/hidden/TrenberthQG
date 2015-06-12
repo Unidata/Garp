@@ -1,0 +1,101 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Trenberth's Q-G Formula.
+!
+! 
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= adv(vor(geo@500),thrm(hght@300:850))
+description		= Trenberth's Q-G Formula. \
+                        = \ The advection of 500mb geostrophic relative \
+			= \ vorticity by the thermal wind in the \
+			= \ 300mb to 850mb layer. \
+			= \ *** To change the levels, you must change \
+			= \ this FDF *** 
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Trenberth's Q-G Formula
+vcoord			=
+level1			=
+level2			=
+contour			= y
+fill			= n
+hilo			= n
+!					Pressure coordinates
+pres			=
+pres_cint		= 2
+pres_cmin 		=
+pres_cmax 		=
+pres_fint 		= 5
+pres_fmin 		= 5
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					LINE
+line_color		=
+line_type		= -2
+line_width		=
+line_label_frequency	=
+!					SCALE
+scale 			= 8
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 8-500
+rangel 			= -500--8
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= .96
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		=
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			= 0;21-30;30;30;30;30;30;30;30;30
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

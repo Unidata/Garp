@@ -1,0 +1,244 @@
+<html>
+
+<TITLE>SOO/SAC GARP Installation Instructions</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>SOO/SAC GARP Installation Steps</center></h1>
+<i>Contributed by Peggy Bruehl/NWS</I>
+<hr>
+<p>
+<i>
+* Special notes for those installing GARP version 2.1 on top of 
+a previous version of GARP:
+<p>
+<ol>
+<li>You must complete all the installation steps below, even if you've
+already installed a previous version of GARP. 
+<p>
+
+<li>Before you untar GARP version 2.1, you must move your old
+GARP distribution out of the way.  Use the command:</i>
+<pre><b> mv $NAWIPS/garp $NAWIPS/garp.old</b></pre>
+
+<p>
+<i>
+
+<li>GARP 2.1 configuration files are very similar to those in version
+2.0. It is likely that minimal modifications of Garp_defaults will be required.
+The keys that must be changed include:
+<PRE>
+scalarfdf     : $(fdfdir)/scalar             # Plan view scalar FDFs
+vectorfdf     : $(fdfdir)/vector             # Plan view vector FDFs
+xsscalarfdf   : $(fdfdir)/xsscalar           # Cross section scalar FDFs
+xsvectorfdf   : $(fdfdir)/xsvector           # Cross section vector FDFs
+thscalarfdf   : $(fdfdir)/xtscalar           # Time/height scalar FDFs
+thvectorfdf   : $(fdfdir)/xtvector           # Time/height vector FDFs
+vpscalarfdf   : $(fdfdir)/vpscalar           # Vertical profile scalar FDFs
+vpvectorfdf   : $(fdfdir)/vpvector           # Vertical profile vector FDFs
+</PRE>
+Previously, these directories included a "default" directory. The 
+configuration file "config/Garp" has minimal changes.
+<p>
+
+<li>After untarring and configuring GARP 2.1, you may want to
+copy over any FDFs you created for previous versions of GARP.
+The FDF directory structure has not changed from GARP 2.0.
+<p>
+</ol>
+</i>
+<hr>
+<p>
+
+<ol>
+<li>FTP the file garp2.1.tar.Z and garp.install.README (this file) from 
+the contrib/ directory of the SAC FTP server.
+<p>
+
+
+
+<li>Untar the distribution in the $NAWIPS directory.
+<pre>
+   % cd $NAWIPS
+   % zcat garp2.1.tar.Z | tar xvf -
+</pre>
+
+Please examine the output of this command carefully.  (It's best
+to run this command in a window with a scroll bar.)  If you see
+any errors, particularly "permission denied" or "could not write"
+errors, you must find and delete the existing file and then
+untar the garp2.1.tar.Z file again.
+<p>
+
+
+<li>After untarring, you will find the following subdirectories
+that contain configuration files and other files needed by GARP:
+
+<pre>
+README/   config/   fdf/   help/   icons/   map/   tables/
+</pre>
+
+Plus, the resource files (Garp and Garp2) will be added to 
+the $NAWIPS/resource directory, a GARP icon will be added to the 
+$NAWIPS/icons directory, and the GARP executable (garp) will be 
+added to the $NAWIPS/exe/hpux directory.
+<p>
+
+<b>In addition</b>, the tar file will <b>overwrite</b> your existing 
+$NAWIPS/tables/ntl/ntl.tbl file.  This file defines which icons are 
+placed in the NTL box.  The GARP version of ntl.tbl simply adds a 
+GARP icon to NTL.  Normally this file is not edited by the user, so 
+the overwriting ntl.tbl with the GARP version has no impact.  However, 
+if you have edited your $NAWIPS/tables/ntl/ntl.tbl file, you must 
+protect it before you untar this distribution.
+<p>
+
+
+<li>To configure GARP for your system, you must add the following 
+definition to your Nawips.cshrc file (adjust $GARP_PATH to match your 
+system setup).  It doesn't matter where you add these lines, however 
+after the "NAWIPS env variables" section (line 66) would make the most 
+organizational sense.  
+
+<pre>
+#
+#  GARP specific variables
+#
+    setenv GARP_PATH  $NAWIPS/garp/config
+</pre>
+<p>
+
+
+
+
+<li>After adding these lines, be sure to source Nawips.cshrc:
+
+<pre>
+   % source Nawips.cshrc
+   % rehash
+</pre>
+
+The next time you log on, the "source" and "rehash" will be done 
+for you.
+<p>
+
+
+<li>Now you must edit the configuration file:
+
+<pre>
+$GARP_PATH/config/Garp_defaults
+</pre>
+
+This file defines the GEMPAK data directory structure used by GARP,
+along with the default behavior of much of the GARP interface. 
+There are a number of new variables which must be configured in
+this file.  Please read the comments in the "Garp_defaults
+file for help with configuring these settings.
+<p>
+<b>NOTE</b> When editing the Garp_defaults file, it is very important
+that you <i>disable</i> word-wrapping in your editor.  This is not
+a problem for those of you using <code><b>vi</b></code>, however if
+you use <code><b>pico</b></code> or the HPUX CDE text editor, make
+sure you do not <i>wrap to fit</i> the file.  There are many long
+lines in the Garp_defaults file that must remain as single lines.
+If they are wrapped to the next line, it is possible that GARP will
+not run.<p>
+
+
+
+<li>Install the GARP man page. Copy the file $NAWIPS/garp/README/garp.1 
+to the /usr/man/man1 or /usr/local/man/man1 directory.  You may
+need to be root to do this.  This step is not required to run GARP.
+<p>
+
+<li>A few background topography maps were added to GARP version 1.0.4 
+(N. California, Virginia, Colorado, Minnesota).  These maps use a 
+gray scale enhancement table by default.  If you have not modified
+your $GEMTBL/sat/imgtyp.tbl file, you will see a GARP warning message 
+that no enhancement table is defined when using these maps. 
+If this message bothers you, add the following line to the end of your  
+$GEMTBL/sat/imgtyp.tbl file:
+<pre>
+TOPO                 MAP           0    255     99      1      1 GRAY
+</pre>
+<p>
+
+<li>New features have been added to the FDF system in GARP 2.0, including
+Macros and a new directory structure.  You can read all about the new FDF 
+and Macro features in the User's Guide (<a href="FDF.html">FDFs</a>, 
+<a href="Macros.html">Macros</a>, and Question 2 in the Tips on FDFs & Macros
+section of the <a href="TroubleShoot.html">Troubleshooting Guide</a>).   In 
+addition, here is a brief summary of the FDF changes in GARP 2.0:<p>
+<ul>
+<li> The FDF directory tree contains an additional directory level.  The
+directory <code><b>fdf/scalar/default</b></code> contains all the FDF
+chapters for GARP 2.0.  <p>
+
+<li> Along with the <code><b>default/</b></code> directory, there are also
+model-specific directories that contain the same or additional FDF chapters.
+These chapters contain additional (or modified) the FDFs for the specified
+model. The model-specific directory is named by the string which identifies 
+the model in the <b><code>modelkeys</code></b> variable in the Garp_defaults 
+file.  For example, the Eta model is defined by the string <code><b>eta.gem</b></code>,
+so the model-specific directory is named <code><b>fdf/scalar/eta.gem</b></code>.<p>
+
+<li> The data available with each model differ.  Some models, such as the
+RUC Surface Analysis (RSAS) have very few grids, and other models such as
+the Meso-Eta have a lot of grids on a lot of surfaces.  This new FDF 
+directory structure allows you to configure GARP so that only applicable
+FDFs show up for each model.  For example, I have set up the <b>General</b> 
+FDF chapter this way.  As you use GARP 2.1 with the various models, you'll
+see that the FDFs listed under <b>General</b> change depending on the
+model.  Compare this with the FDFs contained
+in the <code><b>fdf/scalar/default/general</b></code>, 
+<code><b>fdf/scalar/avn/general</b></code>,
+<code><b>fdf/scalar/eta.gem</b></code>, etc. directories. Note, I set
+up these FDFs based on the data sets I download.  Your data sets may
+differ.<p>
+
+<li>You'll notice that because of the minimal amount of data available in
+the RSAS and RUC-2 Surface models, there are only a few FDFs that apply
+to all models (<code><b>fdf/scalar/default/general</b></code>). Instead, most
+of the FDFs are found in the model-specific directories.<p>
+</ul>
+
+Now, here are some hints for customizing the FDFs and Macros for your site:
+<p>
+<ol>
+<li>If your FDF applies to all models, put it in the appropriate chapter in
+<code><b>fdf/scalar/default</b></code>.  
+
+<li>If your FDF does not apply to all models, copy it into the appropriate chapter
+in <b>each</b> of the model-specific directories to which it does apply.
+
+<li>When adding FDFs to model-specific chapters, modify each copy so that 
+it will work with your data set.  
+
+<li>You can mix FDFs and Macros together in the same chapter.  Macros do
+not need to be stored in chapters named <code><b>macro</b></code>.
+
+<li>You may create a new chapter in any of the model-specific directories.
+However, be sure you add the chapter name to the <code><b>ScalarChapter</b></code>
+variable in the Garp_defaults file.
+
+<li>I have added several FDFs that were contributed to the SAC FTP server.
+Most, but not all of these went into the <code><b>HAS</b></code>, and 
+<code><b>maxT_est</b></code> chapters.   For additional information on 
+some of these FDFs, check the <code><b>fdf/doc/</b></code> directory.
+
+<li>Be sure that you understand the science behind all FDFs before you use
+them.
+</ol>
+
+</ol>
+
+<hr>
+</body>
+</html>

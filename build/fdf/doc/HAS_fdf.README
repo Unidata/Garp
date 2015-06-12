@@ -1,0 +1,208 @@
+Date: Tue, 10 Jun 1997 18:48:34 -0400
+From: "James J. Noel" <noel@gondola.ohrfc.noaa.gov>
+To: soo_sac@comet.ucar.edu
+Cc: noel@gondola.ohrfc.noaa.gov
+Subject: Changes to Eta model means updates!
+
+Hi again,
+
+Let us try this one final time.  Due to the changes in the Eta model, I
+have modified
+the HAS meta file for the Eta.  In addition, there has been a few
+requests to break the
+Eta and other models apart in the GARP fdf's.  Since there are many
+differences between the Eta model and other models now due to specs
+others have set, I have broken the Eta model out from the other models. 
+If you use these fdf's, this means all the fdf's will work for the Eta
+and all for the NGM.
+
+These fdf's are focused on rainfall forecasting with many new or
+additional parameters like Precipitation Potential, Eta Experimental
+QPF, and the Deep Convection Index.
+
+I added in the additional updates to yesterday's email.  Read on and
+follow to get all updates.
+
+I added a tar file for GARP to the /contrib/fdf directory a few weeks
+ago.
+I have had positive feedback from several people and some wanted more
+comments added on how to use some of the parameters.  I have done this. 
+I have also broken
+the Eta model fdf's apart from the NGM.  This way all fdf's work for
+each model instead of some work and some don't depending on model
+selected.
+
+To get the updates and install them, do the following:
+
+1. change to your home directory of nawips and then type:
+   cd garp/fdf/scalar
+2. mkdir HAS
+3. mkdir HAS_Eta
+4. ftp soosac.comet.ucar.edu
+5. Login
+6. cd contrib/fdf
+7. binary
+8. get HAS_fdf.tar
+9. get HAS_fdf_eta.tar
+10. mv HAS_fdf.tar HAS
+11. mv HAS_fdf_eta.tar HAS_Eta
+12. cd HAS
+13. tar -xvf HAS_fdf.tar
+14. rm HAS_fdf.tar
+15. cd ../HAS_Eta
+16. tar -xvf HAS_fdf_eta.tar
+17. rm HAS_fdf_eta.tar
+ 
+ To edit these fdf's to specify your own color schemes and contour
+intervals,
+ you will need to place "" around the parameter as follows:
+ vi "Precipitation Potential (in of pw)"
+ 
+ To have your heavy rainfall forecasting parameters take effect in GARP,
+you
+ will also need to add the HAS_Eta and HAS directories to your
+Garp_defaults as follows:
+ "Add" the words HAS_eta,HAS to these two lines in the GARP_defaults. 
+Do not remove or
+ change the rest of the line.
+ 
+ ScalarChapter   : HAS_Eta,HAS
+ SCLabels        : HAS_Eta,HAS
+ 
+ When using the NGM or AVN model in GARP, select HAS for the Scalar
+parameter list.
+ When using the Eta model, select HAS_Eta for the Scalar parameter list. 
+
+ To view the comments on these parameters like precipitation potential,
+ you have launched GARP and selected a parameter, but before you click
+on
+ Display and Close, select "More".  This will provide you with the info
+ some of you wanted.
+
+ To get the meta file updates which include changes to such parameters
+as 
+ Lifted Index, Deep Convection Index, Precip Potential, CAPE for the Eta
+ model, do the following:
+
+1. ftp soosac.comet.ucar.edu
+2. Login
+3. cd contrib/scripts
+4. binary
+5. get meta_has.tar
+6. bye
+7. tar -xvf meta_has.tar
+   This will create two files called ngm_meta_na.has and
+eta_meta_na.has.
+   I recommend adding the parameters or updates needed to your current
+   meta file script.  If you run the entire meta files here, it will
+make
+   your SAC crawl.  Again, copy and paste te parameters you need to like
+   Precip Potential etc. 
+ 
+ If you have nay other questions or comments, please email me at:
+ noel@gondola.ohrfc.noaa.gov or call me at 937-383-0527.
+
+ Hope this one covers it.....
+
+
+ Jim Noel
+ HAS forecaster
+ NOAA/NWS/Ohio River Forecast Center
+ noel@gondola.ohrfc.noaa.gov
+ 937-383-0527
+
+----------------------------------Original READMEs------------------------
+
+From: James J. Noel <noel@ohrfc.noaa.gov>
+Subject: Contribued meta files and fdfs
+To: soo_sac@comet.ucar.edu
+Date: Sat, 10 May 97 19:13:26 EDT
+Cc: ondrejik@diner.ohrfc.noaa.gov, fenbers@diner.ohrfc.noaa.gov
+
+Hi all,
+
+The HAS Unit at OHRFC has contributed NGM and Eta meta files for all the
+parameters we use to forecast potential rainfall (QPF) here at OHRFC.
+Most of the parameters we use cover what HPC uses plus a few more.  
+
+To retrieve these, do the following:
+
+1. ftp soosac.comet.ucar.edu
+2. cd contrib/scripts
+3. binary
+4. get meta_has.tar
+5. bye
+6. tar -xvf meta_has.tar
+
+This will create two files: eta_meta_has and ngm_meta_has.  Some of the 
+parameters in there are similar to ones you may already use like 500 Heights/
+vorticity.  However, it is a nice package to lump together as we do with
+severe weather parameters except this is for QPF forecasting.  Included are
+parameters like Precipitation Potential and Instability (SQRT (2 x C.A.P.E))
+etc.  You may find this useful.  You can rename the files whatever you like
+and add them to your gribmaster of make_metafile generation.
+
+In addition, I did the same thing for GARP fdfs.  To get the HAS QPF forecasting
+parameters, do the following:
+
+1. ftp soosac.comet.ucar.edu
+2. cd contrib/fdf
+3. binary
+4. get HAS_fdf.tar
+5. bye
+6. tar -xvf HAS_fdf.tar
+
+We created a directory called HAS under gempak/garp/fdf/scalar called HAS.
+In this file are parameters such as 24 and 48 hour model QPF, Instability
+(SQRT (2 x C.A.P.E)), Precipitation Potential, etc.  We have also added the
+units to the titles.  You may want to change to color codes to you liking as
+we use very different color schemes here with gray background and black state
+borders; hence, the color scheme will look weird at most places because our
+colors won't match your.
+
+These packages should benefit in making a QPF forecast for those using GARP
+or Ntrans.
+
+If you have nay questions, please email me.
+
+_____________________________________________________________________________
+
+ Jim Noel
+ HAS forecaster
+ NOAA/NWS/OHRFC
+ noel@gondola.ohrfc.noaa.gov
+ 1-937-383-0527
+ 1-513-383-0527
+ 
+_____________________________________________________________________________
+
+From: "James J. Noel" <noel@ohrfc.noaa.gov>
+Subject: Contributed FDFs
+To: soo_sac@comet.ucar.edu
+Date: Sat, 7 Jun 97 18:52:10 EDT
+
+Hi all,
+
+I recently contributed fdf's.  The file was called HAS_fdf.tar.  Within
+this file was some experimental QPF's.  If you are going to use these,
+I have found the following adjustment produces better 6-hr QPF forecasts:
+
+The change to the Experimental Conv QPF (in) and Experimental Strat QPF (in)
+is to change the number from 12.5 to 15.8 in each of the fdf's as follows:
+
+mul(sub(mul(pwtr%SGMA@0:10000,quo(add(relh@700,relh@850),200),15.8),.079)
+mul(sub(mul(pwtr%SGMA@0:10000,quo(add(relh@700,relh@850),200),15.8),.02)
+
+
+What these fdf's do is to take precip potential parameter and subtract out 
+the non-efficient part or first 0.7in or 15.8 mm and then double it for 
+convection and divide by two for stratiform rainfall.  
+
+Thanks...
+
+
+Jim Noel-HAS forecaster
+Ohio River Forecast Center
+noel@gondola.ohrfc.noaa.gov
+937-383-0527
+

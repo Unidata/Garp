@@ -1,0 +1,44 @@
+<html>
+
+<TITLE>GARP Logging Preferences</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Logging Preferences</center></h1>
+<hr>
+<center><img src="gif/LoggingPref.gif"></center>
+<p>
+The Logging Preferences dialog allows you to configure whether logging 
+information is written, where it is written, and how much is written.
+GARP has several verbose levels. At level "0", GARP will only write out
+error statements. At level "1", you will also see function names. At 
+level "2" you will see level 1 information as well as information about 
+variables within a function. At
+level "3", all printable statements are printed to output, including any
+table files which are read in. These verbose levels are very useful for 
+debugging.
+<p>
+The output may be written to a standard error (typically a text window),
+a logging window, or a file. If you start GARP from NTL, standard error is
+probably set to /dev/null so you will only see output if you write it to
+the GARP logging window or a file. The logging window is accessible by 
+clicking the "Display Log" button at the bottom of this dialog.
+<p>
+For fatal errors that crash GARP before the GUI is accessible, you can 
+start it up in verbose mode using a <a href="CommandLine.html">
+command line argument</a>. In this case you would type at the Unix prompt:
+<pre>
+garp -verbose 3
+</pre>
+to start up GARP in its highest verbose level. 
+<hr>
+
+</body>
+</html>

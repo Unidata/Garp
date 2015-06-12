@@ -1,0 +1,39 @@
+The following files were provided as replacements by Art Person (PSU)
+to enable processing of bulletins >DCMXBF bytes. The modifications
+require changes to 2 routines in the bridge library.
+
+Currently, DCMXBF is 100KB. 
+
+
+Modifications to support updated shef decoder, 12/2002:
+
+   1) gempak/source/bridge/dc/dcgbul.c:
+
+      Modified to return the data that was read when EBFULL
+      occurs.  Consecutive calls that return EBFULL return
+      the next piece of a message that overflowed the buffer
+      along with an EBFULL status until the last piece is
+      read which does not overflow the buffer, which then
+      returns a normal status.  Calling programs can use
+      this facility to retrieve all the data of a message
+      when the internal read buffer overflows by accumulating
+      data on EBFULL's until a non-EBFULL status is returned.
+      The data returned when the non-EBFULL status is returned
+      (after EBFULL status returns) is the last data of the
+      overflowing message.  Following calls which return
+      non-EBFULL status would contain subsequent messages.
+
+   2) gempak/source/bridge/dc/dcb.c:
+
+      Documentation on the use of the read buffer pointers
+      was added.  Also, a bug was fixed in the case where
+      dcb.nxtfeed+1 was not set equal to dcb.sbuf upon buffer
+      wrap-around when checking for a buffer full error
+      return.
+
+   3) gempak/comet/dcshef/dcshcd.f:
+
+      Increased read buffer size as a multiple of DCMXBF and
+      implemented code to accumulate multiple buffers full of
+      input data for a single message when EBFULL is returned
+      from DC_GBUL base on code changes mentioned in #1 above.

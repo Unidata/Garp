@@ -1,0 +1,79 @@
+<html>
+
+<TITLE>GARP Gridded Vertical Profile Data</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>Gridded Vertical Profile Data</center></h1>
+
+<hr>
+<center><img src="gif/MVP1.gif"></center>
+<p>
+All gridded data dialogs have a similar layout. This layout is organized to
+(hopefully) present information in an intuitively top-down order. The current
+model is in the upper left hand corner. The list of models you have access
+to is configurable in the "Garp_defaults" file but limited to the data itself. 
+When you choose a new model,
+GARP reads in the data files for that model and rebuilds a scrolled list of
+date times. Depending on how much data you have this may take a while;
+you will notice the mouse pointer changes to a busy cursor while files are
+being read.
+<p>
+ Below the model option menu is an option menu of 
+vertical coordinates which is also configurable in "Garp_defaults". To pick
+a new one, you can either choose one from the option menu or type in the
+GEMPAK identifier for this vertical coordinate.
+<p>
+For the vertical projection dialog, you will see a plot type to the right
+of the vertical coordinate option button. From it you can specify the
+vertical axis type. If it is Skew-T or Stuve, the FDF scrolled lists below
+will be desensitized. The two level textfields below this 
+allow you to set the lower 
+(level 1) and upper (level 2) vertical extent of the display. If they are 
+blank, GEMPAK defaults are used.
+<p>
+A textfield for indicating where the vertical profile is to be centered
+lies below the level textfields. This can be either a surface station ID
+(e.g., DNR) or a lat/lon position (e.g., 39.5;-121.2 ).
+To the right
+is an information button from which you can browse your data set to see exactly
+what fields, vertical coordinates, and levels are valid.
+<p>
+Across the center of the dialog are scrolled lists indicating date/time stamps
+for which data is available, a scalar FDF list, and a vector FDF list. The 
+option menus above the FDF scrolled lists are different chapters that contain
+FDFs for particular meteorological conditions. They also point to macros
+that allow you to display more than one field at a time.
+<p>
+Below these scrolled lists is a label for the current field as well as the
+GEMPAK function definition. You can manually edit this function representation
+or just click a new FDF to change it.
+<p>
+In the lower left corner, you'll see radio buttons that indicate whether the
+current field is a scalar or vector.
+<p>
+Across the bottom of the dialog you'll see buttons that activate current 
+settings in this dialog. The Refresh button allows you to reload the 
+date/time stamp scrolled list. The More button pops up another dialog that
+gives you access to more options.
+<p>
+<h1><center>Gridded Vertical Profile Data Options</center></h1>
+<center><img src="gif/MVP2.gif"></center>
+<p>
+This dialog allows you to adjust particular aspects of how the data
+is presented. You can set the line type,
+vector symbol type, and a scale factor by which to multiply the field.
+A description of the current field is found near the bottom of the dialog.
+
+<p>
+<hr>
+
+</body>
+</html>

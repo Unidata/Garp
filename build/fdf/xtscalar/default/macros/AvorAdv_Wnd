@@ -1,0 +1,39 @@
+! GARP Macro Template
+!
+! Macro: Absolute Vorticity Advection and Winds.
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Absolute Vorticity Advection and Winds.
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Absolute Vorticity Advection
+chapter			= general
+fdf			= AvorAdvect_s-2
+pres_cint		= 4
+pres_cmax		= -4
+line_color		= 17
+line_type		= 5
+line_width		= 2
+line_label_frequency	= 2
+yaxis_upper		= 300
+operation		= run
+pres_cmin		= 4
+pres_cmax		=
+line_color		= 29
+line_type		= 1
+operation		= run
+!
+! Winds
+directory		= vpvectorfdf
+fdf			= Wind_kts
+line_color		= 27
+wind_symbol_color	= 27
+wind_symbol_size	= 0.8
+operation		= run
+
+
+! *** End of Parameters ***

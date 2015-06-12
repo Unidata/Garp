@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; HP-UX B.10.20 9000/715) [Netscape]">
+   <TITLE>GARP Supported Platforms</TITLE>
+</HEAD>
+<BODY TEXT="#400020" BGCOLOR="#FFFFFF" LINK="#7F7FFF" VLINK="#505090" ALINK="#FF0000" BACKGROUND="gif/COMET_Wallpaper.GIF" fgcolor="#000000">
+
+<HR>
+<CENTER>
+<H2>
+Image Data Saving in GARP 2.x</H2></CENTER>
+
+<HR>
+<BR>&nbsp;
+<BR>Image data is saved internally in GARP to provide instant pixel value
+readout on the <A HREF="StatusBar.html">Status Bar</A>. Starting with version
+2.0 of GARP, a major change was made to the way image data is saved internally.
+In previous versions of GARP, the size of the saved data was equal to the
+size of the GARP drawing window. In this version, the entire image is retained,
+regardless of the drawing window size. The reason this was done was to
+allow possible future image combination capability. But, this change also
+has implications on how much memory is consumed saving the image data.
+<BR>&nbsp;
+<BR>A typical usage scenario will illustrate the change. Assuming a GARP
+drawing window of 1100 by750 pixels , and a 640 x 480 image, the amount
+of memory required to save an image in the old version used to be 825KB
+(1100 * 750). In the new version, the amount of memory required is the
+size of the image, so about 307KB (640 * 480). This is a substantial savings
+in memory, especially for long loops. In addition, the data does not need
+to be re-read from disk for zoom operations or geographic area changes
+because the full image is already saved internally and can just be re-rendered.
+
+<P>However, the tradeoff comes when image sizes become larger than the
+GARP drawing window (about 825KB) . For example, an image of size 1400
+by 1700 now requires almost 2.4MB to save internally.&nbsp; This causes
+GARP to consume more memory than it used to. In situations where memory
+is scarce, the internal saving of image data can be toggled off via the
+<A HREF="StatusBar.html">Status Bar </A>dialog. If the user does this,
+more memory is freed up to view images, but pixel value readout will not
+be available.
+
+<P>
+<HR>
+</BODY>
+</HTML>

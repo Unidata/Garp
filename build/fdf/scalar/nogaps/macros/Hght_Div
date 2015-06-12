@@ -1,0 +1,32 @@
+! GARP Macro Template
+!
+! Macro: Geopotential Height and Divergence of observed wind (s^-1)
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Hght and Divergence
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= hidden
+fdf			= DivWind_s-1
+hilo			= n
+pres_cint		= 1
+pres_cmin 		= 1
+pres_cmax 		=
+line_type		= -2
+line_width		=
+scale 			= 5
+operation		= run
+pres_cmin 		= -100
+pres_cmax 		= -1
+operation		= run
+chapter			= general
+fdf			= Hght_m
+line_width		= 2
+line_color		= 5
+line_type		= 1
+operation		= run
+
+! *** End of Parameters ***

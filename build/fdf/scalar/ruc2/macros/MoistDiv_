@@ -1,0 +1,25 @@
+! GARP Macro Template
+!
+! Field: Divergence of observed wind (s^-1)
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Divergence of observed wind (s^-1)
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= hidden
+fdf			= MoistDiv_
+hilo			= n
+pres_cint		= 1
+pres_cmin 		= 1
+pres_cmax 		=
+line_type		= -2
+line_width		=
+operation		= run
+pres_cmin 		= -100
+pres_cmax 		= -1
+operation		= run
+
+! *** End of Parameters ***

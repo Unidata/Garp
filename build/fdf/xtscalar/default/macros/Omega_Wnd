@@ -1,0 +1,40 @@
+! GARP Macro Template
+!
+! Macro: Omega and Winds.
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Omega and Winds.
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Omega
+chapter			= general
+fdf			= Omega_mbs-1
+pres_cint		= 0.5
+pres_cmax		= -0.5
+line_color		= 6
+line_type		= 2
+line_width		= 2
+line_label_frequency	= 1
+yaxis_upper		= 300
+operation		= run
+pres_cmin		= 0.5
+pres_cmax		=
+line_color		= 2
+line_type		= 1
+line_width		= 1
+operation		= run
+!
+! Winds
+directory		= vpvectorfdf
+fdf			= Wind_kts
+line_color		= 3
+wind_symbol_color	= 3
+wind_symbol_size	= 0.8
+operation		= run
+
+
+! *** End of Parameters ***

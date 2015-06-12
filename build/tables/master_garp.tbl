@@ -1,0 +1,41 @@
+! master_garp.tbl
+!
+! This file contains a list of tables in the $NAWIPS/garp/tables 
+! directory.  These tables contain locations for various types of 
+! stations including county centroids and METAR, WFO, NEXRAD, profiler,
+! and upper air stations.
+!
+! The format for entries is given below.  The number of characters 
+! allowed per field is given in parentheses.  Only the LOC_TBL column
+! is actually used, however all other columns must also be present.
+!
+! You may add your own tables to this list, and they will be available
+! from the Options->Overlay->Stations window.  Here are the steps:
+!
+! 1) Add new tables to the END of this list.
+! 2) Add the index numbers (order in table below, i.e. 1 for sfstns.tbl)  
+!    of the new tables to the $NAIWPS/garp/Garp_defaults file in the 
+!    "stn_tables" key.  Give each table a label in the "stn_labels" key.
+!    Remember, the number of entries in the "stn_tables" key must equal 
+!    the number of entries in the "stn_labels" key, which must also equal 
+!    the number of entries in the table below.
+!
+! Log:
+! S.Drake/COMET  ??  Created
+! S.Drake/COMET  4/97 Updated for GARP 1.0.4
+! P.Bruehl/NWS	 4/97 Updated documentation
+!-----------------------------------------------------------------------
+!
+!                      STN/
+!                      BULL
+!DATA_TYPE   LOC_TBL   FLAG DATA_DIR                                 FILE_EXT
+!(12)        (12)       (1) (40)                                     (8)
+!
+none         sfstns.tbl   R $TEXT_DATA                               none
+none         wfo.tbl      R $TEXT_DATA                               none
+none         nexrad.tbl   B $TEXT_DATA                               none
+none         profiler.tbl B $TEXT_DATA                               none
+none         snstns.tbl   R $TEXT_DATA                               none
+none         counties.tbl R $TEXT_DATA                               none
+none         here.tbl     R $TEXT_DATA                               none
+none         chiz.tbl     R $TEXT_DATA                               none

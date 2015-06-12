@@ -1,0 +1,27 @@
+! GARP Macro Template
+!
+! Macro: Geopotential Height and Absolute Vorticity ( s^-1 )
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Divergence of observed wind (s^-1)
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= general
+fdf			= AvorObs_s-1
+level1			= 500
+hilo			= y
+colorh			= 2
+colorl			= 6
+symbolh			= X
+symboll			= N
+scale 			= 5
+operation		= run
+fdf			= Hght_m
+line_width		= 2
+line_color		= 5
+operation		= run
+
+! *** End of Parameters ***

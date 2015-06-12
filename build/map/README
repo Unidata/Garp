@@ -1,0 +1,7 @@
+02/22/96
+
+ The files in this directory tree were extracted from a tar file created by 
+Steve Chizwell at Unidata. This file, "topo_areas.tar.Z" was ftp'd from
+the gbuddy account on the Unidata ftp server (unidata.ucar.edu). Area files
+in the ./areas directory were created using 128 colors. A color table resides
+in ./tables .

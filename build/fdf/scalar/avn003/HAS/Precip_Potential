@@ -1,0 +1,116 @@
+! GARP Field Description File (FDF) 
+!
+! Field: Precipitation Potential in Entire Atm
+!
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= mul(quo(pwtr%eatm@0;2540),quo(add(add(relh,relh@850),relh@700),3))
+description		= Precipitation Potential stems from Precipitation Efficiency which \
+                        = has been used at NESDIS since the 1980s. \
+                        = The HAS unit at OHRFC is working on publishing a paper on its\
+                        = operational uses.  This is the first time \
+                        = that the concept of precip efficiency has been taken into a \
+                        = forecast mode. It combines mean RH below 700mb \
+                        = and multiples it by the PW.  For organized precipitation, we have\
+                        = found that precipitation generally occurs \
+                        = on within values of PP >= 0.8" in summer and PP >=0.3" to 0.4"\
+                        = in winter.  The highest areas is where the \
+                        = heaviest rain usually falls, again if the model is correct. \
+                        = Call HAS unit at OHRFC, 937-383-0527 for any \
+                        = questions.   
+
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Precipitation Potential
+vcoord			=
+level1			= 1000
+level2			=
+contour			= y
+fill			= y
+hilo			= n
+!					Pressure coordinates
+pres			=
+pres_cint		= 0.2
+pres_cmin 		= 0.4
+pres_cmax 		= 2.8
+pres_fint 		= 0.2
+pres_fmin 		= 0.8
+pres_fmax 		= 2.8
+!					Sigma coordinates
+sigma			=
+sigma_cint 		= 0.2
+sigma_cmin 		= 0.4
+sigma_cmax 		= 2.6
+sigma_fint 		= 0.2
+sigma_fmin 		= 0.6
+sigma_fmax 		= 2.6
+!					Theta coordinates
+theta			=
+theta_cint 		=
+theta_cmin 		=
+theta_cmax 		=
+theta_fint 		=
+theta_fmin 		=
+theta_fmax 		=
+!					User defined coordinates
+anyvcoord		=
+anyvcoord_cint		=
+anyvcoord_cmin		=
+anyvcoord_cmax		=
+anyvcoord_fint		=
+anyvcoord_fmin		=
+anyvcoord_fmax		=
+!					LINE
+line_color		= 1
+line_type		= 1
+line_width		= 1
+line_label_frequency	= 1
+!					SCALE
+scale 			= 0
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 1 
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= 
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		= y
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			= 0;22;21;20;19;18;17;16;15;14;13;13;13;13;13;13;13
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

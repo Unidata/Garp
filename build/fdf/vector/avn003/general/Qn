@@ -1,0 +1,76 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Qn Vectors
+!
+! S.Drake/COMET
+! *** Required Parameters ***
+type			= vector
+layer                   = y
+function  = s=sm5s(sm5s(sm5s(sm5s(sm5s(ldf(hght))))))//ldfh
+function2 = v=smul(4e9,vasv(qvec(ldfh,sm5v(vlav(geo))),kcrs(thrm(hght)))
+description		= Qn Vectors
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Qn Vectors
+vcoord			=
+level1			=
+level2			=
+contour			=
+fill			=
+hilo			=
+!					Pressure coordinates
+pres			=
+pres_cint		=
+pres_cmin 		=
+pres_cmax 		=
+pres_fint 		=
+pres_fmin 		=
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					SCALE
+scale 			= 0
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+!
+! *** Vector parameters ***
+!
+!					WIND
+wind_symbol		= an
+wind_symbol_color	=
+wind_symbol_size	= 0.5
+wind_symbol_width	=
+wind_symbol_type	=
+wind_symbol_headsize	= 0.5
+!					REFVEC
+refvec_mag		= 10
+refvec_x		=
+refvec_y		=
+refvec_textsize		=
+refvec_font		=
+refvec_width		=
+refvec_hw_flag		=
+refvec_label		=
+! *** End of Parameters ***

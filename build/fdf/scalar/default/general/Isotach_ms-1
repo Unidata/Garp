@@ -1,0 +1,98 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Isotachs of observed wind ( m/s ).
+!
+! 
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= SPED
+description		= Isotachs of observed wind ( m/s )
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Isotachs (m/s)
+vcoord			=
+level1			=
+level2			=
+contour			= y
+fill			= n
+hilo			= n
+!					Pressure coordinates
+pres			= 1000;850;500;300
+pres_cint		= 10;10;10;10;10
+pres_cmin 		= 5;5;5;5;5
+pres_cmax 		=
+pres_fint 		= 5;5;5;10;10
+pres_fmin 		= 10;20;30;30;40
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					Maximum Wind Speed Level
+mwsl_cint		= 5
+!					LINE
+line_color		=
+line_type		=
+line_width		=
+line_label_frequency	=
+!					SCALE
+scale 			= 0
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 35-500
+rangel 			= -5--4
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= .96
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		=
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			= 0;25;24;29;7;15;15;15;15;15;15;15;15;15
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

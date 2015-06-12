@@ -1,0 +1,51 @@
+<html>
+
+<TITLE>GARP Environment Varibles</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Environment Varibles</center></h1>
+<hr>
+<p>
+Part of the GARP configuration requires that you define the environment 
+variable GARP_PATH. This variable is a colon separated list of directories
+to search for the file "Garp_defaults". Having a 
+list of directories rather than a single directory provides more versatility
+in configuration. For example, you could configure the first directory in
+the list to point to a user's private directory and the second directory to a
+system default. Then, the user can place a copy of Garp_defaults in his 
+.app-defaults/ directory containing his personal preferences. For example:
+<pre>
+setenv GARP_PATH ${HOME}/.app-defaults/:/usr1/nawips/comet/garp/config/
+</pre>
+<p>
+You also need to put the files "Garp" and "Garp2" into a directory pointed to
+by the environment variable XUSERFILESEARCHPATH. This environment variable
+defines locations of X application resource files and should already be 
+defined as part of your system configuration. An example for the value of this
+variable is:
+<pre>
+XUSERFILESEARCHPATH=/home/comet/steve/.app-defaults/%N:/usr1/nawips/resource/%N:/usr/local/lib/app-defaults/%N
+</pre>
+<p>
+Other than GARP_PATH, the only environment variables required by GARP
+are those required by the core N-AWIPS distribution. However, it may be 
+convenient
+to also define an environment variable GARPHOME to use as a reference
+to the GARP distribution. This environment variable is required if you
+are building GARP using the makefiles provided with the distribution.
+For example, GARPHOME might look like:
+<pre>
+GARPHOME=/usr1/nawips/comet/garp
+</pre>
+
+<hr>
+</body>
+</html>

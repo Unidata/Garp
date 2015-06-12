@@ -1,0 +1,28 @@
+! GARP Macro Template
+!
+! Macro: Temperature and Dew Point Temperature in Celcius
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Temperature and Dew Point Temperature in Celcius
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Temperature in Celcius
+directory		= vpvectorfdf
+chapter			= general
+fdf			= AgeoWind_kts
+operation		= run
+directory		= vpscalarfdf
+fdf			= Temp_C
+line_color		= 2
+line_width		= 3
+operation		= run
+fdf			= Dwpt_C
+line_color		= 6
+line_type		= 10
+operation		= run
+
+! *** End of Parameters ***

@@ -1,0 +1,1120 @@
+<html>
+
+<TITLE>GARP FDF Description</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP FDF Description</center></h1>
+<hr>
+
+Field Description Files (FDF) comprise a list of key value pairs. These
+key value pairs are used to build GEMPAK variables and to pass 
+information to the Graphical User Interface (GUI). The user can create 
+and/or modify existing FDFs to customize the appearance of each field 
+that is plotted.
+<p>
+ FDF subdirectories must reside in a directory pointed to in the file
+"Garp_defaults".
+There is a root directory for scalar and vector fields for plan view,
+cross section, time/height sections and vertical profiles. Sub-directories
+of these root directories should be created to subdivide 
+the FDFs according to how you want to organize them. For example, you 
+could create a subdirectory for plan view scalar fields called 
+"Convective" for convection related FDFs. Note, each additional group 
+must be listed in the $GARPHOME/config/Garp_defaults file in the 
+xxxChapter keys (ScalarChapter, VectorChapter, etc.).
+<p>
+ Each FDF contains a short list of required parameters followed by a 
+list of parameters which may be changed to customize the appearance of 
+a given field. Following is a description of these parameters. Along 
+with the parameter name is a code for the projection it is relevant for,
+valid values, and in some cases the GEMPAK variable to which it applies.
+For GEMPAK related variables, you can access GEMPAK help files for more
+complete documentation.
+<p>
+<p>
+<pre>
+MPV = Model Plan View
+MXS = Model Cross Section
+MTH = Model Time/Height Section
+MVP = Model Vertical Profile
+</pre>
+<p>
+<p>
+<h2><center> *** Required Parameters *** </center></h2>
+<ul>
+<pre>
+<li>type:		MPV, MXS, MTH, MVP
+		scalar, vector, macro
+</pre>
+<p>
+ This parameter defines whether you are plotting a scalar field, a vector
+field, or a macro.  Since the FDF location in either the scalar or vector 
+directory is used to determine its type, this value is used to discriminate 
+an FDF from a <a href="Macros.html">macro</a>.
+
+<pre>
+<li>layer:		MPV
+		y, n
+</pre>
+<p>
+
+ This parameter defines whether the field is valid at a single level in
+the atmosphere or over a layer. If it is valid only for a single level, 
+the level2 button will be desensitized. Some products such as relative 
+humidity may be valid both at a single level and for a layer. For this kind
+of product, you can click the Layer radio button to sensitize the 
+level2 button.  Then you can choose the layer you are interested in 
+looking at using both the level1 and level2 buttons. You can click
+the Info button if you need information on valid layers for a given 
+product.
+
+
+<pre>
+<li>function:	MPV, MXS, MTH, MVP
+		( none )
+</pre>
+<p>
+
+The function parameter is the GEMPAK string that defines a GEMPAK field
+or function. For example, it is comparable to the GFUNC parameter in the
+GEMPAK routine GDCNTR. The <a href="FDFFunction.html">function parameter
+is overloaded</a> to allow you to create complicated grids.
+
+
+<pre>
+<li>description:	MPV, MXS, MTH, MVP
+		( none )
+</pre>
+<p>
+
+ This is a simple description of the field you are going to display.
+
+
+<h2><center> *** End of Required Parameters *** </center></h2>
+<hr>
+<h2><center> *** Significant Parameters *** </center></h2>
+
+<pre>
+<li>label:		MPV, MXS, MTH, MVP
+		( none )
+</pre>
+<p>
+
+ When the user clicks an FDF in a dialog, the file name for that FDF
+appears as a label above the function text field. Using this parameter
+the user can define a label other than the FDF name.
+
+
+<pre>
+<li>vcoord:		MPV, MXS, MTH, MVP
+		( model dependent )
+		GVCORD
+</pre>
+<p>
+
+This key defines the vertical coordinate. Valid vertical coordinates are
+given by 4-letter strings defined within GEMPAK. Garp does not 
+interpolate between vertical coordinates so you must use a vertical 
+coordinate that is valid for a given model.
+
+
+<pre>
+<li>level1:		MPV
+		( model, vertical coordinate dependent )
+		GLEVEL
+</pre>
+<p>
+
+ For single-level fields, this parameter defines the level at which the 
+current field will be plotted. For layered fields, this parameter 
+defines the lower level. When you click the level1 button, you will 
+get a list of vertical levels for the current vertical coordinate. The 
+vertical levels at which layered fields are defined may be different 
+from those given in this dialog. To double check which levels are valid or
+to define layered fields, click the Info button and look at a grid 
+file for this model. For vertical projections, level1 is the lowest 
+level of the plot.
+
+
+<pre>
+<li>level2:		MPV
+		( model, vertical coordinate dependent )
+		GLEVEL
+</pre>
+<p>
+
+ This parameter defines a second level for layered fields. For vertical
+projections, level2 is the top level of the plot.
+
+
+<pre>
+<li>contour:	MPV, MXS
+		( y, n )
+</pre>
+<p>
+
+ This is a boolean parameter that signals whether or not you want to 
+plot contour lines for scalar fields.
+
+<pre>
+<li>value:	MPV
+		( y, n )
+</pre>
+<p>
+
+ This is a boolean parameter that signals whether or not you want to 
+display numbers rather than lines for scalar fields.
+
+<pre>
+<li>fill:		MPV, MXS ( scalar fields )
+		( y, n )
+</pre>
+<p>
+
+ This is a boolean parameter that signals whether or not you want to
+color fill the displayed field.
+
+
+<pre>
+<li>hilo:		MPV ( scalar fields )
+		( y, n )
+</pre>
+<p>
+
+ This is a boolean parameter that signals whether or not you want to
+plot high/low symbols.
+
+<pre>
+<li>cint_parse:	MPV, MXS ( scalar fields )
+		( y, n )
+</pre>
+<p>
+
+ This boolean parameter signals whether or not you want to
+parse the "cint" string for a given vertical coordinate. For an
+explanation on what this parsing does, see the discussion below for the
+variable "pres". Not parsing "cint" allows you to use the GEMPAK method
+of overloading the "cint" parameter; that is, you explicitly define
+contour levels. The default value is "y".
+
+<pre>
+<li>fint_parse:	MPV, MXS ( scalar fields )
+		( y, n )
+</pre>
+<p>
+
+ This boolean parameter signals whether or not you want to
+parse the "fint" string for a given vertical coordinate. For an
+explanation on what this parsing does, see the discussion below for the
+variable "pres". Not parsing "fint" allows you to use the GEMPAK method
+of overloading the "fint" parameter; that is, you explicitly define
+color fill levels. The default value is "y".
+
+<pre>
+<li>pres:		MPV, MXS, MTH, MVP
+		( none )
+</pre>
+<p>
+
+ This parameter comprises a semicolon separated list of pressure levels.
+These levels will be used to define the contour interval, minimum and 
+maximum that will be used depending on the value of level1. The length
+of this list should be one less than that given for contour increments.
+For example, if pres = 1000;500;250 and cint = 10;20;30;40 then a 
+contour interval of 10 will be used below 1000 mb; a contour interval of
+20 will be used between 1000 mb and 500 mb; a contour interval of 30 will
+be used between 500 mb and 250 mb; and a contour interval of 40 will be 
+used above 250 mb. If the parameter "cint_parse" is set to "n", then
+the cint parameter will not be parsed but rather the list of values 
+will be used as contour intervals.
+
+
+<pre>
+<li>pres_cint:	MPV, MXS, MTH, MVP
+		( none )
+		CINT
+</pre>
+<p>
+
+ This parameter can be either monovalued or a list of contour intervals.
+If it is a list, it should be one value more than the "pres" parameter
+when "cint_parse" is "y".
+
+
+<pre>
+<li>pres_cmin:	MPV, MXS, MTH, MVP
+		( none )
+		CINT
+</pre>
+<p>
+
+This parameter describes a contour minimum value. Its usage is the same 
+as for pres_cint.
+
+
+<pre>
+<li>pres_cmax:	MPV, MXS, MTH, MVP
+		( none )
+		CINT
+</pre>
+<p>
+
+This parameter describes a contour maximum value. Its usage is the same
+as for pres_cint.
+
+
+<pre>
+<li>pres_fint:	MPV, MXS
+		( none )
+		FINT
+</pre>
+<p>
+
+ This parameter describes a color contour interval value. Its usage is
+the same as for pres_cint.
+
+
+<pre>
+<li>pres_fmin:	MPV, MXS
+		( none )
+		FINT
+</pre>
+<p>
+
+ This parameter describes a color contour minimum value. Its usage is 
+the same as for pres_cint.
+
+
+<pre>
+<li>pres_fmax:	MPV, MXS
+		( none )
+		FINT
+</pre>
+<p>
+
+ This parameter describes a color contour maximum value. Its usage is 
+the same as for pres_cint.
+<p>
+ There are virtually unlimited vertical coordinates that may be valid
+for your data set. To define contour and fill intervals for an arbitrary
+vertical coordinate, use the (typically) 4-letter identifier for that
+veritical coordinate as defined in your GEMPAK file and append the contour
+or fill string to it. For example, to define a contour interval for the
+freezing level, you would use "frzl_cint". Other vertical coordinates 
+you may see include:
+<pre>
+sgma		Sigma levels		
+thta		Isentropes
+hght		Geopotential height
+none		No coordinates (surface)
+frzl		Freezing level
+trop		Tropopause level
+mwsl		Maxmum wind speed level
+hagl		Height above ground level
+hybl		Hybrid level
+pagl		Pressure above ground level
+eta		Eta levels
+eatm		Entire atmosphere as a layer
+dpth		Depth below sea level
+lcly		Low cloud layer
+mcly		Middle cloud layer
+hcly		High cloud layer
+
+</pre>
+<p>
+
+<pre>
+<li>line_color:	MPV, MXS, MTH, MVP
+		( none )
+		LINE
+</pre>
+<p>
+
+This parameter defines a GEMPAK color number for a contour line or vector.
+
+
+<pre>
+<li>line_type:	MPV, MXS, MTH, MVP
+		( none )
+		LINE
+</pre>
+<p>
+
+ This parameter defines a contour line type.
+
+
+<pre>
+<li>line_width:	MPV, MXS, MTH, MVP
+		( none )
+		LINE
+</pre>
+<p>
+
+ This parameter defines a contour line width.
+
+
+<pre>
+<li>line_label_frequency:	MPV, MXS, MTH, MVP
+				( none )
+				LINE
+</pre>
+<p>
+ This parameter defines a contour label frequency.
+
+
+<pre>
+<li>scale:	MPV, MXS, MTH, MVP
+		( none )
+		SCALE
+</pre>
+<p>
+
+This parameter defines a multiplier of 10**(scale) by which to multiply 
+the grid. An advantage of using it is to ensure all the plots in an 
+animation have the same scale factor. The disadvantage is that a given
+scale factor may not be consistently germane.
+
+
+<pre>
+<li>colorh:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This defines the color of a high symbol.
+
+
+<pre>
+<li>colorl:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This defines the color of a low symbol.
+
+
+<pre>
+<li>symbolh:	MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This parameter defines the symbol to be used at "high" positions.
+
+
+<pre>
+<li>symboll:	MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This parameter defines the symbol to be used at "low" positions.
+
+
+<pre>
+<li>rangeh:	MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This parameter defines the value range for the high symbol.
+
+
+<pre>
+<li>rangel:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This parameter defines the value range for the low symbol.
+
+
+<pre>
+<li>radius:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+ This parameter defines the search radius.
+
+
+<pre>
+<li>counth:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+This parameter defines the maximum number of high symbols to be plotted. Note 
+the following information from GEMPAK:
+<pre> 
+      It is common for HILO symbols near the edge of the display to be
+      hidden when hardware text font is used. Therefore, when using
+      hardware text font, the number of HILO symbols displayed may be
+      slightly less than what the user specifies.
+</pre>
+
+<pre>
+<li>countl:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This parameter defines the maximum number of low symbols to be plotted.
+
+
+<pre>
+<li>interp:		MPV
+		( none )
+		HILO
+</pre>
+<p>
+
+ This parameter defines an interpolation flag that specifies whether 
+the values and locations of the highs and lows will be at grid points, 
+or will be interpolated between grid points.  The default is NO.
+
+
+<pre>
+<li>sizes:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Symbol text size.
+
+
+<pre>
+<li>sizev:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Value text size.
+
+
+<pre>
+<li>position:	MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Plot value at this position.
+
+
+<pre>
+<li>fonts:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Symbol font type.
+
+
+<pre>
+<li>fontv:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+ Value font type.
+
+<pre>
+<li>widths:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Symbol font width.
+
+<pre>
+<li>widthv:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Value font width.
+
+<pre>
+<li>hwflgs:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Symbol hardware/software flag.
+
+
+<pre>
+<li>hwflgv:		MPV
+		( none )
+		HLSYM
+</pre>
+<p>
+
+ Value hardware/software flag.
+
+
+<pre>
+<li>colorbar:	MPV, MXS
+		( none )
+		CLRBAR
+</pre>
+<p>
+
+ Label and the bounding box color.
+
+
+<pre>
+<li>colorbar_orientation:	MPV, MXS
+			( none )
+			CLRBAR
+</pre>
+<p>
+
+ Colorbar orientation.
+
+
+<pre>
+<li>colorbar_anchor:	MPV, MXS
+			( none )
+			CLRBAR
+</pre>
+<p>
+
+ Colorbar anchor.
+
+
+<pre>
+<li>colorbar_x:	MPV, MXS
+		( none )
+		CLRBAR
+</pre>
+<p>
+
+ Colorbar x anchor position.
+
+
+<pre>
+<li>colorbar_y:	MPV, MXS
+		( none )
+		CLRBAR
+</pre>
+<p>
+
+ Colorbar y anchor position.
+
+<pre>
+<li>colorbar_length:	MPV, MXS
+			( none )
+			CLRBAR
+</pre>
+<p>
+
+ Colorbar length.
+
+
+<pre>
+<li>colorbar_width:	MPV, MXS
+		( none )
+		CLRBAR
+</pre>
+<p>
+
+ Colorbar width.
+
+
+<pre>
+<li>colorbar_frequency:	MPV, MXS
+			( none )
+			CLRBAR
+</pre>
+<p>
+
+ Colorbar label frequency.
+
+
+<pre>
+<li>subbox:		MPV, MXS
+		( none )
+		CONTUR
+</pre>
+<p>
+
+ Contouring subbox factor.
+
+
+<pre>
+<li>smoothing:	MPV, MXS
+		( none )
+		CONTUR
+</pre>
+<p>
+
+ Number of smoothing passes.
+
+<pre>
+<li>text_size:	MPV, MXS, MTH, MVP
+		( none )
+		TEXT
+</pre>
+<p>
+
+ Text size multiplier for default text.
+
+<pre>
+<li>text_font:	MPV, MXS, MTH, MVP
+		( none )
+		TEXT
+</pre>
+<p>
+
+  Font number.
+
+<pre>
+<li>text_width:	MPV, MXS, MTH, MVP
+		( none )
+		TEXT
+</pre>
+<p>
+
+  Font width.
+
+<pre>
+<li>text_hw_flag:	MPV, MXS, MTH, MVP
+		( hw, sw )
+		TEXT
+</pre>
+<p>
+
+  Hardware, software flag.
+
+<pre>
+<li>fline:		MPV, MXS
+		( none )
+		FLINE
+</pre>
+<p>
+
+ Color fill list.
+
+<pre>
+<li>skip_contour:	MPV
+		( none )
+		SKIP
+</pre>
+<p>
+
+ Thinning value.
+
+
+<pre>
+<li>skip_plot_x:	MPV
+		( none )
+		SKIP
+</pre>
+<p>
+
+ X-point for data display.
+
+
+<pre>
+skip_plot_y:	MPV
+		( none )
+		SKIP
+</pre>
+<p>
+ Y-point for data display.
+
+
+<pre>
+ptype_axis:	MXS, MTH, MVP
+		( none )
+		PTYPE
+</pre>
+<p>
+
+ Type of vertical axis.
+
+
+<pre>
+<li>ptype_left:	MXS, MTH, MVP
+		( none )
+		PTYPE
+</pre>
+<p>
+
+ Left margin of plot.
+
+
+<pre>
+<li>ptype_bottom:	MXS, MTH, MVP
+		( none )
+		PTYPE
+</pre>
+<p>
+
+ Bottom margin of plot.
+
+
+<pre>
+<li>ptype_right:	MXS, MTH, MVP
+		( none )
+		PTYPE
+</pre>
+<p>
+
+ Right margin of plot.
+
+
+<pre>
+<li>ptype_top:	MXS, MTH, MVP
+		( none )
+		PTYPE
+</pre>
+<p>
+
+ Top margin of plot.
+
+
+<pre>
+<li>xaxis_lower:	MVP
+		( none )
+		XAXIS
+</pre>
+<p>
+
+ Lower bound of horizontal axis.
+
+
+<pre>
+<li>xaxis_upper:	MVP
+                ( none )
+		XAXIS
+</pre>
+<p>
+
+ Upper bound of horizontal axis.
+
+
+<pre>
+<li>xaxis_increment:	MVP
+			( none )
+			XAXIS
+</pre>
+<p>
+
+ Increment of horizontal axis.
+
+
+<pre>
+<li>xaxis_lbfq:	MVP
+		( none )
+		XAXIS
+</pre>
+<p>
+
+ Label frequency of horizontal axis.
+
+
+<pre>
+<li>xaxis_gdfq:	MVP
+		( none )
+		XAXIS
+</pre>
+<p>
+
+ Grid line frequency of horizontal axis.
+
+
+<pre>
+<li>xaxis_tkfq:	MVP
+		( none )
+		XAXIS
+</pre>
+<p>
+
+ Tick frequency of horizontal axis.
+
+
+<pre>
+<li>yaxis_lower:	MXS, MTH, MVP
+		( none )
+		YAXIS
+</pre>
+<p>
+
+ Lower bound of vertical axis.
+
+
+<pre>
+<li>yaxis_upper:	MXS, MTH, MVP
+                ( none )
+		YAXIS
+</pre>
+<p>
+
+ Upper bound of vertical axis.
+
+
+<pre>
+<li>yaxis_increment:	MXS, MTH, MVP
+			( none )
+			YAXIS
+</pre>
+<p>
+
+ Increment of vertical axis.
+
+
+<pre>
+<li>yaxis_lbfq:	MXS, MTH, MVP
+		( none )
+		YAXIS
+</pre>
+<p>
+
+ Label frequency of vertical axis.
+
+
+<pre>
+<li>yaxis_gdfq:	MXS, MTH, MVP
+		( none )
+		YAXIS
+</pre>
+<p>
+
+ Grid line frequency of vertical axis.
+
+
+<pre>
+<li>yaxis_tkfq:	MXS, MTH, MVP
+		( none )
+		YAXIS
+</pre>
+<p>
+
+ Tick frequency of vertical axis.
+
+
+<pre>
+<li>wind_symbol:	MPV, MXS, MTH		( vector fields )
+		( none )
+		WIND
+</pre>
+<p>
+
+ Wind symbol.
+
+
+<pre>
+<li>wind_symbol_size:	MPV, MXS, MTH	( vector fields )
+			( none )
+			WIND
+</pre>
+<p>
+
+ Wind symbol size.
+
+
+<pre>
+<li>wind_symbol_width:	MPV, MXS, MTH	( vector fields )
+			( none )
+			WIND
+</pre>
+<p>
+
+ Wind symbol width.
+
+
+<pre>
+<li>wind_symbol_type:	MPV, MXS, MTH	( vector fields )
+			( none )
+			WIND
+</pre>
+<p>
+
+ Wind symbol plot type.
+
+
+<pre>
+<li>wind_symbol_headsize:	MPV, MXS, MTH	( vector fields )
+			( none )
+			WIND
+</pre>
+<p>
+
+ Wind symbol headsize.
+
+
+<pre>
+<li>refvec_mag:	MPV, MTH		( vector fields )
+		( none )
+		REFVEC
+</pre>
+<p>
+
+ Unit length of reference vector.
+
+
+<pre>
+<li>refvec_x:	MPV, MTH		( vector fields )
+		( none )
+		REFVEC
+</pre>
+<p>
+
+ Reference vector x position.
+
+
+<pre>
+<li>refvec_y:	MPV, MTH		( vector fields )
+		( none )
+		REFVEC
+</pre>
+<p>
+
+ Reference vector y position.
+
+
+<pre>
+<li>refvec_textsize:	MPV, MTH	( vector fields )
+			( none )
+			REFVEC
+</pre>
+<p>
+
+ Reference vector text size.
+
+
+<pre>
+<li>refvec_font:	MPV, MTH		( vector fields )
+		( none )
+		REFVEC
+</pre>
+<p>
+
+ Reference vector font.
+
+
+<pre>
+<li>refvec_width:	MPV, MTH		( vector fields )
+		( none )
+		REFVEC
+</pre>
+<p>
+
+ Reference vector width.
+
+
+<pre>
+<li>refvec_hw_flag:	MPV, MTH		( vector fields )
+		( none )                
+		REFVEC
+</pre>
+<p>
+
+ Reference vector hardware flag.
+
+
+<pre>
+<li>refvec_label:	MPV, MTH		( vector fields )
+			( none )                
+			REFVEC
+</pre>
+<p>
+
+ Reference vector label.
+
+
+<pre>
+<li>taxis_dir:	MTH
+		( R )
+		TAXIS
+</pre>
+<p>
+ Direction of time axis.
+
+
+<pre>
+<li>taxis_start:  	MTH
+                  ( none )
+                  TAXIS
+</pre>
+<p>
+ Start time for time axis.
+
+
+<pre>
+<li>taxis_stop:	MTH
+		( none )
+		TAXIS
+</pre>
+<p>
+ End time for time axis.
+
+
+<pre>
+<li>taxis_inc:	MTH
+		( none )
+		TAXIS
+</pre>
+<p>
+ Time increment in hours and minutes.
+
+
+<pre>
+<li>taxis_lb:	MTH
+		( none )
+		TAXIS
+</pre>
+<p>
+ Time axis label frequency.
+
+
+<pre>
+<li>taxis_gl:	MTH
+		( none )
+		TAXIS
+</pre>
+<p>
+ Time axis grid line frequency.
+
+
+<pre>
+<li>taxis_tm:	MTH
+		( none )
+		TAXIS
+</pre>
+<p>
+ Time axis tick mark frequency.
+
+
+
+</ul>
+<h2><center> *** End of Significant Parameters *** </center></h2>
+<hr>
+
+</body>
+</html>

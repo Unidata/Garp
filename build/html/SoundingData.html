@@ -1,0 +1,44 @@
+<html>
+
+<TITLE>GARP Upper-Air Data</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>Upper Air Data</center></h1>
+<hr>
+<h2>Horizontal Projection</h2>
+<center><img src="gif/Sounding1.gif"></center>
+<p>
+Sounding data can be displayed in either a plan view or profile projection.
+When displaying it in plan view, you will need only to choose the date/time
+stamps and vertical level you want to display. By default, time filtering
+is on to limit date/times to 00Z and 12Z times. You can toggle this off
+to see intermediate times but these will likely be very sparse. You can
+click the Station Layout to determine which station parameters you want 
+toggled
+on. Levels in the Pressure Level button are configurable in "Garp_defaults".
+<h2>Vertical Projection</h2>
+<center><img src="gif/Sounding2.gif"></center>
+<p>
+From this dialog you can display a vertical profile of a sounding at a 
+given upper-air station. The available date/times are dynamically generated
+by reading your data files whereas the station list at the bottom of this 
+dialog is read from a static file. You could edit this static file in
+$GARPHOME/tables and put your favorite stations near the top of the list
+to make them more easily accessible. You can display more than one station
+and date/time within a display loop, if desired. To the left of the date/time
+scrolled list are controls for display type, time filtering and line type.
+If you overlay vertical profiles in consecutive calls from this dialog,
+the overlay color will be indexed.
+<p>
+<hr>
+
+</body>
+</html>

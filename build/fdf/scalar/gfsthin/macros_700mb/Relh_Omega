@@ -1,0 +1,62 @@
+! GARP Macro Template
+!
+! Macro: Relative humidity and Omega.
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Relative humidity and Omega
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Color fill Relative humidity.
+chapter			= general
+fdf			= RelHum_%
+function                = sm5s(sm5s(relh))
+level1			= 700
+fill			= y
+cint_parse              = n
+fint_parse		= n
+pres_cint		= 10;20;80;90
+line_color		= 32
+line_width		= 1
+line_label_frequency	= 1
+pres_fint		= 10;30;70;80;90
+fline			= 18;8;0;23;22;21
+operation		= run
+fill			= n
+pres_cint		= 30;40;50;60;70
+line_color		= 23
+line_width		= 2
+line_label_frequency	= 2
+operation		= run
+!
+! Overlay Geopotential height.
+fdf			= Hght_m
+pres_cint		= 3
+scale			= -1
+line_color		= 20
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 1
+operation		= run
+!
+! Overlay Omega.
+fdf			= Omega_mbs-1
+cint_parse              = n
+pres_cint		= -9;-7;-5;-3;-1
+line_color		= 6
+line_type		= 5
+line_width		= 2
+line_label_frequency	= 1
+scale			= 3
+operation		= run
+pres_cint		= 1;3;5;7;9
+line_color		= 24
+line_type		= 1
+line_width		= 1
+operation		= run
+
+
+! *** End of Parameters ***

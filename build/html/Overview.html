@@ -1,0 +1,167 @@
+<html>
+
+<Title>GARP Overview</Title>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<center><h1>GARP Overview</h1></center>
+<hr>
+
+<p>
+<h3>
+GARP provides a GUI around many of the capabilities of GEMPAK.  Here is
+an overview of some of GARP's features. 
+</h3>
+
+<p>
+<strong>
+General data display features include
+</strong>
+<p>
+<ul>
+<strong>
+<li> Image data
+</strong>
+<ul>
+<li> Satellite (MCIDAS AREA and GINI formats)
+<li> Radar (NIDS/Level III and WSI NOWrad formats)
+<li> Images are displayed in the projection specified in the 
+        file (no remapping)
+</ul>
+<strong>
+<li>  Model data
+</strong>
+<ul>
+<li> Can display any model data in GEMPAK file format
+<li> Display plan view, cross-section, time height and vertical profiles
+<li> Time match against analysis data or a forecast run
+<li> Run <a href="Macros.html">macros</a> to create complex displays
+</ul>
+<strong>
+<li>  Observed data (in GEMPAK file format)
+</strong>
+<ul>
+<li> METARs and any other observation data in a GEMPAK surface data file
+<li> Upper-air data
+<li> Wind profiler data
+</ul>
+</ul>
+<strong>
+Any graphics data (model or observed) can be overlayed on any 
+    other data type in the same display mode (i.e., plan view on plan view,
+    cross section on cross section)
+<p>
+User control of model diagnostic for display of vector and scalar data
+</strong>
+<ul>
+<li>User selection of level, contour or color fill interval, line types, and other 
+    general display characteristics via GUI control and user defined 
+<a href="FDF.html">
+FDFs (Field Description Files)
+</a>
+
+<li>Ability to type in a GEMPAK style GFUNC or GVECT
+
+<li>User selection for vector data symbols (barbs, arrows, streamlines)
+<li>Display contents of model data files in a text window
+</ul>
+<strong>
+User control of layout of the station symbols 
+</strong>
+<ul>
+<li>For upper air station symbol
+<li>For surface station symbol
+</ul>
+<strong>
+Continuous data readouts from the cursor
+</strong>
+<ul>
+<li>Latitude and longitude
+<li>Raw pixel value for satellite and radar data
+<li>Reflectivity or velocity values for radar data
+<li>Brightness temperature for satellite data
+<li>Distance away from a selected point
+</ul>
+<strong>
+GUI control over color enhancement tables for imagery
+</strong>
+<ul>
+<li>Selection of predefined color enhancement files
+<li>Dynamically roll the color bar
+<li>Invert color bar
+<li>Dynamically fade or increase the brightness of an image
+</ul>
+<strong>
+Viewing Controls
+</strong>
+<ul>
+<li>Animate data with controls for loop speed and dwell
+<li>Control over geographic regions being displayed
+<ul>
+<li>User selection of predefined areas (North America, U.S., 
+        regions, Alaska, Hawaii, Canada)
+<li>Use keyboard to type in GEMPAK-style GAREA
+<li>Rubber-band box or centered zoom (redrawn using 
+        more data)
+<li>Frame editor lets user remove data frames from an
+        animation loop
+
+</ul>
+</ul>
+<strong>
+Overlay static plots (NEXRAD site names, radar range rings)
+<p>
+Can view either real-time or COMET case study data
+</strong>
+<strong>
+<p>
+Operating System Support
+</strong>
+<p>
+<ul>
+<li>Tested on Solaris 2.x and HPUX 10.x
+<li>Ported to other<a href="SupportedPlatforms.html"> supported platforms</a>
+</ul>
+<p>
+<strong>Other Information:
+<ul>
+<li>GARP <a href="http://www.unidata.ucar.edu/packages/gempak/tutorial/garp.html">tutorial</a>
+<li>GARP <a href="http://www.comet.ucar.edu/garp">home page</a>
+</strong>
+<p>
+
+<br>
+
+<strong>Caveats:</strong><p>
+<ul>
+<li>Currently, GARP has automatic time matching across data types.
+For example, if you choose to plot a 5-hour series of satellite images
+and then choose to overlay surface observations on top of the satellite
+images, the obs date/times which correspond to the selected satellite
+images will be pre-selected for you.  You are free to change the
+date/times selected if you turn off time matching.
+See the <a href="Time.html">time matching</a> page for details.
+<p>
+<li>Please note that currently, GARP will NOT allow you to combine multiple
+images.  (For example, a satellite image and a radar image or an IR
+and a VIS satellite image.)
+<p>
+</ul>
+</ul>
+
+<hr>
+<I>For more information on the COMET Program, contact: P.O. Box
+3000, Boulder, CO 80307-3000; (phone) 303-497-8470; (fax) 303-497-8491;
+(e-mail) <A NAME="DDE_LINK5"></A><A HREF="mailto:info@comet.ucar.edu">info@comet
+.ucar.edu</A>
+<BR>
+
+</body>
+</html>

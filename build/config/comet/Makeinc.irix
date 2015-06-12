@@ -1,0 +1,92 @@
+###################################################################
+###################################################################
+#
+#       Makefile for Nawips 5.2.1
+#               Top level
+#               COMET 7/95 D.Himes
+#               Original: Unidata 7/94 P.Bruehl
+#
+####################################################################
+####################################################################
+####################################################################
+#
+# NOTE:  This file is included by the
+#             $(NAWIPS)/config/Makeinc.common
+#
+#################################################################
+#
+# This file is included by the $(NAWIPS)/config/Makeinc.common
+# file (which is directly included by all the Nprogram makefiles
+# and indirectly by the Gempak makefiles.
+#
+# It defines the paths and filenames needed to compile and install
+# Nawips.
+#
+# Please configure the settings below to match the configuration
+# of your system.
+#
+#################################################################
+#
+##-------------------------------------------------------------
+#
+########  This configuration file has never been test!!!!!!!! #############
+PLATFORM = IRIX
+OPSYS    = IRIX
+OS       = IRIX
+
+
+#
+##  Fortran and C compiler
+#
+CC = cc 
+FC = f77
+
+#
+##  Misc. utilities
+#       
+INSTALL = cp
+RANLIB = :
+
+#
+## C Options include: -O optimization; -p profiling; -g debugging
+#
+##### NMC uses -cckr in their build scripts, but some of the "n"
+##### programs use ansi-c.
+#
+COPT = -O -DUNDERSCORE -D_POSIX_SOURCE -D$(OS)
+FOPT = -O
+
+
+#
+## System libraries needed
+#
+SYSLIBS =
+
+#
+## Location of MOTIF library and include files (Solaris 2.4)
+#
+MOTIFLIBS = -lXm
+MOTIFINC =
+
+#
+## Location of X11 library and include files  (Solaris 2.4)
+#
+X11LIBS    = -lXt -lX11 -lPW
+XWLIBDIR   =
+
+X11INC     =
+XWINCDIR   = $(X11INC)
+
+
+##-------------------------------------------------------------
+##
+##  Define compile,link,archive, & remove variables 
+##  (leave as is)
+##
+#
+CFLAGS    = $(COPT) 
+FFLAGS    = $(FOPT) 
+COMPILE.f = $(FC) $(FFLAGS)  -c
+LINK.f    = $(FC) $(FFLAGS) $(LDFLAGS)
+COMPILE.c = $(CC) $(CFLAGS)  -c
+LINK.c	  = $(CC) $(LDFLAGS)

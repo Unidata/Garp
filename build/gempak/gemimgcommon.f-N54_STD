@@ -1,0 +1,377 @@
+C***********************************************************************
+C*
+C*	Copyright 1996, University Corporation for Atmospheric Research.
+C*
+C*	gemimgcommon.f
+C*
+C*	Utility for getting and setting GEMPAK image common block
+C*	variables.
+C*
+C*	NOTE: This module will need to be updated if the GEMPAK image
+C*	common block (imgdef.cmn) changes in any way.
+C*
+C*	History:
+C*
+C*	06/97	COMET	Original copy
+C*	10/97	COMET	This version is compliant with the standard 
+C*			NAWIPS5.4 release.
+C*
+C************************************************************************
+C
+C
+	INTEGER FUNCTION GETIMGCOMINT ( item )
+C***********************************************************************
+C
+C* This subroutine returns the value of an INTEGER item from the
+C* GEMPAK image common block.
+C*
+C* Input parameters:
+C*	ITEM		CHAR*(*)	Name of desired item
+C*
+C* Returned value:
+C*	GETIMGCOMINT	INTEGER		Returned value or -9999 for
+C*					invalid item
+C*	
+C***********************************************************************
+C
+	INCLUDE		'imgdef.cmn'
+C
+	CHARACTER*(*)	item
+	INTEGER		GETIMGCOMINT
+C
+C-----------------------------------------------------------------------
+C
+	IF ( item (1:6) .eq. 'imftyp' ) THEN
+	    GETIMGCOMINT = imftyp
+	ELSE IF ( item (1:6) .eq. 'imbank' ) THEN
+	    GETIMGCOMINT = icbank
+	ELSE IF ( item (1:6) .eq. 'imdoff' ) THEN
+	    GETIMGCOMINT = idoffs
+	ELSE IF ( item (1:6) .eq. 'imldat' ) THEN
+	    GETIMGCOMINT = lendat
+	ELSE IF ( item (1:6) .eq. 'imnpix' ) THEN
+	    GETIMGCOMINT = ifxsiz
+	ELSE IF ( item (1:6) .eq. 'imnlin' ) THEN
+	    GETIMGCOMINT = ifysiz
+	ELSE IF ( item (1:6) .eq. 'imdpth' ) THEN
+	    GETIMGCOMINT = ifzsiz
+	ELSE IF ( item (1:6) .eq. 'imleft' ) THEN
+	    GETIMGCOMINT = ixlef
+	ELSE IF ( item (1:5) .eq. 'imtop'  ) THEN
+	    GETIMGCOMINT = iytop
+	ELSE IF ( item (1:6) .eq. 'imrght' ) THEN
+	    GETIMGCOMINT = ixrit
+	ELSE IF ( item (1:5) .eq. 'imbot'  ) THEN
+	    GETIMGCOMINT = iybot
+	ELSE IF ( item (1:6) .eq. 'imbswp' ) THEN
+	    GETIMGCOMINT = ibswap
+	ELSE IF ( item (1:6) .eq. 'imnchl' ) THEN
+	    GETIMGCOMINT = nchnls
+	ELSE IF ( item (1:6) .eq. 'imprsz' ) THEN
+	    GETIMGCOMINT = ipresz
+	ELSE IF ( item (1:6) .eq. 'imdcsz' ) THEN
+	    GETIMGCOMINT = idocsz
+	ELSE IF ( item (1:6) .eq. 'imclsz' ) THEN
+	    GETIMGCOMINT = icalsz
+	ELSE IF ( item (1:6) .eq. 'imlvsz' ) THEN
+	    GETIMGCOMINT = ilevsz
+	ELSE IF ( item (1:6) .eq. 'imvald' ) THEN
+	    GETIMGCOMINT = ivlcod
+	ELSE IF ( item (1:6) .eq. 'imrdfl' ) THEN
+	    GETIMGCOMINT = iradfl
+	ELSE IF ( item (1:6) .eq. 'immnpx' ) THEN
+	    GETIMGCOMINT = minpv
+	ELSE IF ( item (1:6) .eq. 'immxpx' ) THEN
+	    GETIMGCOMINT = maxpv
+	ELSE IF ( item (1:6) .eq. 'imsorc' ) THEN
+	    GETIMGCOMINT = imsorc
+	ELSE IF ( item (1:6) .eq. 'imtype' ) THEN
+	    GETIMGCOMINT = imtype
+	ELSE IF ( item (1:6) .eq. 'imradf' ) THEN
+C
+C*	The NAWIPS 5.4 IMGDEF common block did not have an equivelant
+C*	variable for imradf. So, we resort to checking the product source.
+C
+	    if ( imsorc .eq. 7 ) then
+		GETIMGCOMINT = 1
+	    else
+		GETIMGCOMINT = 0
+	    endif
+
+	ELSE IF ( item (1:6) .eq. 'imdate' ) THEN
+	    GETIMGCOMINT = imdate
+	ELSE IF ( item (1:6) .eq. 'imtime' ) THEN
+	    GETIMGCOMINT = imtime
+	ELSE IF ( item (1:6) .eq. 'imndlv' ) THEN
+	    GETIMGCOMINT = numdlv
+	ELSE
+	    GETIMGCOMINT = -9999
+	ENDIF
+C
+	RETURN
+	END
+C
+C*
+C
+	REAL FUNCTION GETIMGCOMFLT ( item )
+C***********************************************************************
+C
+C* This subroutine returns the value of a FLOAT item from the
+C* GEMPAK image common block
+C*
+C* Input parameters:
+C*	ITEM		CHAR*(*)	Name of desired item
+C*
+C* Output Paramaters:
+C*	GETIMGCOMFLT	REAL		Returned value or -9999 for
+C*					invalid item
+C*	
+C***********************************************************************
+C
+	INCLUDE		'imgdef.cmn'
+C
+	CHARACTER*(*)	item
+	REAL		GETIMGCOMFLT
+C
+C-----------------------------------------------------------------------
+C
+	IF ( item (1:6) .eq. 'rmxres' ) THEN
+	    GETIMGCOMFLT = xpxres
+	ELSE IF ( item (1:6) .eq. 'rmyres' ) THEN
+	    GETIMGCOMFLT = ypxres
+	ELSE IF ( item (1:6) .eq. 'rmxysc' ) THEN
+	    GETIMGCOMFLT = xyiscl
+	ELSE IF ( item (1:6) .eq. 'rmbelv' ) THEN
+	    GETIMGCOMFLT = rbelev
+	ELSE
+	    GETIMGCOMFLT = -9999.
+	ENDIF
+C
+	RETURN
+	END
+C
+C*
+C
+	INTEGER FUNCTION GETIMGCOMSTR ( item, index, cval )
+C***********************************************************************
+C
+C* This subroutine returns the value of a STRING item from the
+C* GEMPAK image common block
+C*
+C* Input parameters:
+C*	ITEM		CHAR*(*)	Name of desired item
+C*	INDEX		INTEGER		For array items, the index
+C*
+C* Output Parameters:
+C*	CVAL		CHAR*(*)	Value of string
+C*	GETIMGCOMSTR	INTEGER		Length of string					
+C*	
+C***********************************************************************
+C
+	INCLUDE		'imgdef.cmn'
+C
+	CHARACTER*(*)	item, cval
+	INTEGER		GETIMGCOMSTR
+C
+C-----------------------------------------------------------------------
+C	
+	IF ( item (1:6) .eq. 'cmblev' ) THEN
+	    cval = cblevs (index)
+	ELSE IF ( item (1:6) .eq. 'cmbunt' ) THEN
+	    cval = cbunit
+	ELSE IF ( item (1:6) .eq. 'cmsorc' ) THEN
+	    cval = srcnam
+	ELSE IF ( item (1:6) .eq. 'cmtype' ) THEN
+	    cval = typnam
+	ELSE IF ( item (1:6) .eq. 'cmlutf' ) THEN
+	    cval = lutf
+	ELSE IF ( item (1:6) .eq. 'cmfile' ) THEN
+	     cval= imfile
+	ELSE IF ( item (1:6) .eq. 'cmcalb' ) THEN
+	    cval = calib
+	ELSE
+	    cval = ' '
+	ENDIF
+C
+	CALL ST_LSTR ( cval, GETIMGCOMSTR, ier )
+	RETURN
+	END
+C
+C*
+C
+	INTEGER FUNCTION SETIMGCOMINT ( item, ival )
+C***********************************************************************
+C
+C* This subroutine sets the value of an INTEGER item in the
+C* GEMPAK image common block.
+C*
+C* Input parameters:
+C*	ITEM		CHAR*(*)	Name of desired item
+C*	IVAL		INTEGER		Value of item
+C*
+C* Returned value:
+C*	GETIMGCOMINT	INTEGER		0:     Success
+C*					-9999: Invalid item
+C*	
+C***********************************************************************
+C
+	INCLUDE		'imgdef.cmn'
+C
+	CHARACTER*(*)	item
+	INTEGER		SETIMGCOMINT
+C
+C-----------------------------------------------------------------------
+C
+	SETIMGCOMINT = 0
+C
+	IF ( item (1:6) .eq. 'imftyp' ) THEN
+	    imftyp = ival
+	ELSE IF ( item (1:6) .eq. 'imbank' ) THEN
+	    icbank = ival
+	ELSE IF ( item (1:6) .eq. 'imdoff' ) THEN
+	    idoffs = ival
+	ELSE IF ( item (1:6) .eq. 'imldat' ) THEN
+	    lendat = ival
+	ELSE IF ( item (1:6) .eq. 'imnpix' ) THEN
+	    ifxsiz = ival
+	ELSE IF ( item (1:6) .eq. 'imnlin' ) THEN
+	    ifysiz = ival
+	ELSE IF ( item (1:6) .eq. 'imdpth' ) THEN
+	    ifzsiz = ival
+	ELSE IF ( item (1:6) .eq. 'imleft' ) THEN
+	    ixlef = ival
+	ELSE IF ( item (1:5) .eq. 'imtop'  ) THEN
+	    iytop = ival
+	ELSE IF ( item (1:6) .eq. 'imrght' ) THEN
+	    ixrit = ival
+	ELSE IF ( item (1:5) .eq. 'imbot'  ) THEN
+	    iybot = ival
+	ELSE IF ( item (1:6) .eq. 'imbswp' ) THEN
+	    ibswap = ival
+	ELSE IF ( item (1:6) .eq. 'imnchl' ) THEN
+	    nchnls = ival
+	ELSE IF ( item (1:6) .eq. 'imprsz' ) THEN
+	    ipresz = ival
+	ELSE IF ( item (1:6) .eq. 'imdcsz' ) THEN
+	    idocsz = ival
+	ELSE IF ( item (1:6) .eq. 'imclsz' ) THEN
+	    icalsz = ival
+	ELSE IF ( item (1:6) .eq. 'imlvsz' ) THEN
+	    ilevsz = ival
+	ELSE IF ( item (1:6) .eq. 'imvald' ) THEN
+	    ivlcod = ival
+	ELSE IF ( item (1:6) .eq. 'imrdfl' ) THEN
+	    iradfl = ival
+	ELSE IF ( item (1:6) .eq. 'immnpx' ) THEN
+	    minpv = ival
+	ELSE IF ( item (1:6) .eq. 'immxpx' ) THEN
+	    maxpv = ival
+	ELSE IF ( item (1:6) .eq. 'imsorc' ) THEN
+	    imsorc = ival
+	ELSE IF ( item (1:6) .eq. 'imtype' ) THEN
+	    imtype = ival
+	ELSE IF ( item (1:6) .eq. 'imradf' ) THEN
+	    imradf = ival
+	ELSE IF ( item (1:6) .eq. 'imdate' ) THEN
+	    imdate = ival
+	ELSE IF ( item (1:6) .eq. 'imtime' ) THEN
+	    imtime = ival
+	ELSE IF ( item (1:6) .eq. 'imndlv' ) THEN
+	    numdlv = ival
+	ELSE
+	    SETIMGCOMINT = -9999
+	ENDIF
+C
+	RETURN
+	END
+C
+C*
+C
+	INTEGER FUNCTION SETIMGCOMFLT ( item, fval )
+C***********************************************************************
+C
+C* This subroutine returns the values of FLOAT items from the
+C* GEMPAK image common block
+C*
+C* Input parameters:
+C*	ITEM		CHAR*(*)	Name of desired item
+C*	FVAL		REAL		Value of item
+C*
+C* Output Paramaters:
+C*	GETIMGCOMFLT	INTEGER		0:     Success
+C*					-9999: Invalid item
+C*	
+C***********************************************************************
+C
+	INCLUDE		'imgdef.cmn'
+C
+	CHARACTER*(*)	item
+	INTEGER 	SETIMGCOMFLT
+C
+C-----------------------------------------------------------------------
+C
+	SETIMGCOMFLT = 0
+C
+	IF ( item (1:6) .eq. 'rmxres' ) THEN
+	    xpxres  = fval
+	ELSE IF ( item (1:6) .eq. 'rmyres' ) THEN
+	    ypxres = fval
+	ELSE IF ( item (1:6) .eq. 'rmxysc' ) THEN
+	    xyiscl = fval
+	ELSE IF ( item (1:6) .eq. 'rmbelv' ) THEN
+	    rbelev = fval
+	ELSE
+	    SETIMGCOMFLT = -9999
+	ENDIF
+C
+	RETURN
+	END
+C
+C
+	INTEGER FUNCTION SETIMGCOMSTR ( item, index, cval )
+C***********************************************************************
+C
+C* This subroutine sets the value of a STRING item in the
+C* GEMPAK image common block
+C*
+C* Input parameters:
+C*	ITEM		CHAR*(*)	Name of desired item
+C*	INDEX		INTEGER		For array items, the index
+C*	CVAL		CHAR*(*)	Value of string
+C*
+C* Output Parameters:
+C*	GETIMGCOMSTR	INTEGER		Length of string					
+C*	
+C***********************************************************************
+C
+	INCLUDE		'imgdef.cmn'
+C
+	CHARACTER*(*)	item, cval
+	INTEGER 	SETIMGCOMSTR
+C
+C-----------------------------------------------------------------------
+C	
+	SETIMGCOMSTR = 0
+C
+	IF ( item (1:6) .eq. 'cmblev' ) THEN
+	    cblevs (index) = cval
+	ELSE IF ( item (1:6) .eq. 'cmbunt' ) THEN
+	    cbunit = cval
+	ELSE IF ( item (1:6) .eq. 'cmsorc' ) THEN
+	    srcnam = cval
+	ELSE IF ( item (1:6) .eq. 'cmtype' ) THEN
+	    typnam = cval
+	ELSE IF ( item (1:6) .eq. 'cmlutf' ) THEN
+	    lutf = cval
+	ELSE IF ( item (1:6) .eq. 'cmfile' ) THEN
+	    imfile = cval
+	ELSE IF ( item (1:6) .eq. 'cmcalb' ) THEN
+	    calib = cval
+	ELSE
+	    SETIMGCOMSTR = -9999
+	ENDIF
+C
+	RETURN
+	END
+C
+

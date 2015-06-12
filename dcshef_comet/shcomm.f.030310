@@ -1,0 +1,85 @@
+	SUBROUTINE SH_COMM  ( report, lenr, iret )
+C************************************************************************
+C* SH_COMM								*
+C*									*
+C* This subroutine extracts comments from a SHEF bulletin 		*
+C* Comments are delimited by ":" or a line feed.                        *
+C*									*
+C* SH_GFLD  ( REPORT, LENR, IRET )					*
+C*									*
+C* Input/Output parameters:						*
+C*	REPORT		CHAR*		SHEF bulletin			*
+C*	LENR		INTEGER		Length of bulletin		*
+C*									*
+C* Output parameters:							*
+C*	IRET		INTEGER		Return code			*
+C*					  0 = normal return		*
+C*					  1 = empty bulletin		*
+C**									*
+C* Log:									*
+C* P.Bruehl/NWS		4/98	                       			*
+C* P.Bruehl/NWS         8/98    Bug fix for comments at end of line     *
+C************************************************************************
+	INCLUDE         'BRIDGE.PRM'
+	INCLUDE         'GEMPRM.PRM'
+
+	CHARACTER*(*)  report
+        CHARACTER*(DCMXBF*2)  tmpstr
+
+        LOGICAL             done
+C*
+C------------------------------------------------------------------------
+	iret   = 0
+        icom1 = 0
+        icom2 = 0
+        done = .false.
+C
+C*   Search for comment delimiter
+C
+        tmpstr = report(1:lenr) 
+
+
+        DO WHILE ( .not. done )
+
+         icom1 = INDEX ( report (1:lenr), ":" ) 
+         IF ( icom1 .gt. 0 )  THEN
+C
+C*   Check for second delimiter
+C
+            icom2 = INDEX ( report (icom1+1:lenr), ":")
+            icr = INDEX ( report (icom1+1:lenr), CHLF )
+            IF ( icom2 .le. 0 ) icom2 = 9999
+            IF ( icr .le. 0 ) icr = 9999
+            IF ( ( icom2 .eq. 9999 ) .and. ( icr .eq. 9999 ) ) THEN
+              lenr = icom1 - 1
+              tmpstr = report(1:lenr) 
+              done = .true.
+            ELSE IF ( (icom2 .lt. 9999) .and. (icom2 .lt. icr) ) THEN
+              tmpstr = report(1:icom1-1) // report(icom1+icom2+1:lenr)
+              CALL ST_LSTR ( tmpstr, lenr, iret ) 
+
+            ELSE IF ( (icr .lt. 9999) .and. (icr .lt. icom2) ) THEN
+
+
+              tmpstr = report(1:icom1-1) // report (icom1+icr-1:lenr) 
+
+
+              CALL ST_LSTR ( tmpstr, lenr, iret ) 
+            ENDIF
+
+
+         ELSE
+            done = .true.
+         ENDIF
+         report = tmpstr(1:lenr)
+
+
+        END DO
+
+        IF ( lenr .eq. 0 )  THEN
+            iret = 1
+            RETURN 
+        ENDIF
+C*
+	RETURN
+	END

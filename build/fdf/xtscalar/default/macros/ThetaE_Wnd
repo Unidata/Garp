@@ -1,0 +1,33 @@
+! GARP Macro Template
+!
+! Macro: Equivalent Potential Temperature Winds.
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Equivalent Potential Temperature Winds.
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Equivalent Potential Temperature
+chapter			= general
+fdf			= ThetaE_K
+pres_cint		= 3
+line_color		= 7
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 1
+yaxis_upper		= 300
+operation		= run
+!
+! Winds
+directory		= vpvectorfdf
+fdf			= Wind_kts
+line_color		= 3
+wind_symbol_color	= 3
+wind_symbol_size	= 0.8
+operation		= run
+
+
+! *** End of Parameters ***

@@ -1,0 +1,72 @@
+<html>
+<TITLE>NIDS products</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF" 
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1>WSR-88D NIDS Product Descriptions</h1>
+<hr>
+<dl>
+<p>
+<dt><h2>What is NIDS?</h2>
+<dd>NIDS (Nexrad Information Dissemination System) is the mechanism
+that allows delivery of a set of standard products from the WSR-88D
+radars to end users. A set of 4 NIDS vendors receive the radar products and
+in turn make them available to the general public.
+<p>
+<dt><h2>Product Descriptions</h2>
+<ul>
+<h2><li>BREF</h2>Base Reflectivity at the 4 lowest tilt angles. Angles
+depend on radar operation mode:
+<p>
+<pre>
+Precipitation Mode    Clear-Air Mode
+------------------    --------------
+0.50 degrees          0.50 degrees  
+1.45                  1.50
+2.40                  2.50
+3.35                  3.50
+</pre>
+<i>(Individual sites may modify these angles for local needs.)</i>
+<p>
+Generated in both precipitation and clear-air modes.
+<h2><li>CREF</h2>Composite Reflectivity depicting the highest reflectivity
+measured vertically above each point in the display.
+<p>
+Generated in precip and clear-air modes.
+<h2><li>LREF</h2>Layer Composite Reflectivity over 3 altitude depths.
+<p>
+<pre>
+1.  Surface to 24,000 ft
+2.  24,000  to 33,000 ft
+3.  33,000  to 60,000 ft
+</pre>
+<p>
+Generated in precip mode only.
+<h2><li>VEL</h2>Radial Velocity at the 4 lowest tilt angles. Generated in precip
+and clear-air modes.
+<h2><li>TOPS</h2>Maximum height of in-cloud echoes. Available in precip mode
+only.
+<h2><li>VIL</h2>A measure of the total Vertical Integrated Liquid at all points on the image. Precip mode only.
+<h2><li>PRE1</h2>1-hour precipitation accumulation.
+<h2><li>PRE3</h2>3-hour precipitation accumulation.
+<h2><li>PRET</h2>Storm total accumulation since the onset of precipitation.
+<h2><li>Other Non-image Products</h2>These are products that we receive that cannot
+be displayed as an image:
+<pre>
+VAD   Velocity Azimuth Display
+PREA  Hourly digital rainfall array
+STAT  General radar status message
+</pre>
+</ul>
+</dl>
+
+<hr>
+</body>
+</html>

@@ -1,0 +1,48 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Equivalent Potential Temperature (Kelvin).
+!
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= THTE
+description		= Equivalent Potential Temperature (Kelvin)
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Equivalent Potential Temperature
+vcoord			=
+level1			=
+level2			=
+!					LINE
+line_color		=
+line_type		=
+line_width		=
+!					SCALE
+scale 			= 0
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					PTYPE
+ptype_axis		= 
+ptype_left		= 
+ptype_bottom		= 
+ptype_right		= 
+ptype_top		= 
+!					XAXIS
+xaxis_lower		= 250
+xaxis_upper		= 425
+xaxis_increment		= 25
+xaxis_lbfq		= 1
+xaxis_gdfq		= 2
+xaxis_tkfq		= 1
+!					YAXIS
+yaxis_lower		=
+yaxis_upper		=
+yaxis_increment		=
+yaxis_lbfq		=
+yaxis_gdfq		=
+yaxis_tkfq		=
+! *** End of Parameters ***

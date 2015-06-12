@@ -1,0 +1,1 @@
+INCPARM = -I$(GARPHOME)/gempak/$(NA_OS)

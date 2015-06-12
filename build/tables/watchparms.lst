@@ -1,0 +1,168 @@
+! 7/16/97
+! Derived from sfparm listing as given in SFMAP. 
+!
+TMPC - Temperature in Celsius
+TMPF - Temperature in Fahrenheit
+TMPK - Temperature in Kelvin
+STHA - Surface potential temperature in Kelvin
+STHK - Surface potential temperature in Kelvin
+STHE - Surface equivalent potential temperature in Kelvin
+STHS - Surface saturation equiv. pot. temp. in Kelvin
+TVRK - Virtual temperature in Kelvin
+TVRC - Virtual temperature in Celsius
+TVRF - Virtual temperature in Fahrenheit
+THTV - Virtual potential temperature in Kelvin
+TMAX - Maximum 24-hour temperature in Celsius
+TMIN - Minimum 24-hour temperature in Celsius
+SSTC - Sea surface temperature in Celsius
+LTMP - Temperature of surface air lifted to 500 or !x mb
+DWPC - Dewpoint in Celsius
+DWPF - Dewpoint in Fahrenheit
+DWPK - Dewpoint in Kelvin
+DPDC - Dewpoint depression Celsius
+DPDF - Dewpoint depression Fahrenheit
+DPDK - Dewpoint depression Kelvin
+SMXR - Surface mixing ratio in g/kg
+SMXS - Surface saturated mixing ratio in g/kg
+RELH - Relative humidity in percent
+TMWK - Wet bulb temperature Kelvin
+TMWC - Wet bulb temperature Celsius
+TMWF - Wet bulb temperature Fahrenheit
+VAPR - Vapor pressure in millibars
+VAPS - Saturation vapor pressure in millibars
+PMSL - Mean sea level pressure in millibars
+PALT - Pressure in millibars from altimeter
+ALTI - Altimeter setting in inches of mercury
+ALTM - Altimeter setting converted to millibars
+SALT - Abbreviated altimeter in millibars
+SMSL - Abbreviated mean sea level pressure
+SALI - Abbreviated ALTI
+RMSL - First 3 digits left of decimal of PMSL * 10
+RSLI - First 3 digits left of decimal of ALTI * 100
+RSLT - First 3 digits left of decimal of ALTM * 10
+PTND - Complete pressure tendency with symbol
+PTSY - Pressure tendency symbol only
+P03C - Pressure change over 3 hours
+ZMSL - Estimated height at PMSL
+Z000 - Estimated height at 1000 mb
+Z850 - Estimated height at 850 mb
+Z800 - Estimated height at 800 mb
+ARRW - Wind arrow (m/s)
+ARRM - Wind arrow (m/s)
+ARRK - Wind arrow (knots)
+BARB - Wind barb (m/s)
+BRBM - Wind barb (m/s)
+BRBK - Wind barb (knots)
+DARR - Wind arrows of uniform length
+UWND - U component of the wind in meters/second
+VWND - V component of the wind in meters/second
+UKNT - U component of the wind in knots
+VKNT - V component of the wind in knots
+DRCT - Wind direction in degrees
+SPED - Wind speed in meters/second
+SKNT - Wind speed in knots
+PSPD - Packed speed and direction (ddfff) in meters/second
+PKNT - Packed speed and direction (ddfff) in knots
+GUST - Wind gusts in knots
+GUMS - Wind gusts in meters/second
+LCLD - Character cloud coverage, low cloud
+MCLD - Character cloud coverage, middle cloud
+HCLD - Character cloud coverage, high cloud
+TCLD - Character maximum cloud coverage
+LCLO - Fractional cloud coverage, low cloud
+MCLO - Fractional cloud coverage, middle cloud
+HCLO - Fractional cloud coverage, high cloud
+TCLO - Fractional maximum cloud coverage
+CLCL - Numeric cloud coverage, low cloud
+CLCM - Numeric cloud coverage, middle cloud
+CLCH - Numeric cloud coverage, high cloud
+CLCT - Numeric maximum cloud cover
+CLDS - Combined cloud coverage from three levels
+CMBC - Numeric combined cloud coverage from three levels
+CLHL - Cloud height in hundreds of feet, low cloud
+CLHM - Cloud height in hundreds of feet, middle cloud
+CLHH - Cloud height in hundreds of feet, high cloud
+CLDL - Combined cloud height and coverage, low cloud
+CLDM - Combined cloud height and coverage, middle cloud
+CLDH - Combined cloud height and coverage, high cloud
+CLDT - Maximum value of CLDx
+COML - Numeric combined cloud height and coverage, low cloud
+COMM - Numeric combined cloud height and coverage, middle cloud
+COMH - Numeric combined cloud height and coverage, high cloud
+COMT - Maximum value of COMx
+CHCL - Numeric combined cloud height and coverage, low cloud
+CHCM - Numeric combined cloud height and coverage, middle cloud
+CHCH - Numeric combined cloud height and coverage, high cloud
+CHDL - Combined cloud height and short code, low cloud
+CHDM - Combined cloud height and short code, middle cloud
+CHDH - Combined cloud height and short code, high cloud
+CFRT - Fraction of celestial dome covered by cloud from WMO Code 2700
+CFRL - Fraction of celestial dome covered by low or mid clouds from WMO Code 2700 
+CTYL - Low-level cloud genera from WMO Code 0513 
+CTYM - Mid-level cloud genera from WMO Code 0513
+CTYH - High-level cloud genera from WMO Code 0513 CBAS - Cloud base height from WMO Code 1000
+CSYL - Low cloud type symbol
+CSYM - Middle cloud type symbol
+CSYH - High cloud type symbol
+CSYT - Cloud type symbol on first reported level
+SKYC - Sky coverage symbol
+SKYM - Sky coverage symbol with wind barbs in m/s
+SKYK - Sky coverage symbol with wind barbs in knots
+WTHR - Character weather code from any numeric code
+WCOD - Character weather code
+WNUM - Numeric weather code
+W604 - Numeric weather code from the 604 file
+WSYM - Present weather symbol
+WTMO - Character weather code from WMO
+WWMO - Numeric WMO weather code
+WASH - Asheville surface data weather code
+RWSH - Numeric Asheville surface data weather code
+PWTH - Past weather symbol
+PWWM - Numeric past weather in WMO code
+STID - Character station identifier
+STNM - 5-digit station identifier
+SLAT - Station latitude in degrees
+SLON - Station longitude in degrees, West is negative
+SELV - Station elevation in meters
+MXMN - Maximum or minimum temperature in Fahrenheit
+PP06 - Probability of precipitation fcst in a 6-hr period
+PP12 - Probability of precipitation fcst in a 12-hr period
+QP06 - Quantitative precipitation fcst in a 6-hr period
+QP12 - Quantitative precipitation fcst in a 12-hr period
+TS06 - Unconditional probability of thunderstorms occurring in a 6-hr period
+TS12 - Unconditional probability of thunderstorms occurring in a 12-hr period
+TC06 - Unconditional probability of severe weather occurring in a 6-hr period
+TC12 - Unconditional probability of severe weather occurring  in a 12-hr period
+PCPT - Categorical forecast of precipitation
+POZP - Conditional probability of freezing precipitation
+POSN - Conditional probability of snow
+SN06 - Categorical forecast of snow amount falling in a 6-hr period
+SN12 - Categorical forecast of snow amount falling in a 12-hr period
+FCIG - Categorical forecast of ceiling height conditions
+FVIS - Categorical forecast of visibility conditions
+OVIS - Categorical forecast in plain language of obstructions to vision
+DDEN - Density of dry air in kg/(m**3)
+VSBY - Visibility in statute miles
+VSBK - Visibility in kilometers
+P03I - Precipitation over last 3 hours in inches
+P06I - Precipitation over last 6 hours in inches
+P09I - Precipitation over last 9 hours in inches
+P12I - Precipitation over last 12 hours in inches
+P18I - Precipitation over last 18 hours in inches
+P24I - Precipitation over last 24 hours in inches
+P03M - Precipitation over last 3 hours in millimeters
+P06M - Precipitation over last 6 hours in millimeters
+P09M - Precipitation over last 9 hours in millimeters
+P12M - Precipitation over last 12 hours in millimeters
+P18M - Precipitation over last 28 hours in millimeters
+P24M - Precipitation over last 24 hours in millimeters
+SNOW - Snow depth in inches
+HAIL - Hail flag
+HLSZ - Hail size in centimeters
+WHGT - Wave height in meters
+WPER - Wave period in seconds
+HEAT - Heat index in Fahrenheit
+HMTR - Humiture (apparent temperature) in Fahrenheit
+WCEQ - Wind chill equivalent temperature in Fahrenheit
+TEXT - Undecoded data
+SPCL - Undecoded special reports

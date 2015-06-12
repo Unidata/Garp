@@ -1,0 +1,31 @@
+###################################################################
+###################################################################
+include $(CONFIGDIR)/Makeinc.common
+
+###############################################################
+###############################################################
+#
+#  Garp specific definitions.
+#
+# GARPINCLUDE = -I$sGARPHOME)/include
+#
+# The Xpm package is bundled with GARP for those systems that
+# do not already have it. If your system has Xpm, modify the
+# Makeinc.? file for your OS and point these variables to your local
+# copy. (The OS-specific values will override these here so change
+# them there, not here.)
+#
+XPMINCLUDE  = -I$(GARPHOME)/xpm
+XPMLIB      = $(GARPHOME)/xpm/$(NA_OS)/xpm.a
+XPMLIBARCH  = $(XPMLIB) 
+XPMSOURCE   = xpm/$(NA_OS)
+
+# Set this in the OS-specific file - look there for more info
+XPMDEFINES  =
+
+#
+# Always include the OS-specific copy of Makeinc for garp
+#
+GARPINCLUDE = -I$(GARPHOME)/include
+GEMINCDIR = $(GEMINC)
+include $(GARPHOME)/config/platform/Makeinc.$(NA_OS)

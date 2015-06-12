@@ -1,0 +1,45 @@
+<html>
+
+<TITLE>GARP Image Enhancement</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Image Enhancement</center></h1>
+<hr>
+<center><img src="gif/Enhancement.gif"></center>
+<p>
+This dialog allows you to modify the color table used for images. Each image
+type has (or should have) a default color table defined in the GEMPAK
+file $GEMTBL/sat/imgtyp.tbl . To choose a different color table, click one 
+of the enhancements in this list. The first entry in the scrolled list will 
+reset the color table to that default setting if you have modified it.
+Experience will dictate which color tables work best with which types of 
+imagery.
+<p>
+Once you have chosen a color table, you can use the Fade slider to adjust
+the saturation of the image or roll the color table with the Roll slider.
+In this context, rolling means that color indices are displaced linearly so
+you can set a particular part of the color table to match a particular
+pixel brightness.
+<p>
+Similar to the Roll slider is the Invert button with which you can 
+invert the color table, swapping high pixel values with lower ones.
+<p>
+At the top of the enhancement dialog is a Retain button that allows you
+to keep using a color table regardless of what imagery is loaded. Normally,
+the default color table is used when an image is first loaded.
+<p>
+Only one color table may be loaded at a time.  This applies to
+all sessions of GARP, and originates in the N-AWIPS color allocation
+algorithm inherited by GARP.
+<hr>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+! GARP Macro Template
+!
+! Macro: Geopotential Height and Isotachs (kts)
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Geopotential Height and Isotachs (kts)
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= general
+fdf			= Isotach_kts-1
+fill			= y
+line_color		= 27
+line_type		= 5
+line_label_frequency	= 1
+fint_parse              = n
+pres_fint               = 70;90;110;130;150
+operation		= run
+fdf			= Hght_m
+line_color		= 5
+operation		= run
+
+! *** End of Parameters ***

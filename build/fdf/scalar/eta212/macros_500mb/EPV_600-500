@@ -1,0 +1,36 @@
+! GARP Macro Template
+!
+! Macro: Equivalent Potential Vorticity
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Equivalent Potential Vorticity
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter			= general
+fdf			= EPV
+level1			= 600
+level2			= 500
+fill			= y
+fint_parse		= n
+pres_cint		= 2
+pres_cmax		= -2
+line_color		= 1
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 2
+pres_fint		= -12;-9;-6;-3
+fline			= 14;15;16;17;0
+colorbar_x		= .94
+operation		= run
+pres_cint		= 2
+pres_cmin		= 2
+pres_cmax		=  
+pres_fint		= 3;6;9;12
+fline			= 0;24;25;26;27
+colorbar_x		= .02
+operation		= run
+
+! *** End of Parameters ***

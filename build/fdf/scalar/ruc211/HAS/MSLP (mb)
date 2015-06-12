@@ -1,0 +1,103 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Sea Level Pressure ( millibars ).
+!
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= MMSL%NONE@0
+description		= MAPS Reduction Sea Level Pressure ( millibars )
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= MAPS Reduction Sea Level Pressure ( millibars )
+vcoord			=
+level1			=
+level2			=
+contour			= y
+fill			= y
+hilo			= y
+!					Pressure coordinates
+pres			=
+pres_cint		= 4
+pres_cmin 		=
+pres_cmax 		=
+pres_fint 		= 
+pres_fmin 		= 
+pres_fmax 		=
+!					Sigma coordinates
+sigma			=
+sigma_cint 		= 4
+sigma_cmin 		=
+sigma_cmax 		=
+sigma_fint 		=
+sigma_fmin 		=
+sigma_fmax 		=
+!					Theta coordinates
+theta			=
+theta_cint 		=
+theta_cmin 		=
+theta_cmax 		=
+theta_fint 		=
+theta_fmin 		=
+theta_fmax 		=
+!					User defined coordinates
+anyvcoord		=
+anyvcoord_cint		=
+anyvcoord_cmin		=
+anyvcoord_cmax		=
+anyvcoord_fint		=
+anyvcoord_fmin		=
+anyvcoord_fmax		=
+!					LINE
+line_color		= 20
+line_type		= 1
+line_width		= 1
+line_label_frequency	= 4
+!					SCALE
+scale 			=
+!					HILO
+colorh 			= 24
+colorl 			= 2
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 1
+sizev 			= 1
+position 		= 
+fonts 			= 22
+fontv 			= 22
+widths 			= 2
+widthv 			= 2
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 0
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= 
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		= y
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			= 0
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

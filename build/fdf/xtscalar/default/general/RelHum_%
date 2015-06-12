@@ -1,0 +1,74 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Relative Humidity ( percent ).
+!
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= RELH
+description		= Relative Humidity ( percent )
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Relative Humidity
+vcoord			= 
+level1			=
+level2			=
+!					Pressure coordinates
+pres			= 
+pres_cint		= 10
+pres_cmin 		= 10
+pres_cmax 		=
+pres_fint 		= 10
+pres_fmin 		= 70
+pres_fmax 		=
+!					Sigma coordinates
+sgma			=
+sgma_cint 		=
+sgma_cmin 		=
+sgma_cmax 		=
+sgma_fint 		=
+sgma_fmin 		=
+sgma_fmax 		=
+!					Theta coordinates
+thta			=
+thta_cint 		=
+thta_cmin 		=
+thta_cmax 		=
+thta_fint 		=
+thta_fmin 		=
+thta_fmax 		=
+!					LINE
+line_color		=
+line_type		=
+line_width		=
+line_label_frequency	= 1
+!					SCALE
+scale 			= 0
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					PTYPE
+ptype_axis		= 
+ptype_left		= 
+ptype_bottom		= 
+ptype_right		= 
+ptype_top		= 
+!					YAXIS
+yaxis_lower		=
+yaxis_upper		=
+yaxis_increment		=
+yaxis_lbfq		=
+yaxis_gdfq		=
+yaxis_tkfq		=
+!					TAXIS
+taxis_dir		= R
+taxis_start		=
+taxis_stop		=
+taxis_inc		=
+taxis_lb		=
+taxis_gl		=
+taxis_tm		=
+! *** End of Parameters ***

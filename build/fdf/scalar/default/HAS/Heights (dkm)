@@ -1,0 +1,103 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Geopotential Height ( meters )
+!
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= quo(HGHT,10)
+description		= Geopotential Height ( dekameters )
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= Geopotential Height ( dekameters )
+vcoord			=
+level1			= 500
+level2			= 
+contour			= y
+fill			= n
+hilo			= n
+!					Pressure coordinates
+pres			= 
+pres_cint		= 6
+pres_cmin 		= 6
+pres_cmax 		= 10000
+pres_fint 		= 
+pres_fmin 		= 
+pres_fmax 		=
+!					Sigma coordinates
+sigma			=
+sigma_cint 		=
+sigma_cmin 		=
+sigma_cmax 		=
+sigma_fint 		=
+sigma_fmin 		=
+sigma_fmax 		=
+!					Theta coordinates
+theta			=
+theta_cint 		=
+theta_cmin 		=
+theta_cmax 		=
+theta_fint 		=
+theta_fmin 		=
+theta_fmax 		=
+!					User defined coordinates
+anyvcoord		=
+anyvcoord_cint		= 6
+anyvcoord_cmin		= 6
+anyvcoord_cmax		= 10000
+anyvcoord_fint		=
+anyvcoord_fmin		=
+anyvcoord_fmax		=
+!					LINE
+line_color		= 20
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 1
+!					SCALE
+scale 			=
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= .96
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		=
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			=
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

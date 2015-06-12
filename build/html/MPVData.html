@@ -1,0 +1,79 @@
+<html>
+
+<TITLE>GARP Gridded Plan View Data</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>Gridded Plan View Data</center></h1>
+<hr>
+<center><img src="gif/MPV1.gif"></center>
+<p>
+All gridded data dialogs have a similar layout. This layout is organized to
+(hopefully) present information in an intuitively top-down order. The current
+model is in the upper left hand corner. The list of models you have access
+to is configurable in the "Garp_defaults" file but limited to the data itself. 
+When you choose a new model,
+GARP reads in the data files for that model and rebuilds a scrolled list of
+date times. Depending on how much data you have this may take a while;
+you will notice the mouse pointer changes to a busy cursor while files are
+being read.
+<p>
+ Below the model option menu is an option menu of 
+vertical coordinates which is also configurable in "Garp_defaults". To pick
+a new one, you can either choose one from the option menu or type in the
+GEMPAK identifier for this vertical coordinate.
+<p>
+For the
+plan view projection dialog, you will see two level buttons and textfields
+below the vertical coordinate button. When you click either of these
+buttons, you will get a list of vertical levels valid for that model and 
+vertical coordinate. Some fields are layered quantities and require both
+level 1 (bottom) and level 2 (top) to have valid values. Layers which are
+explicitly defined in a GEMPAK file are denoted as two levels separated by
+a colon.
+<p>
+Toggle buttons indicating whether you want to display contour lines, color
+fill, or high/low symbols are to the right of the level buttons. Further right
+is an information button from which you can browse your data set to see exactly
+what fields, vertical coordinates and levels are valid.
+<p>
+Across the center of the dialog are scrolled lists indicating date/time stamps
+for which data is available, a scalar FDF list, and a vector FDF list. The 
+option menus above the FDF scrolled lists are different chapters that contain
+FDFs for particular meteorological conditions. They also point to macros
+that allow you to display more than one field at a time.
+<p>
+Below these scrolled lists is a label for the current field as well as the
+GEMPAK function definition. You can manually edit this function representation
+or just click a new FDF to change it.
+<p>
+In the lower left corner you'll see radio buttons that indicate whether the
+current field is a scalar or vector and whether it is a level field (only one
+level required) or a layered field (two levels required).
+<p>
+Across the bottom of the dialog you'll see buttons that activate current 
+settings in this dialog. The Refresh button allows you to reload the 
+date/time stamp scrolled list. The More button pops up another dialog that
+gives you access to more options.
+<p>
+<h1><center>Gridded Plan View Data Options</center></h1>
+<center><img src="gif/MPV2.gif"></center>
+<p>
+This dialog allows you to adjust particular aspects of how the data
+is presented. You can set contour line parameters, color fill parameters,
+vector symbol type, whether to display highs and lows of a scalar field, and
+a scale factor by which to multiply the field. A description of the current 
+field is found near the bottom of the dialog.
+
+<p>
+<hr>
+
+</body>
+</html>

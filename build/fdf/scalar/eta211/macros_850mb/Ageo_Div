@@ -1,0 +1,75 @@
+! GARP Macro Template
+!
+! Macro: Ageostrophic Wind and Divergence
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Ageostrophic Wind and Divergence.
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Color fill Wind Speed
+chapter			= general
+fdf			= Isotach_kts-1
+level1			= 850
+cint_parse		= n
+line_color		= 26
+line_width		= 1
+line_type		= 1
+line_label_frequency	= 1
+pres_cint		= 10;20
+operation		= run
+fill			= y
+fint_parse		= n
+cint_parse		= y
+pres_cint		= 10/30/200
+pres_fint		= 25;35;45;55;65;75
+fline			= 0;24;25;30;28;14;2
+line_color		= 8
+line_width		= 2
+colorbar_x		= 0.01
+operation		= run
+!
+! Overlay geopotential height.
+chapter			= general
+fdf			= Hght_m
+hilo			= y
+pres_cint		= 3
+scale			= -1
+line_color		= 1
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 1
+operation		= run
+!
+! Color fill Divergence
+chapter			= hidden
+fdf			= DivWind_s-1
+fill			= y
+fint_parse		= n
+cint_parse		= n
+pres_cint		= 1;3;5;7;9;11
+pres_fint		= -12;-10;-8;-6;-4;-2
+line_color		= 20
+line_type		= -2
+line_width		= 1
+line_label_frequency	= 1
+fline			= 2;16;17;21;22;23;0
+operation		= run
+fill			= n
+cint_parse		= y
+pres_cint		= 1/-100/-1
+operation		= run
+!
+! Overlay winds.
+directory		= vectorfdf
+chapter			= general
+fdf			= AgeoWind_kts
+wind_symbol_color	= 16
+wind_symbol_size	= 0.5
+skip_plot_x		= 3
+skip_plot_y		= 1
+operation		= run
+! *** End of Parameters ***

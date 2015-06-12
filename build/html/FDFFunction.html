@@ -1,0 +1,35 @@
+<html>
+
+<TITLE>GARP FDF Function Parameter</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>FDF Function Parameter</center></h1>
+<hr>
+In Field Description Files (FDFs) for plan view gridded data, you can
+specify more than one function in an FDF to generate a field. This
+allows you to create a fairly complicated field by storing
+intermediate, named grids in GEMPAK. For multiple function FDFs each
+function must be preceded by an "s=" or a "v=" to delineate whether the
+output grid will be a vector or scalar. Each function call must be indexed
+by a number starting from "2" on the second function. Here's an example
+of the FDF function keys which displays <i><b>Qn</b></i> vectors:
+<pre>
+function  = s=sm5s(sm5s(sm5s(sm5s(sm5s(ldf(hght))))))//ldfh
+function2 = v=smul(4e9,vasv(qvec(ldfh,sm5v(vlav(geo))),kcrs(thrm(hght)))
+</pre>
+The intermediate scalar field is a layer difference of geopotential height
+named "ldfh". The final field utilizes this named field to create a final
+field of <i><b>Qn</b></i> vectors.
+<p>
+<hr>
+
+</body>
+</html>

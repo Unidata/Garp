@@ -1,0 +1,57 @@
+Date: 13 May 1997 18:28:16 -0400
+From: Derek Frey <Derek.Frey@noaa.gov>
+To: soo_sac@comet.ucar.edu (Return requested),
+        Eric Evenson <Eric.Evenson@noaa.gov> (Return requested)
+Subject: GARP FDFs for severe dry microbursts
+
+
+    If you are not interested in GARP FDFs that point to potential for
+    severe dry microbursts, read no further and delete.  Not a topic that
+    applies much east of Colorado/Wyoming, I know.
+
+    Russell Mann, the SAC Focal Point here at Riverton WY, has written four
+    GARP FDFs that allow one to use model gridded data to diagnose the
+    potential for severe dry microbursts on the synoptic scale.  I know! it
+    sounds stupid to talk about microbursts and synoptic scale in the same
+    sentence.  But what I mean is we use the information to see if our CWA
+    will be in a favorable lapse rate and moisture environment to allow the
+    potential for severe dry microbursts, based on model forecasts.  Then
+    we refine our expectations further with the morning sounding, and
+    closer to time use the radar.  These GARP FDFs just give us a far in
+    advance heads-up on if conditions will be favorable, and, again, they
+    focus on the large-scale conditions favorable for severe dry
+    microbursts if thunderstorms form.  One then has to tackle the problems
+    of if, when, and where thunderstorms will form, and then hope to get
+    some radar signature.
+
+    These FDFs are based on research by Eric Evenson (formerly of
+    SELS/SPC).  At SELS/SPC they utilized the concepts to assist in
+    convective outlooks for the InterMountain West, a tough problem for
+    them and all of us where the severe weather conceptual model for the
+    Plains does not happen.  Eric found that where the following four items
+    "come together", the potential is there for severe dry microbursts from
+    any thunderstorms that form:
+     Boundary layer RH < 40%
+     500-400 mb layer mean RH > 50%
+     850-500 mb T difference > 30 deg. C
+     700-500 mb layer mean upward vertical velocity
+
+    At Riverton, for the boundary layer RH we use an 850-800 mb layer mean.
+    Also, the levels and layers that Eric used, as shown above, were partly
+    driven by the PCGRIDDS data available in the old days.  Now that
+    gridded data is available at vertical levels never before available,
+    one through research could use other levels/layers.
+
+    The FDFs are in the contrib/fdf/scalar directory on Peggy's ftp server.
+    They are named:
+     Mcrbst_Omga_7h-5h
+     Mcrbst_RH_5h-4h
+     Mcrbst_RH_85h-8h
+     Mcrbst_lapse_8h-5h
+
+     _________________________________________________________ 
+     Derek Frey/SOO NWSO RIW            NWS Office, NOAA
+     derek.frey@noaa.gov                12744 West U.S. Hwy 26
+     (307) 857-3898                     Riverton, WY 82501      
+     _________________________________________________________
+

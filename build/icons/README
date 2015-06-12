@@ -1,0 +1,2 @@
+Run "convert" on spike to convert BMP files to XMP. The version of 
+convert on HPs does not create the icons properly.

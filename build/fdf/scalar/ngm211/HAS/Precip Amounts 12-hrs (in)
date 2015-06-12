@@ -1,0 +1,102 @@
+! GARP Field Description File (FDF) Template
+!
+! Field: Precipitable Water (inches) in Sigma levels 0 through 1.
+! *** Required Parameters ***
+type			= scalar
+layer                   = n
+function		= quo(p12m%NONE@0;25.4)//p12
+description		= 12-hr Precipitation
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+label			= 12-hr Precipitation
+vcoord			=
+level1			=
+level2			=
+contour			= y
+fill			= y
+hilo			= n
+!					Pressure coordinates
+pres			=
+pres_cint		= 0.25
+pres_cmin 		= 0.25
+pres_cmax 		= 5.00
+pres_fint 		= 0.25
+pres_fmin 		= 0.25
+pres_fmax 		= 5.00
+!					Sigma coordinates
+sigma			=
+sigma_cint 		= 0.25
+sigma_cmin 		= 0.25
+sigma_cmax 		= 2.50
+sigma_fint 		= 0.25
+sigma_fmin 		= 0.25
+sigma_fmax 		= 4.00
+!					Theta coordinates
+theta			=
+theta_cint 		=
+theta_cmin 		=
+theta_cmax 		=
+theta_fint 		=
+theta_fmin 		=
+theta_fmax 		=
+!					User defined coordinates
+anyvcoord		=
+anyvcoord_cint		=
+anyvcoord_cmin		=
+anyvcoord_cmax		=
+anyvcoord_fint		=
+anyvcoord_fmin		=
+anyvcoord_fmax		=
+!					LINE
+line_color		= 1
+line_type		= 1
+line_width		= 1
+line_label_frequency	= 1
+!					SCALE
+scale 			= 0
+!					HILO
+colorh 			= 1
+colorl 			= 1
+symbolh 		= H#
+symboll 		= L#
+rangeh 			= 
+rangel 			= 
+radius 			= 
+counth 			= 30
+countl 			= 30
+interp 			= y
+!					HLSYM
+sizes 			= 2
+sizev 			= 1.5
+position 		= 
+fonts 			= 21
+fontv 			= 
+widths 			= 
+widthv 			=
+hwflgs 			= hw 
+hwflgv 			= 
+!					CLRBAR
+colorbar 		= 1
+colorbar_orientation	= 
+colorbar_anchor 	= 
+colorbar_x 		= 
+colorbar_y 		= 
+colorbar_length 	= 
+colorbar_width 		= 
+colorbar_frequency 	= 
+!					CONTUR
+subbox 			=
+smoothing 		=
+!					TEXT
+text_size 		=
+text_font 		=
+text_width 		= 
+text_hw_flag 		=
+!					FLINE
+fline 			= 0;21-31;14-20;5;8 
+!					SKIP
+skip_contour 		=
+skip_plot_x 		=
+skip_plot_y 		=
+! *** End of Parameters ***

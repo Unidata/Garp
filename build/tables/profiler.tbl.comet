@@ -1,0 +1,42 @@
+! PROFILER.STN
+!
+! This table contains the station information for wind profilers.
+!
+! The format for the file is given below, with the number of
+! characters in parentheses.
+!
+!STID    STNM   NAME                             ST CO   LAT    LON  ELEV  PRI
+!(8)     (6)    (32)                            (2)(2)   (5)    (6)   (5)  (4)
+!
+! no data HMR           0 HOMER                  AK US  5977 -15116   296
+DQU       74752 DeQUEEN                          AR US  3411  -9429   195
+VBG       74604 VANDENBERG AFB                   CA US  3476 -12053   149
+PLT       74533 PLATTEVILLE                      CO US  4018 -10471  1524
+GDA       74530 GRANADA                          CO US  3777 -10217  1155
+BLM           0 BLOOMFIELD                       CT US  4188  -7270    56
+SLA       74449 SLATER                           IA US  4190  -9369   315
+WNC       74556 WINCHESTER                       IL US  3965  -9048   170
+! no data HBR       74546 HILLSBORO              KS US  3830  -9729   447
+HVL       74541 HAVILAND                         KS US  3765  -9909   648
+NDS       74542 NEODESHA                         KS US  3738  -9563   255
+WNF       74753 WINNFIELD                        LA US  3189  -9278    93
+! no data WDL       74341 WOOD LAKE              MN US  4467  -9544   319 
+LTH       74551 LATHROP                          MO US  3958  -9418   297
+CNW       74550 CONWAY                           MO US  3752  -9270   390
+BLM       74662 BLOOMFIELD                       MO US  3688  -8997   130
+OKO       74769 OKOLONA                          MS US  3408  -8886   125
+MRR       74437 MERRIMAN                         NE US  4290 -10169   991
+NLG       74445 NELIGH                           NE US  4220  -9779   524
+RWD       74433 McCOOK                           NE US  4008 -10065   800
+FBY       74440 FAIRBURY                         NE US  4010  -9733   433
+WSM       74629 WHITE SANDS                      NM US  3240 -10634  1224
+TCU       74731 TUCUMCARI                        NM US  3508 -10360  1241
+AZC       74630 AZTEC                            NM US  3684 -10790  1902
+LMN       74647 LAMONT                           OK US  3669  -9748   306
+PRC       74649 PURCELL                          OK US  3497  -9751   331
+VCI       74640 VICI                             OK US  3607  -9921   648
+! no data HKL       74648 HASKELL                OK US  3568  -9586   219
+JTN       74735 JAYTON                           TX US  3301 -10098   707
+PAT       74750 PALESTINE                        TX US  3177  -9571   119
+BLR       74357 BLUE RIVER                       WI US  4322  -9053   226
+MBW       74431 MEDICINE BOW                     WY US  4190 -10618  1997

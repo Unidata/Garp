@@ -1,0 +1,114 @@
+###################################################################
+###################################################################
+#
+#       Makefile for Nawips 5.2.1
+#               Top level
+#               COMET 7/95 D.Himes
+#               Original: Unidata 7/94 P.Bruehl
+#
+####################################################################
+####################################################################
+####################################################################
+#  Makeinc.include - COMET D.Himes (7/19/95) Extracted and modified
+#                   from original Gempak.include for making both
+#                   NAWIPS and GEMPAK
+#
+# NOTE:  This file is included by the:
+#      $(NAWIPS)/config/Makeinc.common
+#
+#################################################################
+# 
+# This file is included by the $(NAWIPS)/config/Makeinc.common
+# file (which is directly included by all the Nprogram makefiles
+# and indirectly by the Gempak makefiles.
+#
+# It defines the paths and filenames needed to compile and install 
+# Nawips. 
+#
+# Please configure the settings below to match the configuration
+# of your system.
+#
+#################################################################
+##
+## HP 9.0x
+##
+#
+#  Used to deal with OS specific Makefile differences.
+
+PLATFORM = HP
+OPSYS    = HP-UX
+OS       = HPUX
+
+#
+#  Special definitions for compiling/linking/etc
+
+INSTALL = cp -f
+RANLIB  = :
+
+#
+#  The ansi-c compiler
+## C Options include: -O optimization; -p profiling; -g debugging 
+##-Aa ANSI Compiling (NOTE:options only available in unbundled C cmplr)
+
+CC = cc
+COPT = -Aa -D_HPUX_SOURCE -D$(OS) -g
+
+FC     = fort77
+FOPT   = -g +E4 +E6
+
+#LDFLAGS = -Wl,-a,archive
+
+## Location of MOTIF library and include files (hpux 9.0x)
+#
+MOTIFLIBS = -L/usr/lib/Motif1.2 -lXm
+MOTIFINC = -I/usr/include/Motif1.2
+
+## Location of X11 library and include files
+#
+#X11LIBS    = -L/usr/lib/X11R5/ -lXt -lX11
+X11LIBS    = -L/usr/lib/X11R5/ -lXt -lX11 
+STATICXLIBS = \
+             /usr/local/X11/lib/libXaw.a \
+		 /usr/local/X11/lib/libXmu.a \
+             /usr/local/X11/lib/libXext.a
+#             -L/usr/local/X11/lib -lXmu -lXext -lXaw
+XWLIBDIR   = -L/usr/lib/X11R5
+#X11INC     = -I/usr/include/X11R5
+X11INC     = -I/usr/include/X11R5 -I/usr/local/include
+XWINCDIR   = $(X11INC)
+
+## Unix System or C libraries needed for some applications
+#
+SYSLIBS =  -lm
+
+## Compiling options for the ldmbridge decoder
+#
+BRIDGE_DEF = -DGEMPAK -D__STDC__ -DNO_TRAILING_UNDERSCORE
+
+######################################################################
+#
+#   Xpm: If your system has Xpm, point XPMINCLUDE and XPMLIB to your
+#   local copies and set the XPMSOURCE macro to nothing. If instead you
+#   will be building the GARP-supplied copy of xpm, comment out the xpm
+#   macros except for XPMDEFINES which you should set accordingly.
+#
+#XPMINCLUDE  = -I/usr/local/include/xpm
+#XPMLIB      = /usr/local/lib/xpm/libXpm.a
+#XPMSOURCE   =
+#
+#  if your system doesn't provide strcasecmp add -DNEED_STRCASECMP
+#  if your system doesn't provide pipe remove -DZPIPE
+#
+XPMDEFINES  = -DZPIPE
+#
+######################################################################
+
+##  Define compile,link,archive, & remove variables 
+##  (leave as is)
+##
+CFLAGS    = $(COPT)
+FFLAGS    = $(FOPT)
+COMPILE.f = $(FC) $(FFLAGS)  -c
+LINK.f    = $(FC) $(FFLAGS) $(LDFLAGS)
+COMPILE.c = $(CC) $(CFLAGS)  -c
+LINK.c	  = $(CC) $(LDFLAGS)

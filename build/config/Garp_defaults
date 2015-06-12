@@ -1,0 +1,665 @@
+#
+# Garp configuration file
+#  VERSION 2.0
+#
+# The syntax needed in the file is:
+#
+#  token : resource
+#
+#  where: 
+#
+#         - token is defined as a string delimited by white space or ","
+#         - the delimiter between token and resource is the :,
+#         - no white space needs to surround the delimiter,
+#         - comments are indicated by a #,
+#           neither token nor resource can begin with a # or :,
+#           however a # or a : can be embedded within resource,
+#         - resource can contain white space if it is bounded by
+#           the ' or " characters,
+#         - blank lines are allowed.
+#         - referbacks are indicated by $(...). The '...' is resolved
+#           the same way any other token is, and is substituted for
+#           the $(...) string to compose the final resource value.
+#         - Multiple referbacks are allowed in a resource, but
+#           embedded referbacks are not allowed  (i.e. no
+#           $($(...)) allowed).
+#         - case for the token is significant
+# LOG:
+# D.Himes/COMET  4/96    Beta dist version
+# P.Bruehl/NWS   4/96    Documented, reorganized
+# P.Bruehl/NWS   5/96    Added SD's keys for file names
+# P.Bruehl/NWS	 5/96	Updated for GARP release 0.1
+# P.Bruehl/NWS	 8/96	Updated for GARP release 0.2
+# J.Cowie/NWS   10/96   Updated for GARP release 1.0
+# S.Drake/COMET  1/97	Added keys for upper air profile object.
+# P.Bruehl/NWS   1/97    Updated for GARP 1.03 release
+# S.Drake/COMET  4/97    Added keys for 1.0.4
+# P.Bruehl/NWS   4/97    Updated for GARP 1.04 release
+# S.Chiswell/Unidata 5/97 New & corrected map areas and projections
+# S.Drake/COMET  7/97    Added keys for GARP release 2.0
+# S.Drake/COMET 10/98   Added wind profiler keys for release 2.02
+# S.Drake/COMET  8/99   Removed chapter "default" from FDF directories
+# S.Chiswell/Unidata 5/97 New!! Added use of GEMPAK template datatype.tbl
+#			file for grids so that models don't have to be
+#			stored all in the same directory.
+#			Garp will seach datatype.tbl first for modelkey,
+#			then use the old directory search if not found
+#			in the GEMPAK template file.
+#-----------------------------------------------------------------------
+#
+#  Data directory Structures
+#  Case is important
+#  Configure these to match your data directory structure
+#  (Surface data directories defined later)
+#
+GARPHOME	: $(NAWIPS)/comet/garp/
+
+SATDIR          : $(SAT)
+RADDIR          : $(RAD)
+grids           : $(HDS)
+upperair        : $(GEMDATA)/upperair
+profiler        : $(GEMDATA)/profiler
+
+#
+#  Provide extra information for the satellite data
+#
+#  List each individual satellite directory
+#  Multiple entries are space separated
+#
+G7    : "$(SATDIR)/GOES-7"
+G8    : "$(SATDIR)/GOES-8"
+G9    : "$(SATDIR)/GOES-9"
+G10   : "$(SATDIR)/GOES-10"
+G11   : "$(SATDIR)/GOES-11"
+G12   : "$(SATDIR)/GOES-12"
+G13   : "$(SATDIR)/GOES-13"
+FLOAT1 : "$(SATDIR)/GOES-8_fl1 $(SATDIR)/GOES-9_fl1 $(SATDIR)/GOES-10_fl1 $(SATDIR)/GOES-12_fl1"
+FLOAT2 : "$(SATDIR)/GOES-8_fl2 $(SATDIR)/GOES-9_fl2 $(SATDIR)/GOES-10_fl2 $(SATDIR)/GOES-12_fl2"
+SPOLE  : "$(SATDIR)/ANTARCTIC"
+GINI : "$(SATDIR)/WEST-CONUS $(SATDIR)/EAST-CONUS $(SATDIR)/Colorado $(SATDIR)/AK-NATIONAL $(SATDIR)/AK-REGIONAL $(SATDIR)/HI-NATIONAL $(SATDIR)/HI-REGIONAL $(SATDIR)/PR-NATIONAL $(SATDIR)/PR-REGIONAL $(SATDIR)/SUPER-NATIONAL $(SATDIR)/NHEM-COMP $(SATDIR)/NHEM-MULTICOMP"
+COMPOSITE : "$(SATDIR)/RADAR"
+MDR   : "$(SAT)/MDR"
+GSOUND : "$(SAT)/SOUNDER"
+
+#
+#  sat, nids, and nowrad are the "keys" that are used to find
+#  the image data directories
+#
+#  Be sure each individual satellite directory listed above is in
+#  the "sat" key list
+#
+sat             : "$(G7) $(G8) $(G10) $(G11) $(G12) $(G13) $(GINI) $(FLOAT1) $(FLOAT2) $(SPOLE) $(GSOUND) $(COMPOSITE)"
+nids            : $(RADDIR)/NIDS
+#nowrad          : $(RADDIR)/USRAD
+nowrad          : "$(RADDIR)/USRAD $(RADDIR)/NEXRCOMP $(RADDIR)/RADAR"
+
+#
+#  File name keys
+#  Upper air & profile only
+#  (keys for surface and model data files are defined later)
+#
+#  These key values correspond to the "type" substring in the file 
+#  name convention for a upper air & profile data types.  For example,
+#  YYMMDD_"type".gem
+#
+#  Note, you must choose a unique key value to describe each data type.
+#  For example the key "upa" will match ALL data filenames containing 
+#  the string "upa".
+#
+upperairK       : upa
+profilerK	: 6min
+
+#
+# Dynamically generated menus.
+#
+# Models, Vertical coordinates, Color contours, Color fill tables, 
+# Font types & sizes, Station Overlays, Surface keys, Markers, 
+# Image Maps, Geographical areas & projections, FDF chapters, line
+# parameters, vector symbols, x-sec vertical axes, vertical 
+# profile vert axes, time/height time axes.
+#-------------------------------------------------------------
+# Models
+#
+#
+# NEW!!!!!! 10/14/04
+# modelkeys now checks the $GEMTBL/config/datatype.tbl template file
+# first for the directory and file naming template first!
+# This allows grids to be in different directories and use different
+# naming convention depending on model. If the modelkey is not
+# a known template, then the behavior defaults to looking
+# for the unique string in the Garp defined grid directory.
+#
+# List all models for GARP to display.  Objective Analysis grids
+# are OK.  Make up a name for "modellabels". The corresponding 
+# string in "modelkeys" must make a unique match to files in the
+# $(grids) directory.
+#
+# For example, the string "eta" matches YYMMDDHH_eta.gem *and* 
+# YYMMDDHH_mesoeta.gem. Better choices are "_mesoeta" and "_eta".
+#
+modelkeys	: "gfsthin,gfs003,eta,eta212,eta104,nam,dgex,mrf1,mrf2,ngm,ruc,ruc2,ensthin,ens,gdas,ukmet,ecmwfg,cmc,nogaps,rsas,wseta,sfca"
+
+modellabels	: "GFS thinned,GFS 003,Eta 211,Eta 212,Eta 104,NAM 20,DGEX,MRF,MRF_EXT,NGM,RUC,RUC II,EnsThin,Ensemble,GDAS,UK Met,ECMWF,CMC GEM,NOGAPS,RSAS,WSETA,SURFACE"
+#
+#-------------------------------------------------------------
+# Vertical coordinate keys for plan view.
+#
+vcoordkeys	: "pres,sgma,thta,hght,none,none,hagl,pagl,frzl,trop,mwsl,pdly"
+vcoordlabels	: "Pressure,Sigma,Isentropic,Height,Surface,None,Hght agl,Press agl,Freezing Lvl,Tropopause,Max Wind Speed,PRES Layer"
+#
+#-------------------------------------------------------------
+# Vertical coordinate keys for vertical profiles.
+#
+vpvcoordkeys	: "pres,sgma,thta,hght"
+vpvcoordlabels	: "Pressure,Sigma,Isentropic,Height"
+#
+#-------------------------------------------------------------
+# List colors to be used for contour lines, symbols, etc. 
+# Use no more that 10 GEMPAK colors in list.
+#
+colorlist	: "3,6,5,2,4,7,8"
+#
+#-------------------------------------------------------------
+# Color fill tables
+#
+#colorfillkeys	: "0;23-15,0;25;24;29;7;15,0;21-30;14-20;5,0;24;30;14;2,0;23;22;21;2"
+#colorfilllabels	: "Table 1,Table 2,Table 3,Table 4,Table 5"
+colorfillkeys   : "0;21-30,0;14-20,25;24;29;7;15,0;21-30;14-20;5,0;24;30;14;2,0;23;22;21;2"
+colorfilllabels : "Cool,Hot,Table 1,Table 2,Table 3,Table 4"
+#
+#-------------------------------------------------------------
+# Font type, size and hardware/software flag.  (See "Font" entry
+# in Chapter 3 of the NAWIPS Users Manual for help.)
+#
+text_size	: 1.3
+text_font	: 21
+text_width	: 1
+text_hw_flag	: hw
+#
+#-------------------------------------------------------------
+# Station overlays
+#
+stn_tables: "0,1,2,3,4,5,6,7"
+stn_labels: "Surface Airways,WFO,NEXRAD,Wind Profiler,Upper Air Stations,Counties,Local,Cities"
+#-------------------------------------------------------------
+# Surface keys 
+#
+# sfc_keys - Strings corresponding to the unique "type" substring in
+#  the filename convention for a given surface data type.  
+#  For example, YYMMDD_"type".gem: 980101_sao.gem, 980101_shb.gem
+#
+# sfc_labels - Labels corresponding to above sfc_keys.
+#
+# sfc_tables - Tables containing complete list of all valid parameters
+#   for a given surface data type.  Corresponds to sfc_keys and sfc_labels.
+#
+# xxx_dir - Directory containing surface data files of the xxx type
+# xxx_parms - Default list of parameters plotted for the xxx data type
+#
+# Examples:
+# sfc_keys: "surf,shb,amos,mmos,nmos,ffg,sels,ltg"
+# sfc_labels: "METAR,Ship/Buoy,AVN MOS,MRF MOS,NGM MOS,Flash Flood,Storm Warnings,Lightning"
+# sfc_tables: "sfcparms.lst,shbparms.lst,amosparms.lst,mmosparms.lst,nmosparms.lst,
+# ffgparms.lst,selsparms.lst,"
+# surf_dir : $(METDAT)/gempak/surface
+# shb_dir : $(METDAT)/gempak/surface
+# amos_dir : $(METDAT)/gempak/mos
+# nmos_dir : $(METDAT)/gempak/mos
+# mmos_dir : $(METDAT)/gempak/mos
+# ffg_dir : $(METDAT)/gempak/flood
+# sels_dir : $(METDAT)/gempak/storm
+# surf_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1"
+# shb_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;BLNK;WPER;WHGT;SSTC;BRBK:1.0:1"
+# amos_parms: "BLNK;TMPF;BLNK;CLCT;BLNK;PP12"
+# mmos_parms: "SKNT;TMPF;BLNK;CLCT;BLNK;PP12;PP24"
+# nmos_parms: "SKYC:1.0:1;TMPF;BLNK;CLCT;BLNK;PP12;PP06"
+# ffg_parms: "STID;ff01;BLNK;ff06;BLNK;ff03;ff12;BLNK;ff24"
+# sels_parms: "STID"
+#
+sfc_keys : "sao,syn,sb,gmos,xmos,nmos,ffg,nldn"
+sfc_labels : "METAR,Synoptic,Ship / Buoy,GFS MOS,GFSX MOS,NGM MOS,Flash Flood,Lightning"
+sfc_tables : "sfcparms.lst,shbparms.lst,shbparms.lst,gmosparms.lst,xmosparms.lst,nmosparms.lst,ffgparms.lst,nldn.lst"
+sao_dir	: $(GEMDATA)/surface
+syn_dir : $(GEMDATA)/syn
+sb_dir : $(GEMDATA)/ship
+gmos_dir : $(GEMDATA)/mos
+xmos_dir : $(GEMDATA)/mos
+nmos_dir : $(GEMDATA)/mos
+ffg_dir : $(GEMDATA)/storm/ffg
+nldn_dir : $(GEMDATA)/nldn
+sao_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1"
+syn_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1"
+sb_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;BLNK;WPER;WHGT;SSTC;BRBK:1.0:1"
+gmos_parms: "BLNK;TMPF;BLNK;CLCT;BLNK;PP12"
+xmos_parms: "SKNT;TMPF;BLNK;CLCT;BLNK;PP12;PP24"
+nmos_parms: "SKYC:1.0:1;TMPF;BLNK;CLCT;BLNK;PP12;PP06"
+ffg_parms: "STID;ff01;BLNK;ff06;BLNK;ff03;ff12;BLNK;ff24"
+ltg_parms: "POLR"
+nldn_parms: "STID"
+#
+#-------------------------------------------------------------
+# Suface Markers & Filter factor
+#
+# List of available marker types and the corresponding labels.
+# (See "Marker" entry in Chapter 3 of the NAWIPS Users Guide
+# for help.)
+#
+# Default filter factor for surface data. 1 = no overlaping
+# stations; 0 = all stations plotted, regardless of overlap.
+# (See "Filter" entry in Chapter 3 of the NAWIPS Users Guide
+# for help.)
+#
+sfc_markers: "3,4,6,14"
+sfc_marker_labels: "Triangle,Box,Diamond,Star"
+sfc_filter: 1
+#
+#-------------------------------------------------------------
+# Image maps
+#
+# Background images that you can plot along with model and obs
+# data.  You may have to manually select the color enhancement 
+# (unidat_top) for these images.
+#
+# NOTE that these are IMAGES, and can't be combined (yet) with 
+# other images such as satellite or radar data.  
+#
+# These images require 128 image colors.  To get this, you 
+# must start ntl with 128 satellite colors.  This is the
+# default in NAWIPS 5.4.
+#
+colormapdir	: $(GARPHOME)/map/areas
+colormapkeys	: "topo_goes8.area,topo_goes9.area,topo_na.area,topo_nh.area,topo_sh.area,topo_wh.area,topo_norcal.area,topo_VA.area,topo_CO.area,topo_centralRockies.area,topo_MN.area,topo_midwest.area,topo_southwestUS.area"
+colormaplabels	: "GOES-8,GOES-9,North America,Northern Hemisphere,Southern Hemisphere,Hemisphere,Northern California,Virginia,Colorado,Central Rockies,Minnesota,Midwest,Southwest"
+#
+#-------------------------------------------------------------
+# Geographic areas
+#
+# You can now configure the regions, projections, and GAREAs of all the
+# regions available under the AREA pull-down menu.  Here are some starting
+# examples.  You may configure them.
+#
+MapLabels	: "DEFAULT,Northern Hemisphere,North America,CONUS,Northeast,Southeast,North Central,South Central,Northwest,Southwest,Canada,Alaska,Hawaii,Pacific,Asia,Australia,South America,Africa,Europe,South Pole,North Pole"
+
+MapProjection	: "DEFAULT,str/90;-120;10,str/90.0;-100;0.0,lcc/30.0;-100;50.0,lcc/30.0;-80;50.0,lcc/30.0;-85;50.0,lcc/30.0;-100;50.0,lcc/30.0;-100;50.0,lcc/30.0;-110;50.0,lcc/30.0;-110;50.0,STR/90.00;-98.00;0.00,STR/90.00;-170.00;0.00,CED,lea/25;-155;0,str/60;90;0,str/-60;135;0,str/-60;-50;0,lea/-25;15;5,str/60;30;0,str/-90;0;0,str/90;-90;0"
+
+MapGarea	: "DEFAULT,-10;-170;-10;10,10;-130;50;-30,23.0;-120.0;47.0;-65.0,35;-90;48;-65,24.00;-95.00;38.00;-73.00,36.00;-112.00;50.00;-86.00,25.00;-110.00;40.00;-85.00,37.00;-125.00;50.00;-105.00,25.00;-122.00;40.00;-95.00,#48.00;-72.00;12.00;61.00,50.00;-180.00;60.00;-110.00,#20.50;-157.00;2.50;3.00,#25;-155;40;55,0;60;60;170,-45;90;0;170,-45;-100;15;-25,-30;-10;40;55,30;5;70;60,20;-135;20;45,-20;-135;-20;45"WIPS
+#
+# 
+# Default map areas and projections for each model type.  Use the 
+# string defined in "modelkeys" to specify the model.  If no spec
+# exists for a given model, default_proj and default_garea are used.
+#
+avn_proj	: str/90.0;-100;0.0
+avn_garea	: 10;-130;50;-30
+thin_proj       : str/90;-100;0
+thin_garea      : AFNA
+avn003_proj     : str/90;-100;0
+avn003_garea    : AFNA
+ukmet_proj      : str/90;-100;0
+ukmet_garea     : AFNA
+ecmf1_proj      : str/90;-100;0
+ecmf1_garea     : AFNA
+gdas_proj       : str/90;-100;0
+gdas_garea      : AFNA
+ngm211_proj     : lcc/25;-95;25
+ngm211_garea    : AWIPS
+ruc211_proj     : lcc/25;-95;25
+ruc211_garea    : AWIPS
+ruc236_proj     : lcc/25;-95;25
+ruc236_garea    : AWIPS
+maps_proj       : lcc/25;-95;25
+maps_garea      : AWIPS
+eta_proj     : lcc/25;-95;25
+eta_garea    : AWIPS
+eta212_proj     : lcc/25;-95;25
+eta212_garea    : AWIPS
+nam20_proj     : lcc/25;-95;25
+nam20_garea    : AWIPS
+#eta.gem_proj    : lcc/30.0;-100;50.0
+#eta.gem_garea   : 23.0;-120.0;47.0;-65.0
+#e10_proj	: mer/27;-126;45;-106
+#e10_garea	: 27;-126;45;-106
+#ngm_proj        : lcc/30.0;-100;50.0
+#ngm_garea       : 23.0;-120.0;47.0;-65.0
+mrf003_proj        : str/90;-120;10
+mrf003_garea       : -10;-170;-10;10
+mrf002_proj        : str/90;-120;10
+mrf002_garea       : -10;-170;-10;10
+mrf_proj	: str/90;-120;10
+mrf_garea	: -10;-170;-10;10
+ruc.gem_proj	: lcc/30.0;-100;50.0
+ruc.gem_garea	: 23.0;-120.0;47.0;-65.0
+rsas_proj	: lcc/30.0;-100;50.0
+rsas_garea	: 23.0;-120.0;47.0;-65.0
+ens_proj   : str/90;-120;10
+ens_garea  : -10;-170;-10;10
+default_proj	: lcc/25.0;-103;25.0
+default_garea	: 20.0;-127.0;50.0;-59.0
+#
+#-------------------------------------------------------------
+# FDF & Macro chapters. 
+#
+# These chapters are subdirectories which discriminate between
+# families of FDFs and macros. For each list of chapters, you 
+# must also define a list of button labels.
+#
+# Scalar, Vector, XSScalar (scalar cross section), XSVector
+# (vector cross section), THScalar (time/height scalar), THVector 
+# (time/height vector), VPScalar (vertical profile scalar),
+# VPVector (vertical profile vector).
+#
+ScalarChapter	: general,convective,HAS,isentropic,maxT_est,macros,macros_850mb,macros_700mb,macros_500mb,macros_250mb
+SCLabels	: General,Convective,HAS,Isentropic,MaxT_est,Macros,850mb_Macros,700mb_Macros,500mb_Macros,250mb_Macros
+VectorChapter	: general
+VCLabels	: General
+XSScalarChapter	: general,macros
+XSSCLabels	: General,Macros
+XSVectorChapter	: general
+XSVCLabels	: General
+THScalarChapter	: general,macros
+THSCLabels	: General,Macros
+THVectorChapter	: general
+THVCLabels	: General
+VPScalarChapter	: general,macros
+VPSCLabels	: General,Macros
+VPVectorChapter	: general
+VPVCLabels	: General
+#
+#-------------------------------------------------------------
+# Model dialog line parameters.
+#
+linetypekeys	: "1,2,3,4,5,6,7,8,9,10"
+linetype	: "Solid,Short dashed,Medium dashed,Long & short dash,Long dash,Long dash 3 short,Long dash dot,Long dash 3 dots,Medium dash dot,Dotted"
+labelfreqkeys	: "0,1,2,3,4,5"
+labelfreq	: "No labels,Every line,Every 2nd line,Every 3rd line,Every 4th line,Every 5th line"
+#
+#-------------------------------------------------------------
+# Model dialog vector symbols. These symbols will appear as options
+# when the "More" button is pressed for model dialogs.
+#
+vectorkeys	: "bm,bk,am,ak,an,st"
+vectorsymbols	: "Barb (m/s),Barb (knots),Arrow (m/s),Arrow (knots),Arrow (other),Streamlines"
+VertVectorkeys	: "bm,bk,am,ak,an"
+VertVectorsymbols : "Barb (m/s),Barb (knots),Arrow (m/s),Arrow (knots),Arrow (other)"
+#
+#-------------------------------------------------------------
+# Cross section vertical axis scale. Do not add additional axes.
+#
+yaxiskeys	: "log,lin"
+yaxislabels	: "Logarithmic,Linear"
+#
+#-------------------------------------------------------------
+# Vertical profile vertical axis scale. Do not add additional axes.
+#
+vpyaxiskeys	: "log,lin,skewt,stuve"
+vpyaxislabels	: "Logarithmic,Linear,Skew-T,Stuve"
+#
+#-------------------------------------------------------------
+# Time/height time axis scale. Do not change.
+#
+thtaxiskeys	: "R,F"
+thtaxislabels	: "Increasing to left,Increasing to right"
+#
+#-------------------------------------------------------------
+# Wind Profiler keys.
+#
+wpbottom	: 0
+wptop		: 10000
+wpincrement	: 1000
+wpduration	: 24
+wptimeint	: 60
+wpendtime	: 
+#
+#-------------------------------------------------------------
+# End of dynamically generated menus.
+#
+
+#--------------------------------------------------------------
+# Additional configurataions:
+#
+#--------------------------------------------------------------
+#
+# Thermodynamic diagram settings.
+#
+# stndex - defines a list of stability indices and thermodynamic
+#          parameters which are displayed on a thermodynamic diagram
+#          (Skew-T or Stuve). See the GEMPAK variable STNDEX for a list
+#          of valid  parameters and syntax.  Valid for upper air data
+#          vertical profiles only.
+#
+# SkewtXAxis, StuveXAxis
+#        - defines the GEMPAK "xaxis" parameter used when plotting
+#          SkewT-logP and Stuve diagrams, respectively.  See the
+#          GEMPAK variable XAXIS for syntax.  Valid for upper air
+#          data and model data vertical profiles.
+#
+stndex		: selv;lift;kinx;totl;swet;lclp;lfcv;eqlv;cape;cins;brch
+SkewtXAxis	: ///;1
+StuveXAxis	: -100/30/20/1
+
+#
+# Widget defaults
+#
+# Choose default values for the model, vertical coordinate, levels,
+# function, default fdf chapters, cross-section line, time-height
+# station, vertical profile axis types, radar ring station, upper
+# air levels and upper air filter.
+#
+model           : eta
+vcoord          : pres
+level1          : 500
+level2          : 1000
+fdf             : "Temp_C"
+fdf_directory	: general
+xsfdf		: "Theta_K"
+xsfdf_directory	: general
+thfdf		: "Theta_K"
+thfdf_directory	: general
+vpfdf		: "Temp_C"
+vpfdf_directory	: general
+cross-section   : vbg>dnr
+time-height_stn : DNR
+yaxistype	: log
+vpyaxistype	: skewt
+rring_stid	: FTG
+upalevels	: Surface,1000,925,850,700,500,400,300,250,200,150,100,70,50,30,20,10,Top
+upa_filter	: 0.5
+
+#
+# Auto Update. 
+#
+# Set to yes or no. The units of update_timer is minutes.
+# Valid entries are 1 to 60.
+#
+autoupdate	: no
+update_timer	: 5
+
+#
+# List of times in date/time scrolled lists for model data. 
+#
+# Generally, this is "all" to present all model times.  An alternative
+# is "analysis" to show only model analysis times.
+#
+TimesInList	: all
+
+#
+# Time match type. 
+# 
+# Valid values are "strict" (meaning that a time interval will is applied
+# to the time match), "closest" (to match the closest time),  and "none" 
+# (for no time matching). Time matching applies only to plan view  data.
+#
+TimeMatch	: none
+
+#
+# Time match intervals for "strict" time matching.
+#
+# Intervals in seconds. If the data to be time matched lies within the 
+# time interval given below, a valid time match will be found.
+#
+SfcObsTimeInterval:	3600
+UpaObsTimeInterval:	43200
+RadarTimeInterval:	900
+SatelliteTimeInterval:	3600
+
+#
+# Hypertext browser command and Starting URLs (or files).
+#
+# If the Browser command is "netscape %s", and Netscape is already running,
+# then GARP will try to open the URL in a new Netscape window. Otherwise,
+# GARP will launch the browser command listed. (The %s is the URL placeholder.)
+# 
+GarpHTML        : $(GARPHOME)/html
+Browser		: "netscape -install %s"
+UserGuide	: $(GarpHTML)/UserGuide.html
+CaseStudies: http://www.comet.ucar.edu/resources/cases/
+
+#
+# Dwell settings for animations
+#
+# You can customize the dwell settings for animations. The default
+# dwell is used when you start GARP, and there are 5 pre-defined
+# dwell groups available. Dwell settings are composed of three values;
+# the first frame, intermediate and final frame pause. Values are in
+# seconds. The speeds should get faster as you go from preset
+# dwell 1 to 5. Also, you may change the min and max allowed
+# values for the dwell settings on the slider bars. The internal
+# defaults are 0 and 3 seconds.
+#
+defaultdwell : "0.60,0.10,0.60"
+presetdwell1 : "2.50,1.50,2.00"
+presetdwell2 : "1.20,0.66,0.90"
+presetdwell3 : "0.90,0.33,0.60"
+presetdwell4 : "0.60,0.10,0.50"
+presetdwell5 : "0.20,0.05,0.20"
+dwellmin     : "0.01"
+dwellmax     : "3.00"
+
+#
+# Status bar and units
+#
+# This is the information that will be displayed on the status bar
+# by default. Allowable items are:
+#
+#	clock		ticking clock
+#	windowcoords	X,Y coordinate of mouse pointer
+#	plotcoords	mouse pointer position in plotting coordinates
+#	pixelvalue	image pixel value
+#	distcalc	distance and range calculator
+#
+statusbaritems : "clock,windowcoords,plotcoords,pixelvalue,distcalc"
+
+#
+# Define the units for image brightness temperature and distances.
+# Internal defaults are "degrees C" for temperature and "km" for 
+# distance. Allowable values are:
+#
+# temperature: C, K or F  (Celcius, Kelvin, Fahrenheit)
+# distance:    KM, MI, or NM (Kilometers, Miles, Nautical miles)
+#
+tempunits :	C
+distunits :	KM
+
+#
+# Lat/Lon Grid defaults.
+#
+# Define default lat/lon lines, increment, labelling, color, line
+# type and line width.  (See "latlon" in Chapter 3 of the NAWIPS
+# Users Guide for help.)
+#
+latlon:		no	# lat/lon grid, yes or no 
+latinc:		5.0	# latitude increment (degrees)
+loninc:		5.0	# longitude increment (degrees)
+label_freq:	2	# label frequency
+gridlinecolor:	2	# line color (GEMPAK color number)
+gridlinetype:	10	# line type (GEMPAK line types)
+gridlinewidth:	1	# line width
+
+#
+#-----------------------------------------------------------------------
+# Static configurations
+#
+# You should not have to change anything else in this file, unless
+# you have a very good reason.
+
+#
+# Minimum size of zoom box (in pixels) before zooming occcurs.
+# To prevent zooming by mistake.  Leave as is.
+#
+# Zoom box color. GEMPAK color number used when drawing the zoom box. 
+# The zoom box will NOT necessarliy appear in this color, especially
+# over images, since the color actually drawn is a combination of color
+# indices. Leave alone unless the zoom box does not appear (is black)
+# on some plots. (Color 1 is off-white)
+#
+minzoomboxsize  : 20
+zoomboxcolor	: 1
+
+#
+# GARP icon directory (do not change)
+#
+ICONDIR         : $(GARPHOME)/icons
+
+#
+#  Tables used for overlaying the location of certain station types
+#  i.e. surface, sounding, profiler, NEXRAD sites, etc.
+#  (Do not change)
+#
+tabledir        : $(GARPHOME)/tables
+
+# 
+#  Color enhancement tables
+#  Found in tabledir
+#  (Do not change)
+#
+mastertbl       : master_garp.tbl
+satenhancetbl   : sat_enhance.tbl
+radenhancetbl   : rad_enhance.tbl
+
+#
+#  Map list table file (don't change)
+#
+maplisttbl	: maplist.tbl
+
+#  Location of FDF (Field Description File) files
+#  (Do not change, unless you have a different FDF directory)
+#
+fdfdir          : $(GARPHOME)/fdf              # FDF Directory
+valid_fdf_keys  : $(fdfdir)/valid_fdf_keys     # Valid keys file
+scalarfdf       : $(fdfdir)/scalar             # Plan view scalar FDFs
+vectorfdf       : $(fdfdir)/vector             # Plan view vector FDFs
+xsscalarfdf     : $(fdfdir)/xsscalar           # Cross section scalar FDFs
+xsvectorfdf     : $(fdfdir)/xsvector           # Cross section vector FDFs
+thscalarfdf	: $(fdfdir)/xtscalar           # Time/height scalar FDFs
+thvectorfdf	: $(fdfdir)/xtvector           # Time/height vector FDFs
+vpscalarfdf	: $(fdfdir)/vpscalar           # Vertical profile scalar FDFs
+vpvectorfdf	: $(fdfdir)/vpvector           # Vertical profile vector FDFs
+
+#  File name template strings.
+#
+#  Each component of the template strings must match up one for one
+#  with the data directories defined above
+#
+#  Don't worry about matching up the "model" or "type" strings
+#
+#  Unless you've changed the Data Directory structures above,
+#  you shouldn't have to change these lines.
+# Use the following for YYMMDD convention
+#nidsT  : $(nids)/%(site)/%(product)/*_@(YYMMDD)_@(HHNN)
+#nowradT: $(nowrad)/%(resolution)/%(product)/*_@(YYMMDD)_@(HHNN)
+#gridsT    : $(grids)/@(YYMMDDHH)_*.gem
+#surfaceT  : $(surface)/@(YYMMDD)_sao.gem
+#upperairT : $(upperair)/@(YYMMDD)_upa.gem
+#profilerT : $(profiler)/@(YYMMDDHH)_6min.gem
+#satT   : $(SATDIR)/%(platform)/%(resolution)/%(product)/*_@(YYMMDD)_@(HHNN)
+#
+nidsT  : $(nids)/%(site)/%(product)/*_@(YYYYMMDD)_@(HHNN)
+#nowradT: $(nowrad)/%(resolution)/%(product)/*_@(YYYYMMDD)_@(HHNN)
+nowradT: $(RADDIR)/%(platform)/%(resolution)/%(product)/*_@(YYYYMMDD)_@(HHNN)
+satT   : $(SATDIR)/%(platform)/%(resolution)/%(product)/*_@(YYYYMMDD)_@(HHNN)
+gridsT    : $(grids)/@(YYYYMMDDHH)_*.gem
+surfaceT  : $(surface)/@(YYYYMMDD)_sao.gem
+upperairT : $(upperair)/@(YYYYMMDD)_upa.gem
+profilerT : $(profiler)/@(YYYYMMDD)_6min.gem
+
+#------------------------------------------------------------------------

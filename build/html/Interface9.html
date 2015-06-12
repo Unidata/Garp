@@ -1,0 +1,65 @@
+<html>
+
+<TITLE>GARP Display Window</TITLE>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+<h1><center>GARP Display Window</center></h1>
+<hr>
+<h2>Display Window</h2><p>
+Besides displaying loaded data, several features are available through
+mouse button presses and accelerator keys when the mouse is located
+over the display area. These features include zooming, toggling off a 
+graphic, and changing
+depictable preferences such as font size, symbol size, symbol thickness,
+and symbol plot density.
+<p>
+<h3><A NAME=Z>Zooming</A></h3>
+You may zoom in on any plan view graphic by drawing a rubber
+band box with the mouse (position the mouse in the upper left
+corner of the desired area, press the left mouse button and
+hold it, drag the mouse to the lower right corner of the area
+and release the button).  Use the Area->DEFAULT to return to
+the full area or Area->Previous to return to the previous area.
+Note that when you zoom on an image or
+surface/upper-air data graphic, GARP will go back to the data
+file and extract more data (if available) to re-draw the graphic.
+You can also perform a centered 2x zoom by double clicking a point in
+the display window.
+<p>
+
+<h3><A NAME=G>Graphic Toggling</A></h3>
+You may toggle a graphic by clicking its corresponding title. 
+The display is redrawn to either include or exclude the graphic you 
+toggled. Toggled off graphics have their title grayed out. 
+For complex graphics it may take a while to complete the redraw.
+<p>
+
+<h3><A NAME=G>Distance Calculator</A></h3>
+GARP provides a distance calculator for determining distances between
+points on the display. A single left-click at any point on the display initializes
+the distance calculator and displays a red cross-hair at that point. As the
+user moves the mouse away from the reference point, the distance between the
+reference point and the mouse position displays on the status bar. Single
+clicking anywhere else on the display sets the new point as the reference point.
+The distance units can be changed in the Status Bar Options menu, and the
+default units can be set in the Garp_defaults file by changing the "distunits" key.
+<p>
+To turn the distance calculator off, hold the Control (CTRL) key down and
+left-click the mouse anywhere in the display.
+<p>
+
+<a href="DepictablePref.html">Depictable Preferences</a>
+allow you to change the font size, symbol size, symbol thickness,
+and symbol plot density.
+<hr>
+
+</body>
+</html>

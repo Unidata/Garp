@@ -1,0 +1,38 @@
+! GARP Macro Template
+!
+! Macro: Mean Sea Level Pressure and 6 hour Precipitation.
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = MSLP and and 6 hour Precipitation
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Color fill 6 hour precipitation.
+chapter			= general
+fdf			= Precip_6hr_in
+fill			= y
+pres_cmin		= 0.25
+pres_cint		= 0.25
+pres_cmax		= 1.0
+line_color		= 8
+line_type		= 1
+line_width		= 1
+line_label_frequency	= 0
+operation		= run
+!
+! Overlay geopotential height.
+fdf			= MSLPress_mb_MAPS_Reduction
+line_color		= 17
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 1
+colorh                  = 17
+colorl                  = 17
+symbolh                 = H#
+symboll                 = L#
+operation		= run
+
+! *** End of Parameters ***

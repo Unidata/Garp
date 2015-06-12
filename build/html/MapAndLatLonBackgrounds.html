@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (X11; I; HP-UX B.10.20 9000/715) [Netscape]">
+   <TITLE>GARP Overlay</TITLE>
+</HEAD>
+<BODY TEXT="#400020" BGCOLOR="#FFFFFF" LINK="#7F7FFF" VLINK="#505090" ALINK="#FF0000" BACKGROUND="gif/COMET_Wallpaper.GIF" NOSAVE fgcolor="#000000">
+
+<HR>
+<CENTER>
+<H1>
+GARP Lat/Lon Grid and Map Backgrounds</H1></CENTER>
+
+<HR>
+
+<H2>
+Lat/Lon Grid</H2>
+
+<CENTER><IMG SRC="gif/LatLonGrid.gif" NOSAVE HEIGHT=219 WIDTH=637></CENTER>
+
+<P>A lat/lon grid can be displayed in any plan view plot. The user can
+turn the grid on or off by default, and can independently set the lat
+or lon grid spacing and labelling frequency. Convenience buttons are also
+provided to set the lat/lon spacing to pre-defined values. Pressing the
+Apply button in this dialog will cause GARP to redraw all its frames with
+the new options set.
+
+<P>The line color, type and width can all be changed by clicking the
+Sample Line button. (Make sure the lat/lon grid toggle button is On
+though.) After changing the line attributes, remember to save them
+by pressing the Apply button in the Line Attributes dialog. See the
+<A HREF="LineAttributes.html">Line Attributes dialog</A> for more
+details.
+
+<P>Default values for lat/lon grid spacing and line attributes can
+be set in the "Garp_defaults" file.
+<H2>
+<A NAME="map_backgrounds"></A>Map Backgrounds</H2>
+
+<CENTER><IMG SRC="gif/MapBackgrounds.gif" NOSAVE HEIGHT=595 WIDTH=631></CENTER>
+
+<P>The map backgrounds dialog allows you to change what maps are drawn
+for plan view plots. First, a map can only be plotted if it is toggled
+On. When it is On, the map will be drawn if the scale of the existing
+geographic area falls within the maxmum and minimum scales for the particular
+map. The values for scale are in degrees of latitude. Having a min
+and max scale allows you to customize which maps appear for different geographic
+scales. For example, you could display only a low-resolution map for larger
+scales, moving to a higher resolution map and additional detailed maps as the
+scale shrinks.
+
+<P>When a map is on, you may modify its line attributes by clicking 
+the sample line. Color, line type and width are all configurable from the
+<A HREF="LineAttributes.html">Line Attributes dialog</A>.
+
+<P>Map defaults are set up in a table file provided with GARP. The file
+location is identified by the "maplisttbl" key in the Garp_defaults file.
+Each entry in the file lists the descriptive map name, the map file, whether
+it is on or off, the scale values and the line attributes. Users may change
+these as needed, or add additional (GEMPAK format) maps.
+
+<P>
+<HR WIDTH="100%">
+</BODY>
+</HTML>

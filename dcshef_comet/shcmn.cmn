@@ -1,0 +1,31 @@
+C************************************************************************
+C* / SHCMN /								*
+C*									*
+C* This common area holds the fields of a SHEF report.  The		*
+C* subroutine SH_GFLD puts the fields in common.			*
+C**									*
+C* Log:									*
+C* P.Bruehl/NWS	4/98	Based on racmn					*
+C************************************************************************
+	PARAMETER	( IFLDMX = 10000 )
+C*
+	CHARACTER	cfield (IFLDMX)*12
+C------------------------------------------------------------------------
+	COMMON 		/SHCMN/
+     +		nfield,
+C!					Number of fields
+     +	        ifstrt (IFLDMX),
+C!					Field start point
+     +	        ifendp (IFLDMX),
+C!					Field end point
+     +	        ifsize (IFLDMX),
+C!					Field length
+     +	        iftype (IFLDMX),
+C!					Field types 
+C!					  1 = character
+C!					  2 = number
+C!					  3 = slash
+     +	        rfval (IFLDMX),
+C!					real value of field
+     +		cfield
+C!					Field if less than 12 chars

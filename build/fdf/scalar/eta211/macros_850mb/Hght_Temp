@@ -1,0 +1,43 @@
+! GARP Macro Template
+!
+! Macro: Geopotential Height and Temperature.
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Geopotential Height and Temperature
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Color fill temperature in Celcius.
+chapter			= general
+fdf			= Temp_C
+level1			= 850
+fill			= y
+fint_parse		= n
+pres_cint		= 3
+line_color		= 2
+line_width		= 1
+pres_fint		= -24;-18;-12;-6;0;21;24
+fline			= 29;30;28;24;25;0;14;15
+line_label_frequency	= 1
+operation		= run
+!
+! Overlay geopotential height.
+fdf			= Hght_m
+fill			= n
+hilo			= y
+pres_cint		= 3
+scale			= -1
+line_color		= 20
+line_type		= 1
+line_width		= 2
+line_label_frequency	= 1
+colorh                  = 20
+colorl                  = 20
+symbolh                 = H#
+symboll                 = L#
+operation		= run
+
+! *** End of Parameters ***

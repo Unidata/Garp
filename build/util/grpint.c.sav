@@ -1,0 +1,276 @@
+/***********************************************************************
+ *
+ *	Copyright 1996, University Corporation for Atmospheric Research.
+ *
+ *	gprint.c
+ *
+ *	Logging window utility.
+ *
+ *	History:
+ *
+ *	 4/97	COMET	Original copy
+ *	 5/97	COMET	Print to standard out if GUI has not yet been 
+ *			instantiated.
+ *	 7/97	COMET	Added X and Xt error handling routines. Also
+ *			added write to output file routine.
+ *
+ ***********************************************************************/
+
+#include <stdio.h>
+#include <varargs.h>
+#include "gui.h"
+#include "winpref.h"
+#include "guimacros.h"
+#include "underscore.h"
+
+#include "_proto.h"
+
+int x_error();
+void xt_error();
+
+static FILE	*fp;
+static char	*filename="garp.out";
+
+int
+OpenFile ( FILE **fp, char *filename, char *perms )
+{
+/*
+ *	Open a file with the given permissions.
+ */
+	*fp = fopen ( filename, perms );
+
+	if ( !*fp )
+	    return ( -1 );
+}
+
+
+void
+gprint ( fmt, va_alist )
+	char *fmt;
+        va_dcl
+{
+/*
+ *  Printf driver in C. This function parameter list comprises a format 
+ *  statement followed by a variable length argument list. It writes to 
+ *  standard out and to a logging window.
+ */
+	va_list		args;
+	extern Widget	log_text;
+	extern Widget	main_shell;
+
+	GuiWinPrefDialogType	*wpi;
+
+
+	wpi = GetGuiWinPrefDialog();
+
+	va_start(args);
+/*
+ *	Print to standard out.
+ */
+	if ( ( GetGuiStdoutW ( wpi ) ) &&
+	       XmToggleButtonGetState ( GetGuiStdoutW ( wpi ) ) )
+	    printf ( fmt, va_alist );
+
+/*
+ *	Print to status window when it has been instantiated.
+ */
+	else if ( ( GetGuiGarpLogW ( wpi ) ) &&
+	            XmToggleButtonGetState ( GetGuiGarpLogW ( wpi ) ) ) {
+	if ( GetLogInfoW ( wpi ) )
+	    wprint ( fmt, va_alist );
+	}
+
+/*
+ *	Print to a file. Open file if necessary and write to it.
+ */
+	else if ( ( GetGuiGarpFileW ( wpi ) ) &&
+	            XmToggleButtonGetState ( GetGuiGarpFileW ( wpi ) ) ) {
+	    if ( !fp )
+            	OpenFile ( &fp, filename, "w" );
+            if ( fp )
+            	fprintf (fp, fmt, va_alist);
+	}
+
+/*
+ *	Garp interface is not yet initialized so print to standard out.
+ */
+	else
+	    printf ( fmt, va_alist );
+
+
+	va_end(args);
+}
+
+
+void gfprints ( fmt, str )
+        char	*fmt;
+	char	*str;
+{
+/*
+ *  Print driver for Fortran strings. This function function parameter list 
+ *  comprises a format statement followed by a fixed length (one varible)
+ *  argument list. A carriage return is written to the end of the argument
+ *  and then passed to gprint.
+ */
+	char	*arg, *fmt2;
+	int	len;
+
+	len = strlen ( str ) + 3;
+	arg = ( char * ) malloc ( len * sizeof ( char * ) );
+	sprintf ( arg, "%s%s", str, "\n" );
+
+	len = strlen ( fmt ) + 3;
+	fmt2 = ( char * ) malloc ( len * sizeof ( char * ) );
+	sprintf ( fmt2, "%s%s", fmt, "%s" );
+
+	gprint ( fmt2, arg );
+
+	free ( arg );
+	free ( fmt2 );
+}
+
+
+void gfprinti ( fmt, i )
+        char	*fmt;
+	int	*i;
+{
+/*
+ *  Print driver for Fortran ints. This function function parameter list 
+ *  comprises a format statement followed by a fixed length (one varible)
+ *  argument list. A carriage return is written to the end of the argument
+ *  and then passed to gprint.
+ */
+	char	*buf, *arg, *fmt2;
+	int	len;
+
+	buf = int2str ( *i );
+	len = strlen ( buf ) + 3;
+	arg = ( char * ) malloc ( len * sizeof ( char * ) );
+	sprintf ( arg, "%s%s", buf, "\n" );
+
+	len = strlen ( fmt ) + 3;
+	fmt2 = ( char * ) malloc ( len * sizeof ( char * ) );
+	sprintf ( fmt2, "%s%s", fmt, "%s" );
+
+	gprint ( fmt2, arg );
+
+	free ( buf );
+	free ( arg );
+	free ( fmt2 );
+}
+
+
+void gfprintf ( fmt, f )
+        char	*fmt;
+	float	*f;
+{
+/*
+ *  Print driver for Fortran floats. This function function parameter list 
+ *  comprises a format statement followed by a fixed length (one varible)
+ *  argument list. A carriage return is written to the end of the argument
+ *  and then passed to gprint.
+ */
+	char	*buf, *arg, *fmt2;
+	int	len;
+
+	buf = float2str ( *f );
+	len = strlen ( buf ) + 3;
+	arg = ( char * ) malloc ( len * sizeof ( char * ) );
+	sprintf ( arg, "%s%s", buf, "\n" );
+
+	len = strlen ( fmt ) + 3;
+	fmt2 = ( char * ) malloc ( len * sizeof ( char * ) );
+	sprintf ( fmt2, "%s%s", fmt, "%s" );
+
+	gprint ( fmt2, arg );
+
+	free ( buf );
+	free ( arg );
+	free ( fmt2 );
+}
+
+
+int
+x_error ( Display *dpy, XErrorEvent *err_event )
+{
+	char			buf[BUFSIZ];
+	GuiWinPrefDialogType	*wpi;
+
+	wpi = GetGuiWinPrefDialog();
+
+	XGetErrorText(dpy, err_event->error_code, buf, sizeof buf);
+/*
+ *	Print to standard out.
+ */
+	if ( ( GetGuiStdoutW ( wpi ) ) &&
+	       XmToggleButtonGetState ( GetGuiStdoutW ( wpi ) ) )
+	    printf ("X Error: <%s>\n", buf);
+
+/*
+ *	Print to status window when it has been instantiated.
+ */
+	else if ( ( GetGuiGarpLogW ( wpi ) ) &&
+	            XmToggleButtonGetState ( GetGuiGarpLogW ( wpi ) ) ) {
+	    if ( GetLogInfoW ( wpi ) )
+		wprint("X Error: <%s>\n", buf);
+	}
+
+/*
+ *	Print to a file. Open file if necessary and write to it.
+ */
+	else if ( ( GetGuiGarpFileW ( wpi ) ) &&
+	            XmToggleButtonGetState ( GetGuiGarpFileW ( wpi ) ) ) {
+	    if ( !fp )
+            	OpenFile ( &fp, filename, "w" );
+            if ( fp )
+            	fprintf ( fp, "X Error: <%s>\n", buf );
+	}
+
+/*
+ *	Garp interface is not yet initialized so print to standard out.
+ */
+	else
+	   printf ("X Error: <%s>\n", buf);
+}
+
+
+void
+xt_error ( char *message )
+{
+	GuiWinPrefDialogType	*wpi;
+
+	wpi = GetGuiWinPrefDialog();
+
+/*
+ *	Print to standard out.
+ */
+	if ( ( GetGuiStdoutW ( wpi ) ) &&
+	       XmToggleButtonGetState ( GetGuiStdoutW ( wpi ) ) )
+	    printf ("Xt Error: %s\n", message);
+
+/*
+ *	Print to status window when it has been instantiated.
+ */
+	else if ( ( GetGuiGarpLogW ( wpi ) ) &&
+	            XmToggleButtonGetState ( GetGuiGarpLogW ( wpi ) ) ) {
+	    if ( GetLogInfoW ( wpi ) )
+		wprint("Xt Error: %s\n", message);
+	}
+
+/*
+ *	Print to a file. Open file if necessary and write to it.
+ */
+	else if ( ( GetGuiGarpFileW ( wpi ) ) &&
+	            XmToggleButtonGetState ( GetGuiGarpFileW ( wpi ) ) ) {
+	    if ( !fp )
+            	OpenFile ( &fp, filename, "w" );
+            if ( fp )
+            	fprintf ( fp, "Xt Error: %s\n", message );
+	}
+
+/*
+ *	Garp interface is not yet initialized so print to standard out.
+ */
+	else
+	   printf ("Xt Error: %s\n", message);
+}

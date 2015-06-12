@@ -1,0 +1,24 @@
+! GARP Macro Template
+!
+! Macro: Freezing & Snow Level + Heights
+!
+! 
+! *** Required Parameters ***
+type			= macro
+description             = Freezing & Snow level + Heights 
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+!
+! Plot freezing level
+chapter			= general
+fdf			= Freezing_Level
+operation		= run
+!
+! Overlay Snow level
+fdf			= Snow_Level
+operation		= run
+
+! Overlay Height
+fdf			= Hght_ft
+operation		= run

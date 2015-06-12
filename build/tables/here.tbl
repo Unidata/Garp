@@ -1,0 +1,10 @@
+! This table contains local site information.
+!
+! The format for the file is given below, with the number of
+! characters in parentheses.
+!
+!STID    STNM   NAME                             ST CO   LAT    LON  ELEV  PRI
+!(8)     (6)    (32)                            (2)(2)   (5)    (6)   (5)  (4)
+!
+Unidata   99999 1V5 - BOULDER MUNI AIRPORT       CO US  4004 -10523  1612
+DIA      725650 DENVER_INTNL_ARPT                CO US  3987 -10467  1656  0

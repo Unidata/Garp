@@ -1,0 +1,1663 @@
+<html>
+
+<title>GARP Troubleshooting & FAQ</title>
+
+<body background = "gif/COMET_Wallpaper.GIF"
+         fgcolor = "#000000"
+            text = "#400020"
+         bgcolor = "#FFFFFF"
+            link = "#7f7fff"
+           vlink = "#505090"
+           alink = "#FF0000">
+
+<hr>
+
+<h1><center>GARP Troubleshooting & FAQ</center></h1>
+<i>Contributed by Peggy Bruehl/NWS<br>
+Last Updated March 16, 1998</i>
+<br><br>
+Click <a href=
+"http://www.comet.ucar.edu/pub_html/garp/UserGuide_2.0/TroubleShoot.html">
+here</a> for an updated troubleshooting guide on the COMET GARP Home Page.
+
+
+<p>
+<hr>
+<p>
+<h3>Troubleshooting</h3>
+<ol>
+
+<li><i>Q: Recently I installed GARP 2.0.  When I run the program
+a window appears, but it looks very strange. Across the top, the menus 
+are labeled "cascade33", "cascade34" etc.  There are no icons either.  
+Instead there are buttons labeled "satellite data", "Surface obs data",
+etc.  What's wrong? </i><p>
+
+A: This is a problem with the resource files.  GARP 2.0 has two resource
+files, Garp and Garp2.  The environment variable
+<code><b>$XUSERFILESEARCHPATH</b></code> is used to point to the 
+directory where these files are kept.  Most likely, GARP 2.0 is
+either picking up the old GARP 1.X resource files, or it can't find
+the resource files at all.<p>
+
+When you untarred the GARP 2.0 distribution, the Garp and Garp2 files 
+should have gone into your <code><b>$NAWIPS/resource</b></code> directory.
+Check to make sure that these files are in the right directory.  Then
+make sure that the correct directory name is in your 
+<code><b>$XUSERFILESEARCHPATH</b></code> environment variable.  You
+must also make sure that the correct directory name appears in
+the list ahead of any other directory that might contain an older
+version of the Garp or Garp2 files.  Then, restart GARP and the 
+interface will appear normal.
+<p>
+
+<li><i>Q: Today, I added the ICWF supplementary Meso-Eta grids to the
+list of model data that I download from OSO.  I've named the files 
+<code><b>YYMMDDHH_meso_supp.gem</b></code>.
+I tried to add these files to GARP by adding them to my Garp_defaults
+file:
+</i><pre><code><b>
+modelkeys       : "eta,ngm,mrf,meso,meso_supp"
+modellabels     : "ETA-48km,NGM,MRF,MesoEta,ICWF_MESO"
+</b></code></pre><i>
+
+Now, I can view the ICWF Meso-Eta data without any problems.  However, 
+when I try to view the regular Meso-Eta data, something is not quite
+right.  It's like some of the ICWF Meso-Eta grids are getting included
+with the regular Meso-Eta.  What is going on?</i><p>
+
+A: You are right. The ICWF Meso-Eta files are being included with
+the regular Meso-Eta files.  This is because of the way you specified
+<code><b>modelkeys</b></code> in the Garp_defaults file. 
+GARP uses the strings listed in <code><b>modelkeys</b></code> to
+find all the files in your grid directory that contain that string.  
+When you select the Meso-Eta model, GARP uses the string 
+<code><b>meso</b></code> and gets a list of all the files in 
+the grid directory that match that string.  Then, the  dates/times 
+are extracted from these files and listed for the Meso-Eta model
+in the <b>Gridded Data Plan View</b> dialog window.<p>
+
+In your case, the string <code><b>meso</b></code> matches
+both your Meso-Eta data files (<code><b>YYMMDDHH_meso.gem</b></code>) 
+and your ICWF supplementary Meso-Eta files
+(<code><b>YYMMDDHH_meso_supp.gem</b></code>). So times from both
+these files are listed in the <b>Gridded Data Plan View</b> window.
+What you really need to do is be more specific when you define the 
+string for the Meso-Eta:
+<pre><code><b>
+modelkeys       : "eta,ngm,mrf,meso.gem,meso_supp"
+modellabels     : "ETA-48km,NGM,MRF,MesoEta,ICWF_MESO"
+</b></code></pre>
+
+Now, only the files <code><b>YYMMDDHH_meso.gem</b></code> will match
+the <code><b>meso.gem</b></code> string in Garp_defaults and the
+Meso-eta data will display properly.<p>
+ 
+<li><i>Q: Today, I tried to view the Eta data using GARP 2.0.  The 
+dates and times were OK, but the level buttons were always 
+desensitized.  How can I get the level windows to take my 
+input?</i><p>
+
+A: In the <b>Gridded Data Plan View</b> dialog window, the <b>Level
+1</b> and <b>Level 2</b> windows contain the lists of levels that are 
+currently available for the selected model.<p>
+
+For the Eta model, GARP goes to your grid directory and opens the 
+Eta grid files and collects the times and the levels in those files.  
+The times are listed in the left scrolled list window and the levels 
+are listed in the <b>Level 1</b> and <b>Level 2</b> windows.  If the 
+first Eta grid file that is opened does not contain any levels, or is 
+corrupted somehow, the <b>Level 1</b> and <b>Level 2</b> windows 
+will be desensitized.<p>
+
+This could be happening for a couple of reasons.  First, you
+may have one bad Eta file in your grid directory.  There's no
+way to fix this other than just removing the file.   However, it
+is much more likely that in your grid directory, you have a file 
+matching the Eta string that is not a GEMPAK grid file.<p>
+
+In the Garp_defaults file, check the <code><b>modelkeys</b></code>
+variable to find the string which defines the Eta model.  Then, check
+your gridded data directory for any files that match that pattern.
+For example:
+<pre><code><b>
+  ls $METDAT/gempak/grids/*eta*
+</b></code></pre>
+
+If any of the files listed are not GEMPAK grid files, remove or
+rename them and try GARP again.  <p> 
+
+<li><i>Q: We have been trying to get our LINUX PC to run GARP.
+When we start GARP, get the following warning messages:
+</I><pre><code><b>
+
+     Warning: Cannot convert string "-dt-interface-user-medium-r-normal-m*_*_*_*_*_" to type FontStruct
+
+     Warning: Unable to load any usable FontSet
+
+     Warning:
+        Name: FONTLIST_DEFAULT_TAG_STRING
+        Class: XmRendition
+        Conversion failed.  Cannot load font.
+</b></code></pre><i>
+
+This repeats over and over until I press "CTRL C".  We are
+running Red Hat Linux 4.2 and CDE 4.2.</i><p>
+
+A: This is a font problem.  In the Garp resource file
+<code><b>$NAWIPS/resource/Garp</b></code>, add the following line:
+
+<pre><code><b>
+Garp*fontList: -adobe-courier-medium-r-normal--14-100-100-100-m-90-iso8859-1
+</b></code></pre>
+
+Now you should be able to run GARP on Linux without the fatal errors.<p>
+
+<li><i>Q: I am trying to run GARP on my Linux PC.  However, the GARP
+window is too large for my monitor and I can't see the bottoms of 
+most of the windows.  How can I make GARP smaller?</i><p>
+
+A: For PCs with lower screen resolutions, you may need to adjust the size 
+of the overall GARP window and/or the main drawing window.  The overall size 
+of the GARP display window is 1098x748.  You can change the size in
+the GARP resource file <b><code>$NAWIPS/resource/Garp2</code></b> in the 
+<code><b>Garp*geometry</b></code> or the <code><b>Garp*main_canvas</b></code> 
+resources.  
+     
+<pre><code><b>
+
+    ! Main window drawing area
+    Garp*main_canvas.width:620
+    Garp*main_canvas.height:422
+
+</b></code></pre>
+
+Note however, the icons included in the GARP interface are not scalable.  
+So, if you change the size of the overall GARP window to be too small, 
+you won't be able to access all the control buttons.  You may have to play 
+with the size until you strike a compromise.   To help you configure 
+GARP for a lower resolution monitor, the file 
+<code><b>$NAWIPS/resource/Garp2.small</b></code> has been included in
+the GARP 2.0 distribution.  To enable the size definitions in this file,
+change its name to Garp2.<p>
+
+
+<li><I>Q: When I try to start up GARP on my Linux PC, I get a 
+bunch of error messages from some X routine.  The error messages 
+say something about colors:
+
+</i><pre><b>InitGempakColorMap:  Can't allocate Graphic colors.
+GarpInitialize: GempakInit failed
+Main: Initialization failed.  Exiting</b></pre><i>
+
+I know I have enough free colors on the computer, so what's wrong?</i><p>
+
+A:  An easy way to be sure you have enough colors available
+on your workstation is to run the NAWIPS NTL program.   The error
+message is very clear:
+<pre><code><b>
+% ntl
+graphic, satellite, radar -- 33 128 16
+         Request total # of colors = 177
+         Current available system colors = 11
+</b></code></pre>
+
+However, if the error message you are seeing is different, then it may 
+be because of your X server color configuration.  Both GARP and NAWIPS 
+have a strict requirement that the X server color configuration
+default visual must be set to 8-bit PseudoColor.  If your default
+visual is set to anything else (8-bit TrueColor or any kind of
+24-bit color), neither NAWIPS or GARP will run.  This is true
+on PC hardware and on UNIX workstations.<p>
+
+<li><i>Q: I've been running GARP for some time now.  Today, I 
+edited the Garp_defaults file and made one small change.  Suddenly
+GARP won't run anymore.  It gives me some strange errors that look
+like they are coming from Garp_defaults.  I went back into Garp_defaults
+and undid the change I made, but the error persists.  What went wrong?</i>
+<p>
+
+A: Well, it's hard to say what happened for sure, but it's possible
+that your editor did something to the Garp_defaults file.  When editing 
+the Garp_defaults file, it is very important that you <i>disable</i> 
+word-wrapping in your editor.  This is not a problem for those of you 
+using <code><b>vi</b></code>, however if you use <code><b>pico</b></code> 
+or the HPUX CDE text editor, make sure you do not <i>wrap to fit</i> the
+lines in the file.  There are many long lines in the Garp_defaults file 
+that must remain as single lines.  If they are wrapped to the next line, 
+it is possible that GARP will not run.<p>
+
+Once the lines have been wrapped, it's hard to undo.  You can try to
+find all the instances of wrapped lines and reconnect them.  Or, you
+can download the GARP distribution again and copy a fresh version
+of Garp_defaults into your <code><b>$GARP_PATH</b></code> directory.<p>
+
+
+<li><i>Q: Today, I tried to run two instances of GARP.  They started
+up OK, but when I tried to load in a satellite image, I got the
+following message:
+</i><pre><b><code>
+Error: could not allocate image colors.
+GEMPAK: [GEMPLT -64]  NCBALOC  - Color bank not allocated.
+</code></b></pre><i>
+
+I thought I could run more than one GARP at the same time.</i><p>
+
+A: You can, but only if you run NTL first.  NTL is the NAWIPS
+controller program that allocates colors.  Once NTL is running,
+you can start as many NAWIPS or GARP applications as you like.
+You will never run out, because all the applications share the
+same colors.  (You may, however, run out of memory!)<p>
+
+Once NTL is running in your session, you can start GARP by
+pressing the GARP icon, or by typing <code><b>garp</b></code>
+at any command line.<p>
+
+<li><i>Q: Older versions of GARP would not display the map with the PRREG 
+satellite images.  Is this still a problem? </I> <p>
+
+A: GARP 2.0 has been linked against a patched version of NAWIPS which
+should no longer have this problem.  If you see this problem, please
+contact the GARP developers at <code><b>garp@comet.ucar.edu</b></code>.<p>
+
+<li><i>Q: It seems like sometimes GARP 2.0 is using more memory 
+than it did in earlier versions.  In fact, sometimes when I load a loop 
+of satellite images, my computer runs out of memory and GARP crashes.  
+What is going on?</i><p>
+
+A: It is true that in some cases GARP 2.0 can use more memory than
+previous versions of GARP.  This is a function of how GARP 2.0 handles 
+image data.<p>
+
+In GARP 1.X, pixel values were read from an image file and then
+displayed in the window on the screen.  The only data that were
+saved in memory were those pixel values that were actually 
+displayed on the screen.  These pixel values were then used
+to provide the pixel value readout on the status bar beneath
+the drawing window.<p>
+
+In GARP 2.0, the contents of the entire image are now saved in
+memory, regardless of how much of the image is seen on the 
+screen.  This was done for a couple of reasons.  First, it will
+make future development work on image combination feasible, and 
+second, it will speed performance when zooming or redrawing the 
+images.  The downside is, in cases when the image is larger than
+the viewing window, memory usage goes up.<p>
+
+So now in GARP 2.0, the amount of memory used to display image data
+is dependent on the image size rather than the window size.
+For example, assuming a 1100 x 750 pixel display window, GARP used 
+to use .825 MB (1100*750) of memory to display an image. In GARP 2.0,
+the amount of memory required to save the data is dependent on the
+full image size (lines*elements). So, if I load a small image (500 
+lines by 500 elements), the memory requirement is lowered to 0.25 MB.
+However, if I load a big image (1500 lines by 1500 elements), GARP 
+requires 2.25MB of memory to load the image.<p>
+
+Note that the memory required is a function of the full size of the 
+image.  If the image file is compressed, the memory required by 
+GARP may be larger than the disk space required to store the file.
+<P>
+
+Most users view subsetted or smaller images in GARP.
+However, occasionally you may view larger images.  This is when
+you will see the greater memory requirements of GARP 2.0.  If you 
+find that you run out of memory while trying to load a loop
+of images, you can force GARP not to save the pixel values by 
+pressing the <b>Pixel Value</b> button on the <b>Status Bar 
+Preferences</b> window.  The memory required decreases significantly 
+if the pixel values are not saved.  Note, if the pixel values are
+not saved, they can not be displayed on the status bar. 
+<p>
+
+To monitor your memory usage, I like the freely available program
+<code><b>dmon</b></code>.  (You can get <code><b>dmon</b></code> on
+the Internet.  HP users can find a pre-compiled version on the HP
+Porting and Archive Center at <a href="http://hpux.cae.wisc.edu/">
+http://hpux.cae.wisc.edu/</a>.)  Another alternative is the
+<code><b>top</b></code> program.  If memory usage is a continuing
+problem, you should configure your X server to exit and restart
+between every login.  This configuration is quite simple:
+<ol>
+<li>Copy the file /usr/dt/config/Xconfig to /etc/dt/config/Xconfig
+<li>Edit /etc/dt/config/Xconfig and set the following variable: 
+<pre><b>Dtlogin*terminateServer:   True</b></pre>
+</ol>
+This will force the X server to restart and free all used memory
+at every logout.<p>
+
+
+<p>
+
+
+<li>
+<i>Q: I just installed GARP. When I try to run it, I get these errors: 
+</i><pre><code> <b>
+     loading the fdf files.
+     
+     *** Error in GetFDF - Could not read:
+     /usr1/nawips/garp/fdf/default/scalar/general/Temp_C
+     *** Error in GetFDF - Could not read:
+     /usr1/nawips/garp/fdf/default/xsscalar/general/Theta_K
+     *** Error in GetFDF - Could not read:
+     /usr1/nawips/garp/fdf/default/xtscalar/general/Theta_K
+     *** Error in GetFDF - Could not read:
+     /usr1/nawips/garp/fdf/default/vpscalar/general/Temp_C
+</b></code></pre>
+<p>
+
+A: The FDFs listed above are defined in the Garp_defaults file 
+as the default FDFs for the various data types.  For example, 
+the default FDF for the standard scalar gridded plan view map is
+<b><code>/usr1/nawips/garp/fdf/default/scalar/general/Temp_C</code></b>.<p>
+
+If GARP can not read these FDFs, it is likely that either the
+FDFs do not exist, or the permissions will not allow the files
+to be read.<p>
+
+Try the following:
+<pre> <code> <b>
+  % ls -ls /usr1/nawips/garp/fdf/scalar/general/Temp_C
+</b></code></pre>
+
+This command will show you whether the file exists, and
+what the permissions are.  You are looking for a world-readable 
+file (<code><b>rwxr-xr-x</b></code>).<p>
+
+If the file does not exist, you must either create it, or
+you must change the definition of the default FDF in your
+Garp_defaults file.  The same goes for the other FDFs 
+listed in the error messages.<p>
+
+If the file exists, then you must adjust the permissions
+to be world-readable.  You must also check the permissions
+of the entire directory, as well as the permissions on
+the other FDFs and directories listed in the error message.
+<p>
+
+
+<li><i>Q: When I started up GARP today the following message 
+appeared on the terminal screen:
+</i><pre><code><b>
+          error in Get-FDF - could not read
+</b></code></pre><i>
+the result was that I could not select any FDFs.  All other 
+data was OK. What's wrong?</i>
+<p>
+
+A: What does the next line on the terminal screen say?  Does it look like 
+this:
+<pre><code><b>
+% garp
+G A R P - v2.0 starting...
+*** Error in GetFDF - Could not read:
+/usr1/nawips/garp/fdf/valid_fdf_keys
+</b></code></pre>
+
+If so, then GARP can not find the file <code><b>valid_fdf_keys</b></code>
+which is required in order for GARP to interpret ANY of the FDFs.<p>
+
+The causes of this problem might be:
+<ol>
+<li> Missing valid_fdf_keys file
+<li> Wrong permissions on FDF directory or directories
+<li> Missing FDF directory or directories
+<li> Incorrect configuration of FDF directory location in Garp_defaults file
+</ol>
+<p>
+Check each of these elements and try GARP again.
+<p>
+
+
+<li><i>Q: I tried to run GARP 2.0 and I received the following 
+message.  What is wrong?</i><p>
+
+<pre><code><b>
+*** Fatal Error: Number of keys and labels in configuration file do not match.
+*** Problem keys are: 'modelkeys' and 'modellabels'
+</b></code></pre>
+
+A:  The error message is very clear.  You have a mismatch between
+the number of <code><b>modelkeys</b></code> and 
+<code><b>modellabels</b></code> defined in your 
+Garp_defaults file.  See the comments in the Garp_defaults file
+for more information.<p>
+
+
+<li><i>Q: How does the new time matching feature work in GARP?</i><P>
+
+A: The time matching feature of GARP 2.0 will automatically match 
+valid times between data sets.  There are two levels of time matching, 
+<b>Strict</b> and <b>Closest</b>.  <b>Strict</b> time matching means that 
+data must exist within a predefined time interval in order for a time 
+match to be found.  <b>Closest</b> time matching loosens this requirement 
+of a finite time interval and instead selects the closest available time
+as a match.  For no automatic time matching at all, choose <b>None</b>.
+For model data, there is an additional choice.  You can choose to
+match against the model analysis times only, or you may match against 
+all the available forecast hours.  You can set the default level of time 
+matching in the Garp_defaults file. To change the
+time matching once GARP is running, click on <b>Time</b> and then 
+<b>Time Matching</b>.  <p>
+
+If time matching is enabled, GARP will display all available dates 
+and times for a selected data type.  Then, once you select and display 
+data for a given time series, the time matching algorithm will preselect
+matched times for <i>all other data sets</i>.  The preselected
+times will be highlighted and the scrolled list will be desensitized
+so that you can not change the selection.  The scrolled list will
+not contain the date/times that do not match the times you selected
+in the first display.<p>
+
+There are only two ways you can see the times that do not match
+your original selection.  You can press the <b>Reset</b> or <b>Clear</b>
+button to erase the existing graphics, or you can use the <b>Time</b>
+pull-down menu to turn off time matching.  Once time matching
+has been turned off, all the available dates and times will
+appear in the scrolled list.<p> 
+
+While time matching is on, the <b>Refresh</b> button can be
+be used to reload the contents of the date/time scrolled list.
+If any new data has arrived that matches the times you selected 
+in the first graphic, the new time will appear in the scrolled 
+list.   If the new date/times do not match the times you selected in 
+the first graphic, the date/times will not appear in the scrolled 
+list unless you turn off time matching.<p>
+
+The time matching algorithms were created to facilitate the 
+combination of data in a single graphic.  In some cases, such as 
+viewing current data, it will be very useful.  In other cases,
+such as comparing different model runs or data over a wide window
+of time, time matching can be cumbersome.  Thus, you may find 
+that you use the <b>Time->Time Matching</b> pull-down menu frequently.<p>
+
+<li><i>Q: How does the new auto update functionality work in GARP?</i><p>
+
+A: As new data arrives on your system, the auto update function
+will automatically load it into an existing GARP graphics loop.<p>
+
+To turn on auto update, click on <b>Time</b> in the main menu bar 
+and then on <b>Auto Update</b>. Click on the toggle button 
+and adjust the update interval with the slider bar.  Be sure to 
+press the <b>Apply</b> button to start the auto update 
+You can set auto update to be on or off at start up in the
+Garp_defaults file.<p>
+
+Auto update works for images, surface data, upper air data, and 
+model data.  You may construct a loop of graphics including 
+any combination of the data types listed above.  The update
+mechanism will key on the first data type loaded and will use
+the time matching algorithm to update the other data in your 
+graphic.  If you have turned time matching off, then only the 
+first data type loaded will be updated and any other data will
+age away.<p>
+
+Auto update recycles the GARP graphic frames (also called 
+<i>pixmaps</i>).  As a new graphic is added for a new time, the
+oldest graphic in the loop is discarded. Thus, the loop never gets
+any longer.<p>
+
+In addition to checking for data at a new time, the auto update 
+function also checks the contents of existing frames.  For example,
+when using auto update on a surface or upper air loop, auto update 
+will compare the number of stations plotted in each frame against the 
+contents of the data file.  If the data file contains more stations 
+than are plotted, the frame will be re-drawn with the additional data.
+With model data, the auto update will check for missing forecast hours.<p>
+
+<li><i>Q: How do the new macros work in GARP?</i><p>
+
+A: A macro can contain an arbitrary number of FDFs, both scalar and 
+vector in a single file.  From the GARP interface, the user can
+select a macro with a single mouse click and the resulting GARP
+graphic will contain overlays of all the functions included in
+the macro.<p>
+
+To run a macro, click on one of the "macro" directories in the
+<b>Gridded Data Plan View</b> dialog window. Then select the
+macro of your choice, just as if it were an FDF. Since macros 
+often load several FDFs at once, the graphic may take a while to 
+load.<p>
+
+For more information about how to create your own macros, see
+the <b>GARP Macro Description</b> in the GARP users manual
+(<a href ="Macros.html">Macros.html</a>).<p>
+
+<li><i>Q: There seem to be a few bugs in GARP 2.0.  When will they
+be fixed?</i><p>
+
+A: The GARP developers have created a patch that brings GARP to
+version 2.0.1.  This patch contains the following bug fixes and
+enhancements:<p>
+
+<ol>
+<li>Pressing the CLEAR button to cancel the loading of data will preserve
+the current map and graphics area.
+
+<li>The line on which a graphics title is printed is correct.
+
+<li>You may select a new model in the Time/Height cross section window.
+
+<li>In the Model Plan View window, the Levels window will automatically
+resize to the correct size.
+
+<li>The behavior of the map projections UTM, TVM, and NPS is correct.
+ 
+<li>Title strings are drawn in the specified font size.
+
+<li>Surface data symbols are drawn in the specified size.
+
+<li>The Model Plan View window will only display those models which
+actually exist in the gridded data directory.
+ 
+<li>The vertical coordinate has been added to the title for gridded data 
+plan view graphics. For level = 0, and vcoord = NONE, <i>SFC</i> 
+appears in the title.
+
+<li>The level and vertical coordinates specified in titles are constructed
+from the grid function in-line modifiers (% for vcoord, and @ for level),
+if applicable.
+     
+<li>The list of available dates/times are positioned with the last 
+highlighted item at the bottom of the scrolled list.  This makes it
+easier to see the other available times.
+
+<li>The time interval for wind profiler data is set in minutes, rather
+than hours.
+
+<li>Model-specific macros may be located in model-specific directories.
+ 
+<li>Titles can be turned off using the Options menu.
+
+<li>NEXRAD station ID names may be up to 8 characters long. 
+</ol><p>
+
+
+<li><i>Q: I think I found a bug in GARP:  When using "Clear" button to 
+interrupt the loading of a sequence of frames, the behavior is that of 
+"Reset".  It  destroys the zoom you had previously selected.  It not only 
+interrupts the loading (which is good), but also resets your view 
+(which is bad). As far as I can tell, there is no difference between 
+the reset and clear buttons if using them to interrupt frame loading.</i><p>
+
+A: You are right, this is a bug.  It was fixed in the GARP 2.0.1 patch.<p>
+
+<li><i>Q: I am trying to change the size of weather and sky cover 
+symbols for the surface plots. In the sfc_parms variable, I set 
+skyk:.8:.8 and ptnd:.8:.8.  However, they still plotted at the
+standard size (1.0).  Using the depictables popup, I was able to 
+select the next lower size for the symbol size and width, and that 
+made them smaller. But, I want the smaller size by default.</i><p>
+
+A: This is a bug.  It was fixed in the GARP 2.0.1 patch.<p>
+
+
+<li><i>Q:I've set auto update to "on" in Garp.defaults.  If I plot 
+a surface map for the past, say, three hours, and then go back to 
+plot more hours, the only times listed are the ones that were 
+originally plotted.  The only way to clear this (while leaving 
+auto update on), is to pick a different type of surface data (i.e. buoy 
+obs), then reselect the surface obs.  This certainly seems inconvenient.
+Is there any way to change this?</i><p>
+
+A: Actually, you can get the full scrolled list of times by pressing the
+Reset or Clear button on the top icon bar.  And, if the Surface Data 
+Dialog box is displayed you will also have to press the Refresh button
+on the bottom of the Dialog box.  You don't have to choose a different
+type of surface data.<p>
+
+Another hint--it's really important to turn on some type of time
+matching (strict or closest) when using auto-update with more than
+one kind of data (like satellite and surface data).<p>
+
+<li><i>Q: I get the following error when trying to view User's Guide 
+under help:
+</i><pre><b>sh: netscape:  not found</b></pre>
+
+A: In Garp_defaults: 
+
+<pre><b>  #
+  # Hypertext browser command and Starting URLs (or files).
+  #
+  # If the Browser command is "netscape %s", and Netscape is already running,
+  # then GARP will try to open the URL in a new Netscape window. Otherwise,
+  # GARP will launch the browser command listed. (The %s is the URL placeholder.)
+  # 
+  GarpHTML        : $(GARPHOME)/html
+  Browser         : "netscape -install %s"
+  UserGuide       : $(GarpHTML)/UserGuide.html
+  CaseStudies: http://www.comet.ucar.edu/pub_html/sac_html/casestudy/notice.html
+
+</b></pre>
+Pick a browser and insert it in the "Browser" key.  You may
+need to include the full path.<p>
+
+<li><i>Q: When I run GARP 2.0. on our HP, I get the message: 
+
+</i><pre><b>!!!!Whoa!!!! Free() got a 0x0 </b></pre><i>
+
+and then the program loads up fine.  What's wrong?</i><p>
+     
+A: This is a debug error message and is printed when GARP tries to 
+free either a NULL string or a previously freed string. Since you are 
+seeing this message at startup, the most likely cause is a Garp_defaults
+configuration file error.  If the misconfigured parameter is not vital, 
+GARP will run normally.  Only when memory corruption occurs does this
+error cause GARP to crash.  However, you still should try to find the
+problem in your Garp_defaults file.<p>
+
+To help find that problem, run GARP in verbose mode.  At the command line:
+     
+<pre><b>% garp -verbose 2 -memcheck</b></pre>
+     
+The "verbose 2" flag will print current parameter values to the screen. 
+The "memcheck" flag will force GARP to try to free the bad pointer and 
+will most likely cause GARP to crash. This, in turn, will help identify the 
+parameter, or at least the block of code that is generating the error 
+message. <p>
+
+<li><i>Q: I just installed the SOO/SAC distribution of Garp2.0 on one 
+of our HP's and I encountered a problem with the maxT_est FDFs.   I
+know there are FDFs in this directory, but GARP won't let me see them.</i><p>
+
+A: You are right, this is a bug.  It was fixed in the GARP 2.0.1 patch.<p>
+
+In order for the FDFs in any model-specific chapter to be recognized, 
+there must be a corresponding chapter directory in the default/ directory.
+That directory must exist, even if it is empty!<p>
+     
+
+<li><i>Q: Sometimes when I'm running GARP and switching between
+models and vertical coordinates, I notice that the Level pop up
+window is not the right size.  When this happens, I have to
+resize the box manually in order to see all the buttons.</i><p>
+
+A: You are right, this is a bug.  It was fixed in the GARP 2.0.1 patch.<p>
+
+
+<li><i>Q: When I plot a model plan view graphic and specify the
+vertical level in the FDF using the </i><code><b>@</b></code><i> 
+symbol (i.e. </i><code><b>HGHT%NONE@0</b></code><i>), the title does 
+not reflect the correct level.  Instead, it prints out whatever level
+is in the Level box in the Model Plan View window.</i><p>
+
+A: You are right, this is a bug.  It was fixed in the GARP 2.0.1 patch.<p>
+
+<li><i>Q: I edited the Garp_defaults file to change the string for
+my surface data from </i><code><b>surf</b></code><i> to 
+</i><code><b>sao</b></code><i> in the </i><code><b>sfc_keys</b></code><i> 
+key.  But now, when I start GARP, it crashes and won't run.  What did I 
+miss?</i><p>
+
+A: It is not enough to just change the <code><b>sfc_keys</b></code>
+and <code><b>sfc_labels</b></code> keys.  You must also change the
+<code><b>xxx_dir</b></code> <code><b>xxx_parms</b></code> keys (where
+<code><b>xxx</b></code> is the string you just added).  For each
+string in <code><b>sfc_keys</b></code>, GARP expects to find a
+<code><b>xxx_dir</b></code> and <code><b>xxx_parms</b></code> key.
+<p>
+
+For example, here's the original surface data section in Garp_defaults:
+<pre><b>
+    sfc_keys: "surf,shb"
+    sfc_labels: "Hourly / METAR,Ship / Buoy"
+    sfc_tables: "sfcparms.lst,shbparms.lst"
+    surf_dir          : $(METDAT)/gempak/surface
+    shb_dir          : $(METDAT)/gempak/ship
+    surf_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1"
+    shb_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;BLNK;WPER;WHGT;SSTC;BRBK:1.0:1"
+</b></pre>
+
+If you must change the string <code><b>surf</b></code> to 
+<code><b>sao</b></code> in <code><b>sfc_keys</b></code>, you must also
+create a <code><b>sao_dir</b></code> and <code><b>sao_parms</b></code> key.
+For example:
+
+<pre><b>
+    sfc_keys: "sao,shb"
+    sfc_labels: "Hourly / METAR,Ship / Buoy"
+    sfc_tables: "sfcparms.lst,shbparms.lst"
+    sao_dir          : $(METDAT)/gempak/surface
+    shb_dir          : $(METDAT)/gempak/ship
+    sao_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1"
+    shb_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;BLNK;WPER;WHGT;SSTC;BRBK:1.0:1"
+
+</b></pre>
+
+</ol>
+<p>
+<p>
+<hr>
+<p>
+<h3>Data Sets in GARP</h3>
+<p>
+<ol>
+
+<li><i>Q: We have been interpolating hourly surface and twice-daily 
+upper air soundings for some time now. The data are saved in GEMPAK 
+grid files with the names YYMMDD_surf.gem and YYMMDD_upa.gem.  We have
+configured GARP to access these grid files from the <b>Gridded Data
+Plan View</b> dialog window.  This works fine when we first start
+up GARP, but as the day progresses, more grids are added to the
+surface and upper air analyses files.  However, the data menus in 
+GARP will not update with the new grids unless we exit and restart 
+the application.  This is not the case for the other model data or 
+the satellite data where the menus update without exiting the 
+application.  What is going on here?</I>
+<p> 
+
+A: All existing grid files are opened and read when the <b>Gridded 
+Data Plan View</b> dialog window is opened.  Once a grid file is 
+opened and read, it's contents are stored in memory.  (This 
+is done to reduce the time it takes to read and process the grid 
+information.)  As new files appear in the grid directory, they are 
+opened and read.  However, existing files are <i>not</i> re-read,
+except in certain circumstances.<p>
+
+For example, the 0Z Eta model file (98012100_eta.gem) and the 0Z surface 
+(980121_surf.gem) analysis files are read when GARP starts up.  Then, 
+when the 12Z run of the Eta model comes in, GARP opens and reads the 
+file because it is a new file (98012112_eta.gem).  However, when the 
+12Z surface analysis is added to the 980121_surf.gem file, GARP will 
+not automatically re-read the file. In order to force GARP to re-read 
+the 980121_surf.gem file you must press the <b>Refresh</b> button at 
+the bottom of the dialog window. <p>
+
+
+<li><i>Q: I have a special surface data set that I have converted into
+GEMPAK format.  Can I view this data set in GARP?</i><p>
+
+A: Yes.  GARP 2.0 now allows you to customize the <b>Surface Observation
+Data</b> dialog window for an arbitrary number of data sets.  You can
+supply a name for the data set, as well as a default list of parameters 
+to plot, and a complete list of available parameters.
+This is all done in the Garp_defaults file.<p>
+
+Here is an example of how to configure the Garp_defaults file to
+plot the standard METAR data, ship & buoy obs, and the NGM MOS data:
+<p>
+
+<pre><code><b>sfc_default: "surf"
+sfc_keys: "surf,shb,nmos"
+sfc_labels: "Hourly / METAR,Ship / Buoy,NGM MOS"
+sfc_tables: "sfcparms.lst,shbparms.lst,nmosparms.lst"
+surf_dir          : $(METDAT)/gempak/surface
+shb_dir          : $(METDAT)/gempak/ship
+nmos_dir         : $(METDAT)/gempak/mos
+surf_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1"
+shb_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;BLNK;WPER;WHGT;SSTC;BRBK:1.0:1"
+nmos_parms: "SKYC:1.0:1;TMPF;BLNK;CLCT;BLNK;PP12;PP06"
+</b></code></pre>
+
+The mapping between these keys should be familiar to you, since
+it is very similar to the way the gridded data is configured.  
+The <code><b>sfc_keys</b></code> key lists the three data types.
+Then, the strings defined in <code><b>sfc_keys</b></code> are used 
+to specify the directory where the data will be found and the 
+parameters that are plotted by default.  Note that I can specify 
+a completely different list of parameters for each data set.<p>
+
+The <code><b>sfc_labels</b></code> key defines the labels that are
+given to each of the three data sets.  The <code><b>sfc_tables</b></code>
+key gives the names of tables which define <i>all</i> the valid
+parameters for the data set.  This comes in handy when you don't 
+want to plot a certain variable by default, but  occasionally 
+do want to see it.  You'll see how this works in a moment.  These 
+tables must be located in the GARP tables directory specified by
+the key <code><b>tabledir</b></code>.  Usually this is the 
+<code><b>$NAWIPS/garp/tables</b></code> directory.<p>
+
+Once you have configured the surface data sets, you can access
+each of them from the <b>Surface Observational Data</b> dialog window
+by selecting the <b>Scale</b>.   When you click on <b>Station Layout</b>
+you see the list of default parameters to be plotted, and how 
+they are arranged in the layout.  You can modify this station 
+layout by selecting any of the parameters from the scrolled
+list.  The contents of that scrolled list comes from the table 
+you defined in the <code><b>sfc_tables</b></code> key.  You may 
+either type the new parameter name in the station layout, or drag 
+and drop it with your mouse.<p>
+
+<li><i>Q: Sometimes I use GARP to look at case study data.  There
+are some cases that do not contain all the models that I receive
+in near-real-time.  Consequently, the list of available models
+will contain models that are not actually available.  How can
+I remove those models from the list for case data without removing
+them from the list for real-time data?</i><p>
+
+A: The GARP developers have added code to check for the 
+existence of the various model data files.  Those
+models that do not exist are automatically filtered out of the
+list of available models presented to the user.  This new feature
+is available in the GARP 2.0.1 patch.<p>
+
+<li><i>Q: I just set up GARP2.0.  In the process of configuring it, I 
+tried to set up a second type of plot using surface data but I'm having 
+trouble making it work.  The default surface plot  is fine, but I also 
+want to set up a plot for a weather depiction chart (and maybe other 
+plots also).<p>
+     
+Here's the problem:  In the sfc_keys line, I use the string "sao" to
+identify the surface data file YYMMDD_sao.gem, and I use the "sao_parms"
+key to list the parameters in the standard surface chart.  Now, I want to
+set up a weather depiction chart but I need to reference the same 
+surface data file. I can't use the string "sao" a second time in the sfc_keys 
+variable.  If I do, then the default surface chart is plotted.  
+I know I can delete the default parameters in the Station Layout 
+window and put in the ones I want, but this isn't very convenient.<p>
+     
+How can I set up a second (or third, fourth, etc) plot using the surface 
+data?  <p></i>
+
+A: You can set up alternate surface charts by using additional patterns 
+for the same data files.  For example: sao, sao., sao.g, sao.ge, sao.gem.<p>
+Try this:
+
+<pre><b>sfc_keys : "sao,bouy,ffg,sao.gem,coop"
+sfc_labels : "Hourly / METAR,Ship / Buoy,Flash Flood Guidance,Wx Depiction,COOP"
+sfc_tables : "sfcparms.lst,shbparms.lst,ffgparms.lst,sfcparms.lst,coopparms.lst"
+sao_dir     : $(METDAT)/gempak/surface 
+sao.gem_dir     : $(METDAT)/gempak/surface 
+sao_parms : "SKYK:1.0:1;TMPF;WSYM:1.0:1;SMSL;PTND;DWPF;P06I*100;BLNK;BLNK;BLNK;"
+sao.gem_parms : "SKYK;VSBY;WSYM;;GUST;;;;;;cldt"
+...</b></pre>
+
+
+Another option is to create a link between the standard surface data
+file (YYMMDD_sao.gem) and an alternative name (YYMMDD_wthr.gem).  The
+link can be created via a cron job or by the LDM.   Here's an example:
+
+<pre><b>% ln -s $METDAT/gempak/surface/980224_sao.gem $METDAT/gempak/surface/980224_wthr.gem
+
+sfc_keys: "sao,wthr"
+sao_dir         : $(METDAT)/gempak/surface
+wthr_dir        : $(METDAT)/gempak/surface
+sfc_labels: "Hourly / METAR,Weather"
+sfc_tables: "sfcparms.lst,sfcparms.lst"
+wthr_parms : "SKYK;VSBY;WSYM;;GUST;;;;;;cldt"</b></pre> <p>
+
+<li><i>Q: Everything went fine with our GARP 2.0 installation, and the program 
+appears to be working as advertised (nice enhancements!), except for
+viewing the satellite imagery. We have our satellite data directory set 
+up in a slightly non-standard directory tree:
+
+</i><pre><b> /usr1/metdat/images/sat/GOES-8/specific_product_type/images_here</b></pre><i>
+
+rather than the 'standard'
+
+</i><pre><b> /usr1/metdat/images/sat/GOES-8/data_scale/product_type/images_here</b></pre><i> 
+
+As you can see, we have combined the directories for image resolutions and
+type.  We do this to decrease the size of the file selection window in NSAT.
+This is needed on our PC's with lower screen resolution.<p>
+
+With this directory structure, GARP2.0 will not let us display
+the satellite data.  When we choose the appropriate radar/satellite 
+options, the image times are listed under the "Product Type"
+sub-window, with nothing in the "Available Times" sub-window.  As such, 
+we can not choose satellite images to display. <p> 
+
+Any idea of how we can display our satellite data within GARP2.0, 
+preferably without adopting the 'standard' satellite directory 
+format? <p></i>
+     
+A:  Yes.  Here is how you can implement your directory structure 
+in GARP 2.0:
+     
+<p>
+<ol>
+<li> Edit the Garp_defaults file.
+<li> Make the following definitions:
+     
+<pre><b>   ...
+   SATDIR          : /usr1/metdat/images/sat 
+   ...
+   G8    : "$(SATDIR)"
+   ...
+   satT   : $(SATDIR)/%(resolution)/%(product)/*_@(YYMMDD)_@(HHNN) 
+   ...</b></pre>
+     
+   You'll find the first two variables early in the file.  The last 
+   variable (satT) is located at the very end of the file.  The 
+   names used in satT (resolution, product) are unimportant, but 
+   the directory depth is important.
+</ol>
+<p>
+Essentially what this does is use the "sat" directory level to 
+complete the required three level directory depth:
+     
+<pre><b>   sat/GOES-8/specific_product_type/</b></pre>
+     
+rather than the standard:
+     
+<pre><b>   GOES-8/data_scale/product_type/</b></pre><p>
+
+<li><i>Q: We have two different directory trees for our satellite
+data. Here is a sample of our regular satellite data:
+
+</i><pre><b> /satellite/ramsdis/images/GOES-8/4km/IR/IR_YYMMDD_HHMM</b></pre><i>
+
+And here is a sample of our 15 minute imagery:
+
+</i><pre><b> /wfosac/satellite/A_GOES-8/ECONUS/IR/IR_YYMMDD_HHMM</b></pre><i>
+
+How should I configure the satT variable in Garp_defaults to support 
+both these directory trees?</i><p>
+
+A: You are correct that your a problem stems from having two 
+satellite directory tree depths. Your standard satellite data
+is 6 directories deep:
+
+<pre><b>  /satellite/ramsdis/images/GOES-8/4km/IR/IR_YYMMDD_HHMM
+    1         2       3       4    5   6  </b></pre>
+
+But, your 15 minute satellite data is only 5 directories deep:
+
+<pre><b>  /wfosac/satellite/A_GOES-8/ECONUS/IR/IR_YYMMDD_HHMM
+     1       2         3       4    5    </b></pre>
+
+The satT variable can only take one directory tree template.<p>
+
+You must convert all your satellite data to the same directory
+tree depth.  To do this, you can set up a dummy directory with a link.
+This will simulate a 6 level directory tree for the 15 minute data
+without changing the true directory structure. Here's how.  <p>
+
+<ol>
+ <li> In the directory /wfosac/satellite/, make a dummy directory:
+
+<pre><b> mkdir /wfosac/satellite/dummy</b></pre>
+
+ <li> In the /wfosac/satellite/dummy/ directory, make a link
+    back to the A_GOES-8 directory:
+
+<pre><b> cd /wfosac/satellite/dummy
+ ln -s ../A_GOES-8 A_GOES-8</b></pre>
+
+ <li> In Garp_defaults, make the following definition for your 15 minute
+    data:
+ 
+ <pre><b>  G7    : "/wfosac/satellite/dummy/A_GOES-8" </b></pre>
+
+</ol>
+    Now your 15 minute data will be 6 directories deep:
+
+<pre><b>    /wfosac/satellite/dummy/A_GOES-8/ECONUS/IR/IR_YYMMDD_HHMM</b></pre>
+<p>
+
+
+<li><i>Q: We've installed GARP 2.0 and it seems to work fine, except
+for the NIDs images.  When GARP lists the available times for the NIDS
+images, they all appear as the same time!  I've checked the directory,
+and I see the correct list of files: </i><code><b>98022412.00 98022412.05
+98022412.10</b></code><i>, etc.  Why can't GARP list the times 
+correctly?</i><p>
+
+A: Code was added to GARP 2.0 to decode the name of the image files 
+and present the user with a scrolled list of times, rather than file 
+names.  This is an improvement over the old GARP which just presented
+file names.  This new feature applies to all images, satellite and
+radar.  <p>
+
+However, in order for this to work, you must be sure your Garp_defaults 
+file is configured for your data file names.  The file naming templates 
+for radar and satellite data are found in the nidsT and satT variables
+at the end of the Garp_defaults file.  Make sure they match your file 
+naming convention.<p>
+
+The default naming convention for NIDS data in the Garp_defaults 
+file is:
+
+<pre><b>nidsT  : $(nids)/%(site)/%(product)/*_@(YYMMDD)_@(HHNN)</b></pre>
+
+However, your files are named YYMMDDHH.NN, so your nidsT variable
+should be:
+
+<pre><b>nidsT  : $(nids)/%(site)/%(product)/@(YYMMDD)@(HH).$(NN)</b></pre>
+<p>
+     
+<li><i>Q: I am having trouble configuring GARP to read our satellite
+data.  We use two different naming conventions for satellite data,
+for example: 
+
+</i><b><pre>IR.19980217.1015 
+IR_980219_1415_ecir1</pre></b><i>
+
+I'm trying to configure the "satT" variable in the Garp_defaults 
+file, but I'm not having any luck:
+
+</i><pre><b>satT   : $(SATDIR)/%(platform)/%(resolution)/%(product)/*[\._]*@(YYMMDD)[\._]@(HHNN)_*</b></pre><i>
+
+What I am doing wrong?</i><p>
+
+A: You are not doing anything wrong.  The GARP developers did not
+implement a regular expression library for the file naming templates.
+Perhaps they will in a future release.<p>
+
+For now, there is no way to support both naming conventions.  You can
+either change your naming convention, or you can use links to create
+names that can be described by a single template.  For example, you
+can convert the file names to be:
+
+<pre><b>IR_19980217_1015
+IR_19980219_1415_ecir1</pre></b>
+
+and then in Garp_defaults:
+
+<pre><b>satT   : $(SATDIR)/%(platform)/%(resolution)/%(product)/*_19@(YYMMDD)_@(HHNN)*</b></pre>
+<p>
+
+<li><i>Q: I am trying to view case study data in GARP using the script
+</i><b><code>ntl.case</code></b><i> that came in the 
+</i><code><b>$NAWIPS/exe/scripts/soosac</b></code><i> directory.  Even though
+I am using the script, GARP only sees my real-time data, and not the
+case data.  What's wrong?</i><p>
+
+A: The ntl.case script works just fine with GARP 2.0.
+The trick is that you must use the variable <code><b>$METDAT</b></code> in 
+the Garp_defaults file for all your data directories.  That is how 
+<code><b>ntl.case</b></code> works, by changing 
+<code><b>$METDAT</b></code> to point to the root of the case data
+directory tree.<p>
+
+
+
+</ol>
+<hr>
+<p>
+<H3>Tips on FDFs & Macros</h3>
+<p>
+<ol>
+
+<li><i>Q: Is 
+there a way to default to another contour fill color table when writing 
+an FDF?  For example we are working on an FDF which defaults to the 
+"COOL" color fill table. Would like it to default to "Table 2" instead.
+We'd rather not have to go to the <b>More</b> window and manually 
+select Table 2.</I>
+
+<p>
+A: The colors used to fill in color fill contours are defined in
+the FDF variable <code><b>fline</b></code>.  So, you can specify any
+color numbers you'd like for color fill contours.  To use the same 
+colors as Table 2, simply copy the appropriate sequence of color 
+numbers listed in the <code><b>colorfillkeys</b></code> key in the 
+Garp_defaults file.<p>
+
+<li><i>Q: Back in GARP 1.X, I used to have to maintain separate
+FDFs for all the varieties of mean sea level pressure.  I
+had one for the Eta model that used EMSL, and one for the RUC
+that used MMSL, and one for the AVN, NGM, and MRF that used
+PMSL.  In GARP 2.0, I don't see the separate mean sea level 
+pressure FDFs anymore.  Do I have to create them again!?!</i>
+<p>
+A: No.  This is a new feature of GARP 2.0!<p>
+
+There are some FDFs that don't work for all models.  For example, 
+there are fields that are specific to certain models (EMSL, MMSL, PMSL 
+as you noted).  And, there are some fields that are not available
+in certain models (precip at 3, 6, or 12 hr intervals).  This is
+a major source of confusion for users of GARP.
+<p>
+
+In response to this, GARP 2.0 now has special FDF chapters for each
+model.  These model-specific chapters contain <b>only</b> those FDFs
+which are specific to the current model.  When GARP creates the list 
+of FDFs, it includes all the FDFs from the chapter selected, supplemented 
+by the FDFs included in the model-specific chapter.  You do not have 
+to know anything about the peculiarities of the chosen model, it is 
+all done automatically.<p>
+
+
+If you look at the FDF directory structure, you'll notice that there 
+is a directory called <code><b>default</b></code> under
+the <code><b>scalar</b></code> directory.  There are also 
+directories called  <code><b>eta</b></code>,  <code><b>avn</b></code>,
+and  <code><b>ruc</b></code>.  Beneath the <code><b>default</b></code>
+directory, you will find all the expected chapter names such
+as <code><b>general</b></code> and <code><b>convective</b></code>.
+These are the standard chapters of FDFs.   Beneath the
+<code><b>eta</b></code> directory, you'll also see a directory 
+called <code><b>general</b></code>.  In this directory are the 
+Eta model-specific FDFs that belong to the <code><b>general</b></code>
+chapter.  Here's an example:
+<pre><code><b>
+scalar -- default  -- general      --  MSLPress_mb
+                   -- convective
+                   ...
+
+       -- eta      -- general      --  MSLPress_mb
+                   ...
+</b></code></pre>
+
+When you select the Eta model, you will see all the
+FDFs from the <code><b>default/general</b></code> directory, <i>and</i>
+you will see the FDFs from the <code><b>eta/general</b></code>
+directory.  Plus, if an FDF exists in the <code><b>eta/general</b></code>
+directory and the <code><b>default/general</b></code> directory,
+the FDF in the <code><b>eta/general</b></code> directory will
+take precedence.  Note that the name of the model-specific directory
+must correspond to the string used in the <code><b>modelkeys</b></code>
+variable in the Garp_defaults file. <p>
+
+For more examples of this new feature, see the FDF directory tree
+in your GARP distribution.<p>
+
+<li><i>Q: I noticed a directory called </I><code><b>hidden</b></code><i> 
+in the FDF directory tree.  What is this?</i><p>
+
+A: The <code><b>hidden</b></code> directory is used for FDFs which are 
+referenced in macros but are not appropriate for the regular FDF
+chapters.  An example is the generic wind divergence FDF.
+The generic function plots all contours including zero, which results
+in a cluttered graphic.  More specialized divergence functions that 
+only plot positive or negative divergence are available in other FDF 
+chapters.<p>
+
+
+<li><i>Q: I just downloaded the TPC's mean layer wind program 
+from the SAC FTP server contrib directory.  I displayed the mean 
+winds within the GDWIND program using 
+</i><code><b>gvect=vecr(umean,vmean)</b></code><i>.
+Once the multilevel </i><code><b>umean,vmean</b></code><i> grids
+are created, is there a way to display 
+the mean layer wind in GARP? I couldn't figure out how to access 
+</i><code><b>umean,mean</b></code><i> instead of 
+</i><code><b>urel,vrel</b></code><i>. Is there another function that should 
+be used in place of </i><code><b>OBS</b></code><i> or
+</i><code><b>WND</b></code><i>?</i><p>
+
+A: You must create a new GARP FDF for the mean winds.  It is very simple
+to do this.  Follow these steps:<p>
+<ol>
+<li> <code><b>cd</b></code> to the vector FDF directory:
+
+<pre><code><b> % cd $NAWIPS/garp/fdf/vector/default/general
+</b></code></pre>
+
+<li> Copy the existing Wind_kts FDF to a new filename for the mean winds:
+
+<pre><code><b> % cp Wind_kts Mean_Winds
+</b></code></pre>
+
+<li> Now edit Mean_Winds and make the following definitions:
+
+<pre><code><b>  function = vecr(umean,vmean)
+  description = Mean Winds 
+</b></code></pre>
+
+  You should also change the comment lines at the top of the file.<p>
+</ol>
+
+Now start up GARP and your new Mean_Winds FDF will be available.
+<p>
+
+<li><i>Q: When plotting a gridded data plan view map, where does the
+title of the graphic come from?</i><p>
+
+A: If you have selected an FDF (or a macro that uses FDFs), the 
+title is constructed from the contents of the <code><b>label</b></code>
+field in the FDF.  If the <code><b>label</b></code> field is blank,
+or if you aren't using an FDF at all, the underlying GEMPAK code creates
+the title from the function (<code><b>GFUNC</b></code> or 
+<code><b>GVECT</b></code>) used.<p>
+
+<li><i>Q: Is there a way to compute and display a time difference 
+field from hourly surface analysis grids?  For example, I would 
+like to use GARP to display a 1,2 or 3 hour surface pressure 
+change field.  I have been experimenting with TDF and SUB commands 
+but have not been able to get things to work.</i><p>
+
+A: Well, you can do it, but it will take a couple of steps, and it 
+won't be fully automatic.  This 
+is because GARP is not set up to easily handle calculations involving 
+two times.  The good news is that the developers are thinking about
+this problem in the context of their work to improve the time matching.
+Maybe we'll have something in the next release.<p>
+
+Here are the steps:<p>
+<ol>
+<li> You must calculate the pressure change grid ahead of time, using the
+GDDIAG program.   You can program GDDIAG into your objective analysis script.
+Assuming you have hourly GEMPAK surface grid files:
+
+<pre><code><b> % gddiag
+ GDFILE    Grid file                 97090900_sfc.gem+97090903_sfc.gem
+ GDOUTF    Output grid file          97090903_sfc.gem
+ GFUNC     Scalar grid               SUB(PMSL+2,PMSL^/00+1)
+ GDATTIM   Grid date/time            970909/03
+ GLEVEL    Grid level                0
+ GVCORD    Grid vertical coordinate  NONE
+ GRDNAM    Grid parameter name       PMSL3
+ GPACK     Packing type/number of bits       
+ Parameters requested: GDFILE,GDOUTF,GFUNC,GDATTIM,GLEVEL,GVCORD,GRDNAM, GPACK.
+ GEMPAK-GDDIAG>
+
+</b></code></pre>
+
+I made up the GRDNAM=PMSL3 to indicate 3 hr PMSL change.  You can pick
+any name.  The "+1", "+2" syntax for GFUNC is described in the help
+file for GFUNC (<code><b>phelp gfunc</b></code>, or GPARM in Chapter 3
+of the NAWIPS User's Guide).<p>
+
+This will result in a new grid in the 97090903_sfc.gem file:
+
+<pre><code><b>
+970909/0300    970909/0000        0         NONE PMSL3    
+</b></code></pre>
+
+<li> Now, you can create a  FDF for 3hr PMSL change:
+
+<pre><code><b>
+  function=PMSL3^/03:/00
+  vcoord=none
+  level=0
+</b></code></pre>
+</ol>
+   
+However, since the hours will always change (i.e. /04:/01, /05:/02, etc) you
+can't have a single FDF for a generic 3 hour PMSL change.  You'll either
+have to create a whole suite of FDFs (one for each 3hr change), or you'll
+have to manually type the hours in the GARP function input window.<p>
+
+<li><i>Q: I took all the fdf's out of the default/ directory and put 
+individual FDFs in each model-specific directory.  That works fine.
+However, why can't I do the same for the Macros?
+</i><pre><b> $NAWIPS/garp/fdf/scalar/default/macros  (all removed from here)
+ $NAWIPS/garp/fdf/scalar/eta/macros (Eta macros)
+ $NAWIPS/garp/fdf/scalar/ngm/macros (NGM macros)</b></pre><i>
+
+GARP displays the macros correctly, but when I select one and press
+Display I get this:
+</i><pre><b>G A R P - v2.0 starting...
+*** Error in GetMacro - Could not read:
+/usr1/nawips/garp/fdf/scalar/default/macros/3-hr Pcpn&MSLP
+Bus error (core dumped)</b></pre><i>
+Thanks for your help, I must be doing something wrong.</i><p>
+
+A: This was a bug in GARP 2.0.  It was fixed in the GARP 2.0.1 patch.
+Here's how the macro functionality works in GARP 2.0.1:<p>
+<ol>
+<li> Macros may be located in the <code><b>default/</b></code>
+directory, or in a
+model-specific directory.  The macros can be in any subdirectory 
+(<code><b>macro/</b></code>, <code><b>general/</b></code>, etc.).  
+The model-specific version of a macro is 
+always checked first, before the <code><b>default/</b></code> 
+version is used. <p>
+
+<li> Inside each macro is the variable "chapter".  The "chapter" 
+variable tells the macro where to find the FDF(s) to use in the graphic.
+For example, many macros refer to the "hidden" directory: 
+"chapter = hidden".<p>
+
+<li> To find the FDF, the macro checks the "hidden" directory (or whatever
+   chapter directory is specified) in the model-specific diretory.  That 
+   means, if I'm looking at Eta data, the macro checks 
+<code><b>eta.gem/hidden/</b></code> first.  Then, if the FDF is not 
+found in <code><b>eta.gem/hidden/</b></code>, it checks 
+   the <code><b>default/hidden/</b></code> directory.
+</ol><p>
+
+This way, I can create a graphic by using either a generic or model-specific 
+macro.  The macro may reference a model-specific or generic FDF, depending
+on which is available.<p>
+
+<li><i>Q: I would like to plot the wind direction value (i.e. 295 degrees) 
+and the wind barb together on a GARP graphic.  I want both plotted at
+the same time, without having to go to the </i><b>MORE</b><i> window
+and click the </i><b>Value</b><i> button.  Can I do this in an FDF or
+macro?</i><p>
+
+A: You can in GARP 2.0.1.  You can add the key <code><b>value=y</b></code>
+to any FDF or macro to specify that the data should be represented
+as grid point values rather than contours or symbols (barbs, arrows, etc.)
+It's best to add this key <i>after</i> the <code><b>contour</b></code> key.<p>
+
+Note, that a single FDF can't represent both values and contours (or barbs).
+To plot both, you'll need to write a macro.  For example:
+
+<pre> <b>
+! GARP Macro Template
+!
+! Macro: Wind barbs & direction values
+!
+! 
+! *** Required Parameters ***
+type                    = macro
+description             = Winds & direction values
+! *** End of Required Parameters ***
+!
+! *** Significant Parameters ***
+chapter                 = hidden
+fdf                     = Wind_kts
+value                   = n
+operation               = run
+fdf                     = Direction_deg
+value                   = y
+operation               = run
+! *** End of Parameters ***
+</b></pre>
+
+
+
+
+</ol>
+
+<p>
+<hr>
+<h3>Tips on GARP Displays</h3>
+<p>
+<ol>
+<li><i>Q: I read that I can toggle fields on and off in GARP.  How
+do I do this?</i><p>
+
+A: You can toggle a component of a graphic (model field, obs data,
+etc) on and off in GARP by pointing your mouse on the title of the 
+component in the drawing window and clicking the left button once.  
+The entire graphic will be redrawn, except for the selected graphic.  
+The title will remain on the graphic, but shaded in gray.  To restore 
+the component, simply click on the title again.<p>
+
+<li><i>Q: When I look at METAR data in GARP, the precip fields are
+always integers.  And, many times the values are always 0.  I know
+that some precip is being reported.  Why doesn't GARP display the
+values?</i>
+<p>
+A: The problem is not with GARP.  GARP uses GEMPAK as its display
+engine.  When plotting data values on a map, GEMPAK will not plot 
+decimal values.  This is true for all data, not just precip.  So, 
+if a station reports 0.9 inches of precip, GEMPAK and GARP will plot 
+this value as "0".<p>
+
+In GARP 2.0, you can easily and automatically multiply all precip values
+by 100.  In this case, the 0.9" report will show up as 90.  (You have to 
+know that the precip number is in 100ths of an inch.)  To implement
+this, see the <code><b>sfc_parms</b></code> variable in the Garp_defaults
+file: <pre><b>
+sfc_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I;BLNK;BLNK;BLNK;BRBK:1.0:1" </b></pre>
+<p>
+Simply multiply P03I by 100: <pre><b>
+sfc_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03I*100;BLNK;BLNK;BLNK;BRBK:1.0:1" </b></pre>
+<p>
+Another alternative in GARP 2.0 is to plot precip in mm.  The decimal
+values still will not plot, however this is less of an issue in mm than
+in inches: 
+<pre><b> sfc_parms: "SKYC:1.0:1;TMPF;WSYM:1.0:1;SMSL;P03C;DWPF;P03M;BLNK;BLNK;BLNK;BRBK:1.0:1" 
+
+</b></pre>
+<p>
+
+<li><i>Q: Recently I was trying to use GARP to plot storm data that
+I decoded using DCSTORM.  I noticed that not all the reports were
+being plotted.  The only way I could see all the reports was when
+I zoomed in, very tightly, on the area.  Is there a way I can force 
+GARP to plot all the data, even if it is very close together?</i>
+
+<p>
+A: Yes.  GARP allows you to choose how closely packed the data is
+in your graphics.  Open the <b>Depictables Preferences</b> window
+from the <b>Options->Depictables</b> pull-down menu.  Or, simply
+click the right mouse button in the drawing window to pop up this 
+window.<p>
+
+Press the <b>Symbol Packing</b> button farthest to the right.  This
+option will turn off all filtering of data.  Press <b>Apply</b> to apply
+this to your current graphic.  When no filtering is used, all data
+are plotted regardless of how closely they are situated.<p>
+
+<li><i>Q:  I am creating some satellite graphics for a publication, and 
+it is important that I keep the size small.  What are the best options
+are for decreasing the size of the graphic?  Also, sometimes the color 
+bar will overlap part of the image.  How can I fix this?</i><p>
+
+A: GARP 2.0 has a variety of command line switches which allow you 
+to specify the size of the GARP window.  The command line switches are:
+<p>
+<ul>
+ -noicons  :  starts GARP without the icon bar<br>
+ -nostatus :  starts GARP without the status bar<br>
+ -width w  :  starts GARP with a drawing area of width w<br>
+ -height h :  starts GARP with a drawing area of height h<br>
+</ul><p>
+
+You will have to start GARP from the command line to use these switches.
+There is no restriction on starting  GARP with a very small height.
+However, the width will be confined to the size of text items in
+the menu bar. The only only way to shrink the width further is to
+use a smaller font, or resize the width manually after starting GARP.<p>
+
+If you already have NTL running in your session, you can start GARP from
+the command line and still share the colors with other NAWIPS
+applications.  <p>
+
+In addition, you can now turn off the image color bar entirely. Simply
+press the <b>Color Bar</b> button in
+the <b>Image Products</b> dialog window, next to the list 
+of image filenames. 
+<p>
+
+<li><i>Q: In GARP, when I zoom in on a graphic, county maps are 
+drawn.  Is there a way to prevent this?  Or at least a way to change 
+the zoom threshold so they only plot when I zoom in REALLY close??  
+Currently, I can see Wisconsin to North Carolina and Missouri to 
+New Jersey and yet GARP overlays county maps.  How do I get rid of 
+them?</i><p>
+
+A: In GARP 2.0, you have a lot of control over the maps.  You can freely
+define scale thresholds as you suggest above.  You can also turn 
+maps permanently on or off.  You can even specify the line color
+and line type of the maps.  All these configurations can be made 
+from the <b>Options->Map Backgrounds</b> pull-down menu. <p>
+
+<li><i>Q: Can I plot latitude/longitude lines on my maps in GARP?</i><p>
+
+A: Yes, using the <b>Options->Lat/Lon Grid</b> pull-down menu, you
+can toggle lat/lon lines on and off.  You can specify the latitude
+and longitude spacings, and the frequency of the line labels as well.<p>
+
+
+<li><i>Q: I would like to create a special list of stations for our
+local mesonet. I would like to display this information in the same 
+way I display the METAR station information, from the 
+<b>Options->Station Overlay</b> window.  What do I do?</i><p>
+
+A: First you must create a station table for the mesonet stations.
+You can use the standard GARP surface station table 
+<code><b>$NAWIPS/garp/tables/sfstns.tbl</b></code>
+as a model.  Give your new station table an appropriate name,
+such as <code><b>local.tbl</b></code> and copy it into the 
+<code><b>$NAWIPS/garp/tables</b></code> directory.<p>
+
+Next, in the Garp_defaults file, you'll find a pair of keys that 
+define the station tables.  Add a spot for your mesonet station
+table to the list and increment the number.  You'll have to pick
+a label.  In this example, I chose <code></b>Local</b></code>:
+
+<pre><code><b> 
+        stn_tables: "0,1,2,3,4,5,6"
+        stn_labels: "MTR,WFO,NEXRAD,Wind_Profiler,UPA,Counties,Local"
+</b></code></pre>
+
+Finally, you must add your new table to the file 
+<code><b>$NAWIPS/garp/tables/master_garp.tbl</b></code>.  (This is one
+of the double levels of indirection left over from the very early 
+versions of GARP.)  I've put comments in the master_garp.tbl that tell
+you how to add a new table.  <p>
+
+<li><i>Q: I would like to plot a plan view map of observed sounding 
+data at a non-standard level.  Can I?</i><p>
+
+A: Yes.  You can specify the list of levels available in the <b>Upper
+Air Stations</b> plan view dialog window.  In the Garp_defaults file,
+modify the key <code><b>upalevels</b></code> to contain your list of
+the levels.  Note however, data must exist on the level specified 
+in order to be plotted.  No automatic vertical interpolation will 
+be made.<p>
+
+<li><i>Q: The controls for the font and symbol sizes for plotting data don't 
+offer much choice.  If left at the default size (the middle button), the 
+plots are too big depending on the garea.  If moved down to the next lowest 
+button, the size is too small to read almost.  More functionality in 
+setting the font and symbol size (while running GARP) would be a big 
+help.</i><p>
+
+A: You can choose your default font size, width, and type in the Garp_defaults
+file:
+
+<pre><b>  # Font type, size and hardware/software flag.  (See "Font" entry
+  # in Chapter 3 of the NAWIPS Users Manual for help.)
+  #
+  text_size       : 1.3
+  text_font       : 21
+  text_width      : 1
+  text_hw_flag    : hw</b></pre>
+
+The default size in the GARP distribution (1.3) is rather large.
+You should select a default size that accommodates most situations.<p>
+
+The sizes associated with the buttons on the Depictables Preferences
+window are hard coded inside GARP.  There is no way to dynamically
+configure these values.<p>
+
+
+</ol>
+<hr>
+
+<h3>Miscellaneous</h3>
+<p>
+<ol>
+<li><i>Q: I read that GARP has several command line options.  What
+are they?</i><p>
+
+A: The following command line options are available in GARP:
+
+<pre><code><b>
+      -help | -h     Prints out a usage message.
+
+      -clockinterval &lt;seconds&gt;
+                     Sets the clock update interval to the specified
+                     number of seconds.
+
+      -config &lt;filename&gt;
+                     Specifies the name and path of the configuration
+                     file (default: $GARP_PATH/Garp_defaults).
+
+      -start &lt;YYMMDD/HHMM&gt;   
+                     Specifies the start time for displaced real-time
+                     case study mode.
+
+      -current &lt;YYMMDD/HHMM&gt; 
+                     Specifies the current time for the application clock
+                     in displaced real-time case study mode.  
+
+      -end &lt;YYMMDD/HHMM&gt;     
+                     Specifies the end time for displaced real-time case 
+                     study mode.
+
+      -notick        Turns off the clock.  The time at start up is printed
+                     on the status bar, but it is not updated.
+
+      -verbose &lt;level&gt;
+                     The verbose level for printing runtime messages.
+                     &lt;level&gt; may be 1, 2 or 3.  Verbose level 1 prints
+                     the fewest statements and level 3 the most.
+
+      -tabledir &lt;path&gt;
+                     Specifies path to the GARP tables (default: $GARPHOME/tables).
+
+      -memcheck      Enable loose memory checking (for debugging).
+
+      -output &lt;destination&gt;
+                     Destination of logging information. &lt;destination&gt; can
+                     be 0 for standard out (terminal), 1 for the logging window, 
+                     or 2 for a file.
+
+      -noicons       Starts GARP without the icon bar.
+
+      -nostatus      Starts GARP without the status bar.
+
+      -width &lt;w&gt;     Sets the width of the drawing area to &lt;w&gt; pixels.
+
+      -height &lt;h&gt;    Sets drawing area height to &lt;h&gt; pixels.
+
+</b></code></pre>
+
+<li><i>Q: Is there a GARP User's Manual?</i><p>
+
+A:  Yes.  The GARP User's Manual is written in HTML and is built into the 
+GARP interface.  You can access it by clicking on the <b>Help</b> button 
+on the upper right corner of the GARP interface.  GARP will open a window 
+of the browser of your choice (configured in the Garp_defaults file) and 
+display the User's Manual.   You may print individual sections of the manual
+from your browser window.  As of now, there is no way to print then entire 
+manual except page by page from the browser window.<p>
+
+<li><i>Q:  I am searching for a reference on GARP to use in a 
+publication.  Do you have a suitable reference?</i><p>
+
+A: "A Software Tool To Display And Manipulate Meteorological Data"
+Jesuroga, S., and J. Cowie, S. Drake, D. Himes, 1997. 
+Preprints, 13th IIPS Conference, Long Beach, CA, AMS pp 359-361.<p>
+
+<li><i>Q: I'm a little confused about the relationship between the 
+main SOO/SAC distribution of GARP 2.0 and the Linux supplement.  What is 
+in the Linux supplement?  Also, what is in the Solaris GARP file?</I><p>
+
+A: The main SOO/SAC distribution of GARP includes an binary executable
+version of GARP for HP UX 10.2.  It also contains all the tables,
+FDFs, macros, etc. needed to run GARP on your HP.  <p>
+
+The Linux supplement contains the binary executable version of GARP
+for Linux.  It also contains a few maps that are needed for Linux
+Garp.  It does <i>not</i> contain the tables, FDFs, or other
+supplemental files for GARP. You must first install the main SOO/SAC
+distribution of GARP, and then install the Linux supplement on top of 
+that.  If you don't run GARP on your HP anymore, you can remove the HP 
+binary after you've installed the Linux one.  See the README file in 
+the Linux supplement for details. <p>
+
+The Solaris GARP tar file (garp2.0.solaris.Z) contains a binary 
+executable version of GARP for Sun Solaris workstations.  Again, 
+you must first install the main SOO/SAC distribution of GARP.
+Then to install the Solaris binary you must first create the 
+directory $NAWIPS/exe/sol.  Then, uncompress the garp2.0.solaris.Z
+file (<code><b>uncompress garp2.0.solaris.Z</b></code>) and move
+it into place (<code><b>cp garp2.0.solaris $NAWIPS/exe/sol/garp</b></code>).<p>
+<p>
+
+<li><i>Q: There is a very minor mistake in the garp.install instructions
+included with GARP 2.0. You ask us to changed to a directory that doesn't 
+exist! In step 4, we create the GARP_PATH variable to point to
+<code><b>$NAWIPS/garp/config</b></code>. In step 6, you ask us to edit 
+the file <code><b>$GARP_PATH/config/Garp_defaults</b></code>. There appears 
+to be an extra "config" in the directory path assuming that we've set 
+the GARP_PATH variable correctly in step 4.</i><p>
+     
+A: Thanks for the heads up.  I've changed the step 6 instructions 
+of the GARP distribution and on the GARP Home Page to edit the
+file <code><b>$GARP_PATH/Garp_defaults</b></code>.<p>
+
+<li><i>Q: Will the SOO/SAC Garp 2.0 distribution work on the older 
+HP/UX 9.x systems?</i><p>
+
+A: Actually, we built GARP 2.0 on HPUX 9.X.  It runs fine on 10.X systems.
+Until all the NWS SACs are up to 10.X, I will continue to build on 9.X when
+ever possible.<p>
+
+<li><i>Q: Is there be any print capability in the GARP 2.0?</i><p>
+
+A: The GARP developers did not add that feature to GARP 2.0.
+<p>
+
+
+
+
+ 
+</ol>
+<hr>
+<p>
+
+<i>Go to the GARP User's Guide <a href="UserGuide.html">Table of Contents</a>
+</body>
+</html>
